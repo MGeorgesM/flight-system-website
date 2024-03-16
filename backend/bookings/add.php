@@ -29,7 +29,7 @@ if($find_user->num_rows == 0) {
     exit;
 }
 
-$add_booking = $mysqli->prepare("INSERT INTO bookings (user_id, flight_id, passenger_number) VALUES (?, ?, ?)");
+$add_booking = $mysqli->prepare("INSERT INTO bookings (user_id, flight_id, passengers_number) VALUES (?, ?, ?)");
 $add_booking->bind_param('iii', $user_id, $flight_id, $passengers_number);
 $add_booking->execute();
 
