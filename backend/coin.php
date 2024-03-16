@@ -6,7 +6,7 @@ $user_id = $_POST['user_id'];
 $amount = $_POST['amount'];
 
 
-$find_user = $mysqli->prepare('select * from users where id = ?');
+$find_user = $mysqli->prepare('SELECT * from users  where id = ?');
 $find_user->bind_param('i', $user_id);
 $find_user->execute();
 $find_user->store_result();
