@@ -18,7 +18,7 @@ if(isset($id) && !empty($id)) {
         exit;
     }
     
-    $find_user->bind_result($id, $username, $email, $first_name, $last_name, $address, $passport_number, $coins);
+    $find_user->bind_result($id, $username, $email, $password, $first_name, $last_name, $address, $passport_number, $coins);
     $find_user->fetch();
     $user = [
         'id' => $id,
@@ -33,7 +33,7 @@ if(isset($id) && !empty($id)) {
     $response['status'] = 1;
     $response['message'] = "User found";
     $response['data'] = $user;
-    
+
     echo json_encode($response);
     exit;
 
@@ -42,7 +42,7 @@ if(isset($id) && !empty($id)) {
     $find_users = $mysqli->prepare("SELECT * FROM users");
     $find_users->execute();
     $find_users->store_result();
-    $find_users->bind_result($id, $username, $email, $first_name, $last_name, $address, $passport_number, $coins);
+    $find_users->bind_result($id, $username, $email, $password, $first_name, $last_name, $address, $passport_number, $coins);
 
     while ($find_users->fetch()) {
         $user = [
