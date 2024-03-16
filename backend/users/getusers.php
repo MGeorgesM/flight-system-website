@@ -1,7 +1,7 @@
 <?php
-include('/backend/connection.php');
+include('../connection.php');
 
-$id = $_GET['id'];
+$id = $_GET['user_id'];
 
 
 if(isset($id) && !empty($id)) {
@@ -61,5 +61,5 @@ if(isset($id) && !empty($id)) {
     $response['status'] = 1;
     $response['message'] = "Users found";
     $response['data'] = $users;
-
+    echo json_encode($response);
 }

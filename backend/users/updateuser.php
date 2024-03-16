@@ -1,7 +1,12 @@
 <?php
-include ('connection.php');
+include('../connection.php');
 
-$id = $_POST['id'];
+$id = $_POST['user_id'];
+$updated_first_name = $_POST['first_name'];
+$updated_last_name = $_POST['last_name'];
+$updated_address = $_POST['address'];
+$updated_passport_number = $_POST['passport_number'];
+$updated_coins = $_POST['coins'];
 
 $find_user = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
 $find_user->bind_param('i', $id);
@@ -15,16 +20,8 @@ if ($find_user->num_rows == 0) {
     exit;
 }
 
-$updated_username = $_POST['username'];
-$updated_email = $_POST['email'];
-$updated_first_name = $_POST['first_name'];
-$updated_last_name = $_POST['last_name'];
-$updated_address = $_POST['address'];
-$updated_passport_number = $_POST['passport_number'];
-$updated_coins = $_POST['coins'];
-
-$query = $mysqli->prepare("UPDATE users SET username = ?, email = ?, first_name = ?, last_name = ?, address = ?, passport_number = ?, coins = ? WHERE id = ?");
-$query->bind_param('sssssssi', $updated_username, $updated_email, $updated_first_name, $updated_last_name, $updated_address, $updated_passport_number, $updated_coins, $id);
+$query = $mysqli->prepare("UPDATE users SET first_name = ?, last_name = ?, address = ?, passport_number = ?, coins = ? WHERE id = ?");
+$query->bind_param('sssssi', $updated_first_name, $updated_last_name, $updated_address, $updated_passport_number, $updated_coins, $id);
 $query->execute();
 $query->close();
 

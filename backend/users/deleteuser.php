@@ -1,7 +1,7 @@
 <?php
-include('/backend/connection.php');
+include('../connection.php');
 
-$id = $_POST['id'];
+$id = $_POST['user_id'];
 
 $find_user = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
 $find_user->bind_param('i', $id);

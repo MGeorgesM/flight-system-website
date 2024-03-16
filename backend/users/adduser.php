@@ -1,5 +1,5 @@
 <?php
-include('/backend/connection.php');
+include('../connection.php');
 
 $username = $_POST['username'];
 $email = $_POST['email'];
@@ -29,8 +29,9 @@ if ($check_username_availability->num_rows > 0) {
     }
 } 
 
+$hashed_password = password_hash($password, PASSWORD_BCRYPT);
 $add_user = $mysqli->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
-$add_user->bind_param('sss', $username, $email, $password);
+$add_user->bind_param('sss', $username, $email, $hashed_password);
 $add_user->execute();
 $add_user->close();
 
