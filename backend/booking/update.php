@@ -1,7 +1,7 @@
 <?php
 include('../connection.php');
 
-$id = $_POST['id'];
+$id = $_POST['booking_id'];
 $booking_status = $_POST['booking_status'];
 $payment_status = $_POST['payment_status'];
 
@@ -24,7 +24,7 @@ $update_booking->execute();
 
 $find_booking->execute();
 $find_booking->store_result();
-$find_booking->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number, $booking_status, $payment_status);
+$find_booking->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number, $payment_status);
 $find_booking->fetch();
 $updated_booking = [
     'id' => $id,
@@ -38,6 +38,6 @@ $updated_booking = [
 
 $response['status'] = 1;
 $response['message'] = "Booking updated";
-$response['data'] = $update_booking;
+$response['data'] = $updated_booking;
 
 echo json_encode($response);

@@ -1,7 +1,7 @@
 <?php
 include('../connection.php');
 
-$id = $_GET['id'];
+$id = $_GET['booking_id'];
 $user_id = $_GET['user_id'];
 
 
@@ -19,7 +19,7 @@ if(isset($id) && !empty($id)) {
         exit;
     }
 
-    $find_booking->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number, $booking_status, $payment_status);
+    $find_booking->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number, $payment_status);
     $find_booking->fetch();
     $booking = [
         'id' => $id,
@@ -49,7 +49,7 @@ if(isset($id) && !empty($id)) {
         exit;
     }
 
-    $find_bookings->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number, $booking_status, $payment_status);
+    $find_bookings->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number, $payment_status);
     while ($find_bookings->fetch()) {
         $bookings[] = [
             'id' => $id,
