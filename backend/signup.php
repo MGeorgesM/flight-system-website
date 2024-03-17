@@ -18,8 +18,8 @@ $email_exists = $check_email->num_rows();
 
 if ($email_exists == 0) {
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-    $query = $mysqli->prepare('insert into users(username,password,email,first_name,last_name) values(?,?,?,?,?);');
-    $query->bind_param('sssss', $name, $hashed_password, $email, $first_name,$last_name);
+    $query = $mysqli->prepare('insert into users(username,password,email,first_name,last_name,coins) values(?,?,?,?,?,?);');
+    $query->bind_param('sssssi', $name, $hashed_password, $email, $first_name,$last_name,$coins);
     $query->execute();
     $response['status'] = "success";
     $response['message'] = "user $name was created successfully";
