@@ -13,7 +13,7 @@ $find_user->store_result();
 
 // var_dump($user_id,$amount,$status,$amount);
 if($find_user->num_rows == 0) {
-    $response['status'] = 0;
+    $response['status'] = "Error";
     $response['message'] = "User not found";
     echo json_encode($response);
     
@@ -28,7 +28,7 @@ $update_balance = $mysqli->prepare("UPDATE users SET coins = coins + ? WHERE id 
 $update_balance->bind_param('ii', $new_coins, $user_id);
 $update_balance->execute();
 
-$response['status'] = 1;
+$response['status'] = "success";
 $response['message'] = "Coins added successfully";
 } else {
     $response['status'] = 0;
