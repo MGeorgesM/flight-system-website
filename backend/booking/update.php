@@ -29,7 +29,6 @@ $update_booking = $mysqli->prepare("UPDATE bookings SET booking_status = ? WHERE
 $update_booking->bind_param('ssi', $booking_status, $payment_status, $id);
 $update_booking->execute();
 
-
 $find_booking->execute();
 $find_booking->store_result();
 $find_booking->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number);
