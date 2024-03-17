@@ -29,7 +29,8 @@ if($find_user->num_rows == 0) {
     exit;
 }
 
-$find_user->bind_result($id, $email, $password, $first_name, $last_name, $address, $passport_number, $coins);
+//Check if user has empty fields
+$find_user->bind_result($id, $username, $email, $password, $first_name, $last_name, $address, $passport_number, $coins);
 $find_user->fetch();
 
 $user_fields = [

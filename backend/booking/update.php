@@ -1,7 +1,7 @@
 <?php
 include('../connection.php');
 
-$id = $_POST['booking_id'];
+$booking_id = $_POST['booking_id'];
 $booking_status = $_POST['booking_status'];
 
 
@@ -14,7 +14,7 @@ if(!in_array($booking_status, $allowed_statuses)) {
 }
 
 $find_booking = $mysqli->prepare("SELECT * FROM bookings WHERE id = ?");
-$find_booking->bind_param('i', $id);
+$find_booking->bind_param('i', $booking_id);
 $find_booking->execute();
 $find_booking->store_result();
 
@@ -26,15 +26,15 @@ if($find_booking->num_rows == 0) {
 }
 
 $update_booking = $mysqli->prepare("UPDATE bookings SET booking_status = ? WHERE id = ?");
-$update_booking->bind_param('ssi', $booking_status, $payment_status, $id);
+$update_booking->bind_param('si', $booking_status, $booking_id);
 $update_booking->execute();
 
 $find_booking->execute();
 $find_booking->store_result();
-$find_booking->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number);
+$find_booking->bind_result($booking_id, $user_id, $flight_id, $booking_status, $passengers_number);
 $find_booking->fetch();
 $updated_booking = [
-    'id' => $id,
+    'id' => $booking_id,
     'user_id' => $user_id,
     'flight_id' => $flight_id,
     'booking_status' => $booking_status,
