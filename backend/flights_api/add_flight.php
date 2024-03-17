@@ -28,7 +28,7 @@ if ($query->execute()) {
         'airline_id' => $airline_id
     ];
     $response['status'] = 'success';
-    $response['flight'] = $flight_details;
+    $response['flights'] = $flight_details;
 } else {
     $response['status'] = 'error';
 }
