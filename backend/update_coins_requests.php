@@ -17,11 +17,7 @@ if($find_user->num_rows == 0) {
     $response['message'] = "User not found";
     echo json_encode($response);
     
-}
-else{
-   $update_balance = $mysqli->prepare("UPDATE coin_requests SET status = ? WHERE id = ?");
-   $update_balance->bind_param('si', $status, $user_id);
-   $update_balance->execute();
+}else{
 
    if($status == "success"){
     
