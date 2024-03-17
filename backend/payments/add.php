@@ -35,12 +35,19 @@ $flights_id_query->bind_result($departure_flight_id, $return_flight_id);
 $flights_id_query->fetch();
 
 
+$get_total_passengers = $mysqli->prepare("SELECT passengers_number FROM bookings WHERE id = ?;");
+$get_total_passengers->bind_param("i", $booking_id);
+$get_total_passengers->execute();
+$get_total_passengers->store_result();
+$get_total_passengers->bind_result($total_passengers);
+$get_total_passengers->fetch();
+
 $total_price = 0;
 
 if($return_flight_id !== null){
-    $total_price = get_flight_price($departure_flight_id) + get_flight_price($return_flight_id);
+    $total_price = (get_flight_price($departure_flight_id) + get_flight_price($return_flight_id)) * $total_passengers;
 }else{
-    $total_price = get_flight_price($departure_flight_id);
+    $total_price = get_flight_price($departure_flight_id) * $total_passengers;
 }
 
 $check_user_coins = $mysqli->prepare("SELECT * FROM users WHERE id = ? AND coins >= ?;");
