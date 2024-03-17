@@ -7,6 +7,7 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];
+$coins = 0;
 
 $check_email = $mysqli->prepare('select email from users where email=?');
 $check_email->bind_param('s', $email);
