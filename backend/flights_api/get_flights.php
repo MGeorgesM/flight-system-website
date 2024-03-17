@@ -2,10 +2,13 @@
 
 include('../connection.php');
 
-if(isset($_GET['id']) && !empty($_GET['id'])) {
+if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id = $_GET['id'];
 
-    $query = $mysqli->prepare('SELECT * FROM flights WHERE id = ?');
+    $query = $mysqli->prepare('SELECT flights.*, airlines.airline_name AS airline_name
+        FROM flights
+        JOIN airlines ON flights.airline_id = airlines.id
+        WHERE flights.id = ?');
     $query->bind_param('i', $id);
     $query->execute();
     $query->store_result();
@@ -14,7 +17,7 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
     if ($num_row == 0) {
         $response['status'] = 'no flight found with the specified ID';
     } else {
-        $query->bind_result($id, $airline_id, $departure_location, $destination, $departure_date, $arrival_date, $price, $status);
+        $query->bind_result($id, $airline_id, $departure_location, $destination, $departure_date, $arrival_date, $price, $status,$airline_name);
         $query->fetch();
         $response['status'] = 'success';
         $response['flight'] = [
@@ -25,7 +28,8 @@ if(isset($_GET['id']) && !empty($_GET['id'])) {
             'departure_date' => $departure_date,
             'arrival_date' => $arrival_date,
             'price' => $price,
-            'status' => $status
+            'status' => $status,
+            'airline_name' => $airline_name
         ];
     }
 } else {
