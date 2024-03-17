@@ -17,7 +17,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     if ($num_row == 0) {
         $response['status'] = 'no flight found with the specified ID';
     } else {
-        $query->bind_result($id, $airline_id, $departure_location, $destination, $departure_date, $arrival_date, $price, $status,$airline_name);
+        $query->bind_result($id, $airline_id, $departure_location, $destination, $departure_date,$arrival_date, $price, $status,$code,$airline_name);
         $query->fetch();
         $response['status'] = 'success';
         $response['flight'] = [
@@ -27,6 +27,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
             'destination' => $destination,
             'departure_date' => $departure_date,
             'arrival_date' => $arrival_date,
+            'code' => $code,
             'price' => $price,
             'status' => $status,
             'airline_name' => $airline_name
@@ -46,15 +47,16 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $response['status'] = 'no flights found';
     } else {
         $flights = [];
-        $query->bind_result($id, $airline_id, $departure_location, $destination, $departure_date, $arrival_date, $price, $status, $airline_name);
+        $query->bind_result($flight_id,$airline_id, $departure_location, $destination, $departure_date,$arrival_date, $price, $status,$code, $airline_name);
         while ($query->fetch()) {
             $flights[] = [
-                'id' => $id,
+                'id' => $flight_id,
                 'airline_id' => $airline_id,
                 'departure_location' => $departure_location,
                 'destination' => $destination,
                 'departure_date' => $departure_date,
                 'arrival_date' => $arrival_date,
+                'code' => $code,
                 'price' => $price,
                 'status' => $status,
                 'airline_name' => $airline_name
