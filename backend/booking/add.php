@@ -13,7 +13,7 @@ $find_user->execute();
 $find_user->store_result();
 
 if($find_user->num_rows == 0) {
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "User not found";
     echo json_encode($response);
     exit;
@@ -37,7 +37,7 @@ $user_fields = [
 
 foreach($user_fields as $field => $value) {
     if(empty($value) || is_null($value)) {
-        $response['status'] = 0;
+        $response['status'] = 'error';
         $response['message'] = "User data incomplete";
         echo json_encode($response);
         exit;
@@ -51,7 +51,7 @@ $find_departure_flight->execute();
 $find_departure_flight->store_result();
 
 if($find_departure_flight->num_rows == 0) {
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Flight not found";
     echo json_encode($response);
     exit;
@@ -66,7 +66,7 @@ if(!empty($_POST['return_flight_id'])) {
     $find_return_flight->store_result();
 
     if($find_return_flight->num_rows == 0) {
-        $response['status'] = 0;
+        $response['status'] = 'error';
         $response['message'] = "Return Flight not found";
         echo json_encode($response);
         exit;
@@ -78,6 +78,6 @@ $add_booking = $mysqli->prepare("INSERT INTO bookings (user_id, departure_flight
 $add_booking->bind_param('iiii', $user_id, $departure_flight_id, $return_flight_id, $passengers_number);
 $add_booking->execute();
 
-$response['status'] = 1;
+$response['status'] = 'success';
 $response['message'] = "Booking added";
 echo json_encode($response);

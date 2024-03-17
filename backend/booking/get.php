@@ -35,9 +35,9 @@ if($check_user_is_admin->num_rows > 0) {
         $bookings[] = $booking;
     }
 
-    $response['status'] = 1;
+    $response['status'] = 'success';
     $response['message'] = "All bookings found";
-    $response['data'] = $bookings;
+    $response['bookings'] = $bookings;
     echo json_encode($response);
     exit;
 }
@@ -48,7 +48,7 @@ $check_user_available->execute();
 $check_user_available->store_result();
 
 if($check_user_available->num_rows == 0) {
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "User not found";
     echo json_encode($response);
     exit;
@@ -62,7 +62,7 @@ if(isset($booking_id) && !empty($booking_id)) {
 
     
     if ($find_booking->num_rows == 0) {
-        $response['status'] = 0;
+        $response['status'] = 'error';
         $response['message'] = "Booking not found";
         echo json_encode($response);
         exit;
@@ -79,9 +79,9 @@ if(isset($booking_id) && !empty($booking_id)) {
         'booking_status' => $booking_status,
     ];
 
-    $response['status'] = 1;
+    $response['status'] = 'success';
     $response['message'] = "Booking found";
-    $response['data'] = $booking; 
+    $response['bookings'] = $booking; 
     echo json_encode($response);
 
 } else {
@@ -91,7 +91,7 @@ if(isset($booking_id) && !empty($booking_id)) {
     $find_bookings->store_result();
 
     if ($find_bookings->num_rows == 0) {
-        $response['status'] = 0;
+        $response['status'] = 'error';
         $response['message'] = "No bookings found";
         echo json_encode($response);
         exit;
@@ -110,8 +110,8 @@ if(isset($booking_id) && !empty($booking_id)) {
         $bookings[] = $booking;
     }
     
-    $response['status'] = 1;
+    $response['status'] = 'success';
     $response['message'] = "Bookings found";
-    $response['data'] = $bookings;
+    $response['bookings'] = $bookings;
     echo json_encode($response);
 }

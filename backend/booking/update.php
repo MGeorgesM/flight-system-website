@@ -7,7 +7,7 @@ $booking_status = $_POST['booking_status'];
 
 $allowed_statuses = ['pending', 'cancelled'];
 if(!in_array($booking_status, $allowed_statuses)) {
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Invalid booking status";
     echo json_encode($response);
     exit;
@@ -19,7 +19,7 @@ $find_booking->execute();
 $find_booking->store_result();
 
 if($find_booking->num_rows == 0) {
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Booking not found";
     echo json_encode($response);
     exit;
@@ -42,8 +42,8 @@ $updated_booking = [
     'passengers_number' => $passengers_number,
 ];
 
-$response['status'] = 1;
+$response['status'] = 'success';
 $response['message'] = "Booking updated";
-$response['data'] = $updated_booking;
+$response['bookings'] = $updated_booking;
 
 echo json_encode($response);
