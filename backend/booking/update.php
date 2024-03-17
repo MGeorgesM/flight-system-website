@@ -1,11 +1,11 @@
 <?php
 include('../connection.php');
 
-$booking_id = $_POST['booking_id'];
+$id = $_POST['booking_id'];
 $booking_status = $_POST['booking_status'];
 
 
-$allowed_statuses = ['pending', 'confirmed', 'cancelled'];
+$allowed_statuses = ['pending', 'cancelled'];
 if(!in_array($booking_status, $allowed_statuses)) {
     $response['status'] = 0;
     $response['message'] = "Invalid booking status";
@@ -14,7 +14,7 @@ if(!in_array($booking_status, $allowed_statuses)) {
 }
 
 $find_booking = $mysqli->prepare("SELECT * FROM bookings WHERE id = ?");
-$find_booking->bind_param('i', $booking_id);
+$find_booking->bind_param('i', $id);
 $find_booking->execute();
 $find_booking->store_result();
 
@@ -26,20 +26,20 @@ if($find_booking->num_rows == 0) {
 }
 
 $update_booking = $mysqli->prepare("UPDATE bookings SET booking_status = ? WHERE id = ?");
-$update_booking->bind_param('si', $booking_status, $booking_id);
+$update_booking->bind_param('si', $booking_status, $id);
 $update_booking->execute();
 
 $find_booking->execute();
 $find_booking->store_result();
-$find_booking->bind_result($booking_id, $user_id, $flight_id, $booking_status, $passengers_number);
+$find_booking->bind_result($id, $user_id, $departure_flight_id, $return_flight_id , $booking_status, $passengers_number);
 $find_booking->fetch();
 $updated_booking = [
-    'id' => $booking_id,
+    'id' => $id,
     'user_id' => $user_id,
-    'flight_id' => $flight_id,
+    'departure_flight_id' => $departure_flight_id,
+    'return_flight_id' => $return_flight_id,
     'booking_status' => $booking_status,
     'passengers_number' => $passengers_number,
-    'booking_status' => $booking_status,
 ];
 
 $response['status'] = 1;

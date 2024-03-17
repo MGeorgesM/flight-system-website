@@ -1,9 +1,17 @@
 <?php
 include('../connection.php');
 
-$user_id = $_GET['user_id'];
-$user_email = $_GET['email'];
-$booking_id = $_GET['booking_id'];
+if(!empty($_GET['user_id'])) {
+    $user_id = $_GET['user_id'];
+}
+
+if(!empty($_GET['email'])) {
+    $user_email = $_GET['email'];
+}
+
+if(!empty($_GET['booking_id'])) {
+    $booking_id = $_GET['booking_id'];
+}
 
 $check_user_is_admin = $mysqli->prepare("SELECT * FROM admins WHERE id = ? AND email = ?");
 $check_user_is_admin->bind_param('is', $user_id, $user_email);
@@ -14,15 +22,15 @@ if($check_user_is_admin->num_rows > 0) {
     $get_all_bookings = $mysqli->prepare("SELECT * FROM bookings");
     $get_all_bookings->execute();
     $get_all_bookings->store_result();
-    $get_all_bookings->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number);
+    $get_all_bookings->bind_result($id, $user_id, $departure_flight_id, $return_flight_id , $booking_status, $passengers_number);
     while ($get_all_bookings->fetch()) {
         $booking = [
             'id' => $id,
             'user_id' => $user_id,
-            'flight_id' => $flight_id,
+            'departure_flight_id' => $departure_flight_id,
+            'return_flight_id' => $return_flight_id,
             'booking_status' => $booking_status,
             'passengers_number' => $passengers_number,
-            'booking_status' => $booking_status,
         ];
         $bookings[] = $booking;
     }
@@ -33,7 +41,6 @@ if($check_user_is_admin->num_rows > 0) {
     echo json_encode($response);
     exit;
 }
-
 
 $check_user_available = $mysqli->prepare("SELECT * FROM users WHERE id = ? AND email = ?");
 $check_user_available->bind_param('is', $user_id, $user_email);
@@ -61,7 +68,7 @@ if(isset($booking_id) && !empty($booking_id)) {
         exit;
     }
 
-    $find_booking->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number);
+    $find_booking->bind_result($id, $user_id, $departure_flight_id, $return_flight_id , $booking_status, $passengers_number);
     $find_booking->fetch();
     $booking = [
         'id' => $id,
@@ -90,16 +97,17 @@ if(isset($booking_id) && !empty($booking_id)) {
         exit;
     }
 
-    $find_bookings->bind_result($id, $user_id, $flight_id, $booking_status, $passengers_number);
+    $find_bookings->bind_result($id, $user_id, $departure_flight_id, $return_flight_id , $booking_status, $passengers_number);
     while ($find_bookings->fetch()) {
-        $bookings[] = [
+        $booking = [
             'id' => $id,
             'user_id' => $user_id,
-            'flight_id' => $flight_id,
+            'departure_flight_id' => $departure_flight_id,
+            'return_flight_id' => $return_flight_id,
             'booking_status' => $booking_status,
             'passengers_number' => $passengers_number,
-            'booking_status' => $booking_status,
         ];
+        $bookings[] = $booking;
     }
     
     $response['status'] = 1;
