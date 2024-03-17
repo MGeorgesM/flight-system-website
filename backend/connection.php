@@ -1,4 +1,7 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Content-Type: application/json');
 $host = 'localhost';
 $db_user = 'root';
 $db_pass = null;
