@@ -11,7 +11,7 @@ $check_admin->execute();
 $check_admin->store_result();
 
 if($check_admin->num_rows === 0){
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Sorry you are not an admin, access denied";
     echo json_encode($response);
     exit();
@@ -23,7 +23,7 @@ $check_payment->execute();
 $check_payment->store_result();
 
 if($check_payment->num_rows === 0){
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Invalid payment, no refund possible";
     echo json_encode($response);
     exit();
@@ -45,12 +45,12 @@ $adjust_booking_status->bind_param("ii", $booking_id, $user_id);
 $status_booking_success = $adjust_booking_status->execute();
 
 if($refund_success && $status_update_success && $status_booking_success){
-    $response['status'] = 1;
+    $response['status'] = 'success';
     $response['message'] = "Refund successful";
     echo json_encode($response);
     exit();
 }else{
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Refund failed";
     echo json_encode($response);
     exit();

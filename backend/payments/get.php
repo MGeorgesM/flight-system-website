@@ -19,7 +19,7 @@ if (empty($_GET['payment_id'])) {
 
         $payments[] = $payment;
     }
-    $response['status'] = 1;
+    $response['status'] = 'success';
     $response['payments'] = $payments;
     echo json_encode($response);
     exit();
@@ -33,7 +33,7 @@ $check_payment->execute();
 $check_payment->store_result();
 
 if($check_payment->num_rows === 0){
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Invalid payment id";
     echo json_encode($response);
     exit();
@@ -50,8 +50,8 @@ $payment = [
     'status' => $status
 ];
 
-$response['status'] = 1;
-$response['payment'] = $payment;
+$response['status'] = 'success';
+$response['payments'] = $payment;
 echo json_encode($response);
 
 

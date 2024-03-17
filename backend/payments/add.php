@@ -21,7 +21,7 @@ $check_booking->execute();
 $check_booking->store_result();
 
 if($check_booking->num_rows === 0){
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Invalid user or booking";
     echo json_encode($response);
     exit();
@@ -50,7 +50,7 @@ $check_user_coins->store_result();
 
 
 if($check_user_coins->num_rows === 0){
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Insufficient coins";
     echo json_encode($response);
     exit();
@@ -68,6 +68,6 @@ $deduct_coins = $mysqli->prepare("UPDATE users SET coins = coins - ? WHERE id = 
 $deduct_coins->bind_param("ii",$total_price, $user_id);
 $deduct_coins->execute();
 
-$response['status'] = 1;
+$response['status'] = 'success';
 $response['message'] = "Payment successful";
 echo json_encode($response);
