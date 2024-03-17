@@ -31,7 +31,7 @@ if ($query->execute()) {
 
     $response['status'] = 'success';
     $response['message'] = 'Flight updated successfully.';
-    $response['flight_data'] = $flightData;
+    $response['flights'] = $flightData;
 
 } else {
     $response['status'] = 'error';
