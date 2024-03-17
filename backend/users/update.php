@@ -31,7 +31,7 @@ if (!empty($_POST['coins'])) {
 }
 
 if (empty($fields_to_update)) {
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "No fields to update";
     echo json_encode($response);
     exit;
@@ -43,7 +43,7 @@ $find_user->execute();
 $find_user->store_result();
 
 if ($find_user->num_rows == 0) {
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "User not found";
     echo json_encode($response);
     exit;
@@ -70,7 +70,7 @@ $updated_user = [
     'coins' => $coins
 ];
 
-$response['status'] = 1;
+$response['status'] = 'success';
 $response['message'] = "User updated successfully";
-$response['user'] = $updated_user;
+$response['users'] = $updated_user;
 echo json_encode($response);

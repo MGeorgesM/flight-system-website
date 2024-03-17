@@ -12,7 +12,7 @@ if(isset($id) && !empty($id)) {
 
     
     if ($find_user->num_rows == 0) {
-        $response['status'] = 0;
+        $response['status'] = 'error';
         $response['message'] = "User not found";
         echo json_encode($response);
         exit;
@@ -30,9 +30,9 @@ if(isset($id) && !empty($id)) {
         'passport_number' => $passport_number,
         'coins' => $coins];
 
-    $response['status'] = 1;
+    $response['status'] = 'success';
     $response['message'] = "User found";
-    $response['data'] = $user;
+    $response['users'] = $user;
 
     echo json_encode($response);
     exit;
@@ -58,8 +58,8 @@ if(isset($id) && !empty($id)) {
         $users[] = $user;
     }
 
-    $response['status'] = 1;
+    $response['status'] = 'success';
     $response['message'] = "Users found";
-    $response['data'] = $users;
+    $response['users'] = $users;
     echo json_encode($response);
 }

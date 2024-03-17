@@ -11,7 +11,7 @@ $check_username_availability->execute();
 $check_username_availability->store_result();
 
 if ($check_username_availability->num_rows > 0) {
-    $response['status'] = 0;
+    $response['status'] = 'error';
     $response['message'] = "Username already taken";
     echo json_encode($response);
     exit;
@@ -22,7 +22,7 @@ if ($check_username_availability->num_rows > 0) {
     $check_email_availability->store_result();
 
     if ($check_email_availability->num_rows > 0) {
-        $response['status'] = 0;
+        $response['status'] = 'error';
         $response['message'] = "Email already taken";
         echo json_encode($response);
         exit;
@@ -37,7 +37,7 @@ $add_user->close();
 
 $user_id = $mysqli->insert_id;
 
-$response['status'] = 1;
+$response['status'] = 'success';
 $response['message'] = "User added successfully";
-$response['user_id'] = $user_id;
+$response['users'] = $user_id;
 echo json_encode($response);
