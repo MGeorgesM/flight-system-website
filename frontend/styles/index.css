@@ -179,7 +179,7 @@ header {
 }
 
 .status {
-    width: 500px;
+    width: 550px;
     margin: 16px 48px 12px 48px;
     border-bottom: 1px solid #495057;
 }
@@ -208,6 +208,3 @@ footer {
     cursor: pointer;
     color: #202B32;
 }
-
-
-

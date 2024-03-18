@@ -25,9 +25,6 @@
         width: 100%;
     }
 
-    .hero-container {
-        max-width: 800px;
-    }
 
     .hero-container-inner {
         text-align: center;
@@ -37,14 +34,6 @@
 }
 
 @media screen and (max-width:944px) {
-    .navbar {
-        padding: 0 24px;
-    }
-
-    .hero-container {
-        max-width: 80%;
-    }
-
     .nav-search {
         padding: 12px 12px;
     }
@@ -52,6 +41,18 @@
 }
 
 @media screen and (max-width:850px) {
+    .navbar {
+        padding: 0 24px;
+    }
+
+    .nav-list {
+        gap: 32px;
+    }
+
+    .hero-container {
+        width: 100%;
+        border-radius: 0px;
+    }
 
     .search {
         height: auto;
@@ -90,4 +91,29 @@
         gap: 24px;
     }
 
+}
+
+@media screen and (max-width:600px) {
+    .ad-text h1 {
+        font-size: 24px;
+    }
+
+    .ad-text h2 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .ad-text p {
+        font-size: 16px;
+        line-height: 1.25;
+        font-weight: 400;
+    }
+
+    .statuses-container {
+        width: 100%;
+    }
+
+    .status {
+        width: 100%;
+    }
 }
