@@ -23,6 +23,33 @@
 
 .heading{
     width: 100%;
-    height: 80px;
-    background-color: pink;
+    height: 100px;
+    color: white;
+    /* background-color: pink; */
+}
+.side-tools{
+    width: 100%;
+    height: 300px;
+    /* background-color: rgb(189, 122, 77); */
+}
+.tools{
+    width: 100%;
+    height: 300px;
+    margin: 10px;
+    /* background-color: aqua; */
+}
+
+.tools li{
+    list-style:  none;
+    margin: 20px;
+   
+}
+.tools a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+
+.tools i{
+    font-size: 20px;
 }
