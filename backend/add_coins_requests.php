@@ -22,11 +22,6 @@ if($find_user->num_rows == 0) {
     $insert_coins = $mysqli->prepare('INSERT INTO coin_requests (user_id, amount) VALUES (?, ?)');
     $insert_coins->bind_param("ii", $user_id, $amount);
     $insert_coins->execute();
-    
-$new_coins = $amount; 
-$update_balance = $mysqli->prepare("UPDATE users SET coins = coins + ? WHERE id = ?");
-$update_balance->bind_param('ii', $new_coins, $user_id);
-$update_balance->execute();
 
     $response['status'] = "success";
     $response['message'] = "Coins requested successfully";
