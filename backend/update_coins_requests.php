@@ -29,9 +29,9 @@ if($find_user->num_rows == 0) {
         $get_amount->bind_result($requested_amount);
         $get_amount->fetch();
         $update_balance = $mysqli->prepare("UPDATE users SET coins = coins + ? WHERE id = ?");
-    $update_balance->bind_param('ii', $new_coins, $user_id);
-    $update_balance->execute();
-
+        $update_balance->bind_param('ii', $requested_amount, $user_id);
+        $update_balance->execute();
+    
     $response['status'] = "success";
     $response['message'] = "Coins added successfully";
     echo json_encode($response);
