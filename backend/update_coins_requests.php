@@ -1,7 +1,6 @@
 <?php
 
 include("connection.php");
-include("add_coins_requests.php");
 
 $user_id = $_POST['user_id'];
 $status = $_POST['status'];
