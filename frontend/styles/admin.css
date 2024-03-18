@@ -55,3 +55,72 @@
 .tools i{
     font-size: 20px;
 }
+
+.admin-dashborad{
+    width: 75%;
+    height: 600px;
+    background-color: pink;
+}
+.cards{
+    width: 100%;
+    height: 200px;
+    background-color: blueviolet;
+    justify-content: space-around;
+    align-items: center;
+}
+.card-child1{
+    width: 30%;
+    height: 150px;
+    background-color: #ADB5BD;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 15px;
+
+    
+}
+.card-child2{
+    width: 30%;
+    height: 150px;
+    background-color: #ADB5BD;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 15px;
+
+    
+}
+.card-child3{
+    width: 30%;
+    height: 150px;
+    background-color: #ADB5BD;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 15px;
+
+    
+}
+.card-child1 i{
+    font-size: 20px;
+    position: absolute;
+    left: 46%;
+    transform: translateY(-100%);
+}
+.card-child2 i{
+    font-size: 20px;
+    position: absolute;
+    left: 63%;
+    transform: translateY(-100%);
+}
+.card-child3 i{
+    font-size: 20px;
+    position: absolute;
+    right: 18%;
+    transform: translateY(-100%);
+}
+
+.card-child1:hover,
+.card-child2:hover,
+.card-child3:hover {
+    background-color: #202B32;
+    color: white;
+    transition: 0.5s;
+    }
