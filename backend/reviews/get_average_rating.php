@@ -10,7 +10,8 @@ if (!empty($_GET['flight_id'])) {
 } elseif (!empty($_GET['airline_id'])) {
     $query = $mysqli->prepare('SELECT AVG(reviews.rating_airline) AS average_airline_rating
         FROM reviews
-        WHERE reviews.airline_id = ?');
+        JOIN flights ON reviews.flight_id = flights.id
+        WHERE flights.airline_id = ?');
     $query->bind_param('i', $_GET['airline_id']);
 } else {
     $response['status'] = 'error';

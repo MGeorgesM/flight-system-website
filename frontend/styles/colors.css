@@ -1,5 +1,21 @@
+.dark-text {
+    color: #212529;
+}
+
+.light-text {
+    color: #495057;
+}
+
+.off-white-text {
+    color: #DEE2E6;
+}
+
+.white-text {
+    color: #FFFFFF;
+}
+
 .primary-text {
-    color: #e67e22;
+    color: #202B32;
 }
 
 .dark-gray-text {
@@ -11,13 +27,17 @@
 }
 
 .primary-bg {
-    background-color: #e67e22;
+    background-color: #202B32;
+}
+
+.secondary-bg {
+    background-color: #CAD2C5;
 }
 
 .off-white-bg {
-    background-color: #f8f9fa;
+    background-color: #F4F6F3;
 }
 
-.light-gray-bg {
-    background-color: #f7f7f7;
+.green-bg {
+    background-color: #354F52;
 }
