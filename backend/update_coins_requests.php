@@ -35,6 +35,11 @@ if($find_user->num_rows == 0) {
     $response['status'] = "success";
     $response['message'] = "Coins added successfully";
     echo json_encode($response);
+   }else{
+    $response['status'] = "Error";
+    $response['message'] = "No request found";
+    echo json_encode($response);
+   }
    }
    else{
     $response['status'] = "Error";
