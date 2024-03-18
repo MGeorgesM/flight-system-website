@@ -18,6 +18,8 @@ $num_rows = $query->num_rows();
 // var_dump( $email ,$user_id,$hashed_password,$username);
 if ($num_rows == 0) {
     $response['status'] = "user not found";
+    $response['table'] = "Users";
+
 } else {
     echo $password;
     if (password_verify($password, $hashed_password)){
@@ -27,6 +29,7 @@ if ($num_rows == 0) {
         $response['email'] = $email;
     } else {
         $response['status'] = "incorrect credentials";
+        $response['table'] = "Users";
     }
 }
 echo json_encode($response);
