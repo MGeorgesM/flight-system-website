@@ -4,7 +4,7 @@ include("connection.php");
 
 $user_id = $_POST['user_id'];
 $amount = $_POST['amount'];
-$status = $_POST['status'];
+$status = 'pending';
 
 
 $find_user = $mysqli->prepare('SELECT * from users  where id = ?');
