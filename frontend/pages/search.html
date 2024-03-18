@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/styles/search.css">
+    <link rel="stylesheet" href="/frontend/styles/colors.css">
+    <link rel="stylesheet" href="/frontend/styles/queries.css">
+    <link rel="stylesheet" href="/frontend/styles/utilities.css">
+    <title>Journey - Search Results</title>
+</head>
+
+<body>
+    <main>
+        <section class="select-departure">
+
+            <div class="result-card">
+                <div class="result-card-location flex space-between">
+                    <h2 id="departure-location-display">FROM</h2>
+                    <h2 id="destination-location-display">FROM</h2>
+                </div>
+                <div class="result-card-ratings flex space-around">
+                    <div class="rating-flight flex column">
+                        <h3 id="flight-code-display">FLIGHT</h3>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-card-price">
+                    <h2 id="price-display">PRICE</h2>
+                    <button class="add-departure-btn box-shadow primary-bg off-white-text border-radius"
+                        href="#">Select</button>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/frontend/scripts/links.js"></script>
+    <script src="/frontend/scripts/index.js"></script>
+</body>
+
+</html>
