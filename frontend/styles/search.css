@@ -1,18 +1,44 @@
 header {
     height: 65vh;
-    /* background-image: linear-gradient(rgba(34, 34, 34, 0.25),
-            rgba(34, 34, 34, 0.25)),
-        url(/frontend/assets/hero.jpg); */
     background-image: url('../assets/hero-2.jpg');
-    background-size: cover;
-    background-position: center;
+}
+
+.search {
+    margin-bottom: 64px;
+}
+
+.navbar {
+    background-color: rgba(202, 210, 197, 1);
+}
+
+.select-departure,
+.select-return {
+    padding: 64px;
+    box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.select-section-title {
+    width: 1200px;
+}
+
+.select-section-title h1 {
+    text-align: left;
+    padding-bottom: 64px;
+    font-size: 36px;
 }
 
 .result-card {
+    justify-content: space-around;
+    align-items: center;
     padding: 0 16px;
     width: 1200px;
     height: 90px;
     margin-bottom: 36px;
+}
+
+.result-card:hover {
+    cursor: pointer;
+    transform: translateY(-3%);
 }
 
 .result-card h2 {
@@ -28,6 +54,24 @@ header {
     scale: .75;
 }
 
+.result-card-location {
+    justify-content:  space-between;
+    align-items: center;
+}
+
+.result-card-price {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.arrow-img {
+    width: 50%;
+}
+
+.arrow-img img {
+    width: 100%;
+}
+
 .add-departure-btn,
 .add-return-btn {
     font-family: "Cormorant", serif;
@@ -35,13 +79,9 @@ header {
     display: table-cell;
     vertical-align: middle;
     padding: 8px 36px;
+    cursor: pointer;
 }
 
-.select-section-title {
-    width: 1200px;
-}
-.select-section-title h1{
-    text-align: left;
-    padding: 48px 0 64px 0;
-    font-size: 36px;
+.add-departure-btn:hover, .add-return-btn:hover {
+    background-color: #202B32;
 }
