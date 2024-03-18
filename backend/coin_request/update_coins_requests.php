@@ -13,6 +13,7 @@ $find_user->store_result();
 if($find_user->num_rows == 0) {
     $response['status'] = "Error";
     $response['message'] = "User not found";
+    $response['table'] = "coin_requests";
     echo json_encode($response);
     
 }else{
@@ -35,12 +36,14 @@ if($find_user->num_rows == 0) {
     
     $response['status'] = "success";
     $response['message'] = "Coins added successfully";
+    $response['table'] = "coin_requests";
     echo json_encode($response);
    }
    
    else{
     $response['status'] = "Error";
     $response['message'] = "No request found";
+    $response['table'] = "coin_requests";
     echo json_encode($response);
    }
 }
@@ -50,6 +53,7 @@ if($find_user->num_rows == 0) {
     $update_status->execute();
     $response['status'] = "Error";
     $response['message'] = "Coins request reject";
+    $response['table'] = "coin_requests";
     echo json_encode($response);
    }
 }
