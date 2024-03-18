@@ -5,8 +5,7 @@ include("add_coins_requests.php");
 
 $user_id = $_POST['user_id'];
 $status = $_POST['status'];
-// $amount = $_POST['amount'];
-
+$id = $_POST['id'];
 $find_user = $mysqli->prepare('SELECT * from users  where id = ?');
 $find_user->bind_param('i', $user_id);
 $find_user->execute();
@@ -31,8 +30,8 @@ if($find_user->num_rows == 0) {
         $update_balance = $mysqli->prepare("UPDATE users SET coins = coins + ? WHERE id = ?");
         $update_balance->bind_param('ii', $requested_amount, $user_id);
         $update_balance->execute();
-        $update_status = $mysqli->prepare("UPDATE coin_requests SET status = ? WHERE user_id = ?");
-        $update_status->bind_param("si", $status, $user_id);
+        $update_status = $mysqli->prepare("UPDATE coin_requests SET status = ? WHERE user_id = ? AND id=?");
+        $update_status->bind_param("sii", $status, $user_id,$id);
         $update_status->execute();
     
     $response['status'] = "success";
@@ -47,8 +46,8 @@ if($find_user->num_rows == 0) {
    }
 }
    else{
-    $update_status = $mysqli->prepare("UPDATE coin_requests SET status = ? WHERE user_id = ?");
-    $update_status->bind_param("si", $status, $user_id);
+    $update_status = $mysqli->prepare("UPDATE coin_requests SET status = ? WHERE user_id = ? AND id=?");
+    $update_status->bind_param("sii", $status, $user_id,$id);
     $update_status->execute();
     $response['status'] = "Error";
     $response['message'] = "Coins request reject";
