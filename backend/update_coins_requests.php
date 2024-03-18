@@ -20,6 +20,10 @@ if($find_user->num_rows == 0) {
 }else{
 
    if($status == "success"){
+    $get_amount = $mysqli->prepare("SELECT amount FROM coin_requests WHERE user_id = ?");
+    $get_amount->bind_param('i', $user_id);
+    $get_amount->execute();
+    $get_amount->store_result();
     
     $new_coins = isset($amount); 
     $update_balance = $mysqli->prepare("UPDATE users SET coins = coins + ? WHERE id = ?");
