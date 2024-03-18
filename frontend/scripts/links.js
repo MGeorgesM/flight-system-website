@@ -1,3 +1,5 @@
+//CHECK BASE URL BEFORE TESTING SORT THE FUNCTIONS BY THEIR TABLENAME
+
 axios.defaults.baseURL = 'http://localhost/flight-system-website/backend';
 
 const constructGetUrl = (url, params) => {
@@ -11,6 +13,23 @@ const constructGetUrl = (url, params) => {
   console.log(constructedUrl);
   return constructedUrl;
 };
+
+// const getData = async (tablename, id) => {
+//     try {
+//         const params = {};
+//         let url = `/${tablename}/get.php`;
+//         id && (params.id = id);
+//         url = constructGetUrl(url, params);
+
+//         const response = await axios.get(url);
+
+//         if (response.data.status === 'success') {
+//             return response.data[tablename];
+//         }
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 //Bookings
 
@@ -85,6 +104,23 @@ const getFlightOrAirlineAverageRating = async (id, type) => {
   }
 };
 
+const getHighestRating = async (type) => {
+  //type can be either 'flight' or 'airline'
+  try {
+    const params = { type };
+    let url = '/reviews/get_highest_rating.php';
+    url = constructGetUrl(url, params);
+
+    const response = await axios.get(url);
+
+    if (response.data.status === 'success') {
+      return response.data.highest_rating;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 //Flights
 
 const getFlights = async (id) => {
@@ -96,7 +132,6 @@ const getFlights = async (id) => {
 
     const response = await axios.get(url);
 
-    console.log(response.data);
     if (response.data.status === 'success') {
       return response.data.flights;
     }
@@ -110,48 +145,8 @@ const returnDate = '2024-03-21';
 const departure_location = 'New York';
 const destination = 'Los Angeles';
 
-const searchForFlights = async (departure_location, destination, departure_date, return_date = null) => {
-  const flights = await getFlights();
-  const departureDateInput = new Date(departure_date);
-  const returnDateInput = new Date(return_date);
-  let returnFlights = [];
-  let departureFlights = [];
-
-  departureFlights = flights.filter(
-    (flight) => flight.departure_location === departure_location && flight.destination === destination
-  );
-
-  departureFlights = departureFlights.filter((flight) => {
-    const flightDepartureDbDate = new Date(flight.departure_date);
-    return flightDepartureDbDate.getTime() >= departureDateInput.getTime();
-  });
-
-  if (return_date) {
-    returnFlights = flights.filter(
-      (flight) => flight.destination === departure_location && flight.departure_location === destination
-    );
-
-    returnFlights = returnFlights.filter((flight) => {
-      const flightReturnDbDate = new Date(flight.departure_date);
-      return flightReturnDbDate.getTime() >= returnDateInput.getTime();
-    });
-
-    return { departureFlights, returnFlights };
-  }
-
-    return { departureFlights };
-};
-
-user_id = 2;
-user_email = 'user2@example.com';
-departure_flight_id = 1;
-passengers_number = 1;
-return_flight_id = 2;
-
-searchForFlights(departure_location, destination, departureDate, returnDate);
-// console.log(searchResults);
-
-// const updatedBooking = updateBooking(2, 'cancelled');
-// console.log(updatedBooking);
-// const booking = addBooking(user_id, departure_flight_id, passengers_number);
-// console.log(booking);
+const user_id = 2;
+const user_email = 'user2@example.com';
+const departure_flight_id = 1;
+const passengers_number = 1;
+const return_flight_id = 2;
