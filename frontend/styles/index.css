@@ -1,17 +1,3 @@
-html {
-    font-family: "Cormorant", sans-serif;
-}
-
-a,
-li {
-    text-decoration: none;
-    list-style: none;
-}
-
-ul {
-    list-style-type: none;
-}
-
 header {
     height: 100vh;
     /* background-image: linear-gradient(rgba(34, 34, 34, 0.25),

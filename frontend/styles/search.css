@@ -1,0 +1,47 @@
+header {
+    height: 65vh;
+    /* background-image: linear-gradient(rgba(34, 34, 34, 0.25),
+            rgba(34, 34, 34, 0.25)),
+        url(/frontend/assets/hero.jpg); */
+    background-image: url('../assets/hero-2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.result-card {
+    padding: 0 16px;
+    width: 1200px;
+    height: 90px;
+    margin-bottom: 36px;
+}
+
+.result-card h2 {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.result-card>div {
+    width: 30%;
+}
+
+.result-card i {
+    scale: .75;
+}
+
+.add-departure-btn,
+.add-return-btn {
+    font-family: "Cormorant", serif;
+    font-size: 17px;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 8px 36px;
+}
+
+.select-section-title {
+    width: 1200px;
+}
+.select-section-title h1{
+    text-align: left;
+    padding: 48px 0 64px 0;
+    font-size: 36px;
+}

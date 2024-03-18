@@ -6,6 +6,20 @@
     box-sizing: border-box;
 }
 
+html {
+    font-family: "Cormorant", sans-serif;
+}
+
+a,
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
 .flex {
     display: flex;
 }
