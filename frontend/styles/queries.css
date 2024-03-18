@@ -1,0 +1,52 @@
+@media screen and (max-width:1344px) {
+    .hero-container {
+        max-width: 800px;
+    }
+
+    .hero-container-inner {
+        text-align: center;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:944px) {
+    nav {
+        display: none;
+    }
+
+    .toggler {
+        display: flex;
+    }
+
+    .hero-container {
+        max-width: 80%;
+    }
+
+    .explore {
+        padding: 64px 0;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .explore-container-text {
+        padding: 0 16px;
+        width: 100%;
+    }
+
+    .explore-container-search {
+        width: 80%;
+    }
+
+    .empty-col {
+        display: none;
+    }
+
+    .empty-col-2 {
+        display: block;
+    }
+
+}
+
+@media screen and (max-width:850px) {
+}
