@@ -18,7 +18,9 @@
 .admin-side-bar{
     width: 25%;
     height: 600px;
-    background-color: blueviolet;
+    background-color: #202B32;
+    gap: 40px;
+    
 }
 
 .heading{
