@@ -31,17 +31,25 @@ if($find_user->num_rows == 0) {
         $update_balance = $mysqli->prepare("UPDATE users SET coins = coins + ? WHERE id = ?");
         $update_balance->bind_param('ii', $requested_amount, $user_id);
         $update_balance->execute();
+        $update_status = $mysqli->prepare("UPDATE coin_requests SET status = ? WHERE user_id = ?");
+        $update_status->bind_param("si", $status, $user_id);
+        $update_status->execute();
     
     $response['status'] = "success";
     $response['message'] = "Coins added successfully";
     echo json_encode($response);
-   }else{
+   }
+   
+   else{
     $response['status'] = "Error";
     $response['message'] = "No request found";
     echo json_encode($response);
    }
 }
    else{
+    $update_status = $mysqli->prepare("UPDATE coin_requests SET status = ? WHERE user_id = ?");
+    $update_status->bind_param("si", $status, $user_id);
+    $update_status->execute();
     $response['status'] = "Error";
     $response['message'] = "Coins request reject";
     echo json_encode($response);
