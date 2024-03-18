@@ -23,8 +23,11 @@ if ($email_exists == 0) {
     $query->execute();
     $response['status'] = "success";
     $response['message'] = "user $name was created successfully";
+    $response['table'] = "Users";
+
 } else {
     $response["status"] = "user already exists";
     $response["message"] = "user $name wasn't created";
+    $response['table'] = "Users";
 }
 echo json_encode($response);
