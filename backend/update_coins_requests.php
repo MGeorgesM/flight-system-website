@@ -25,8 +25,10 @@ if($find_user->num_rows == 0) {
     $get_amount->execute();
     $get_amount->store_result();
     
-    $new_coins = isset($amount); 
-    $update_balance = $mysqli->prepare("UPDATE users SET coins = coins + ? WHERE id = ?");
+    if ($get_amount->num_rows > 0) {
+        $get_amount->bind_result($requested_amount);
+        $get_amount->fetch();
+        $update_balance = $mysqli->prepare("UPDATE users SET coins = coins + ? WHERE id = ?");
     $update_balance->bind_param('ii', $new_coins, $user_id);
     $update_balance->execute();
 
