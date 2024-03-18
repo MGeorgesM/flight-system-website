@@ -1,3 +1,7 @@
+.primary-text {
+    color: #202B32;
+}
+
 .dark-text {
     color: #212529;
 }
@@ -12,14 +16,6 @@
 
 .white-text {
     color: #FFFFFF;
-}
-
-.primary-text {
-    color: #202B32;
-}
-
-.dark-gray-text {
-    color: #333;
 }
 
 .off-white-text {
@@ -40,4 +36,8 @@
 
 .green-bg {
     background-color: #354F52;
+}
+
+.off-white-bg-trsp {
+    background-color: rgba(244, 246, 243, 0.75);
 }
