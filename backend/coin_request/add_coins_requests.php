@@ -1,6 +1,6 @@
 <?php
 
-include("connection.php");
+include("../connection.php");
 
 $user_id = $_POST['user_id'];
 $amount = $_POST['amount'];
