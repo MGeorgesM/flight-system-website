@@ -19,8 +19,8 @@ if($find_user->num_rows == 0) {
     echo json_encode($response);
     
 }else{
-    $insert_coins = $mysqli->prepare('INSERT INTO coin_requests (user_id, amount) VALUES (?, ?)');
-    $insert_coins->bind_param("ii", $user_id, $amount);
+    $insert_coins = $mysqli->prepare('INSERT INTO coin_requests (user_id, amount,status) VALUES (?, ?, ?)');
+    $insert_coins->bind_param("iis", $user_id, $amount,$status);
     $insert_coins->execute();
 
     $response['status'] = "success";
