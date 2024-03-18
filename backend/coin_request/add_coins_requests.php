@@ -16,6 +16,7 @@ $find_user->store_result();
 if($find_user->num_rows == 0) {
     $response['status'] = "Error";
     $response['message'] = "User not found";
+    $response['table'] = "coin_requests";
     echo json_encode($response);
     
 }else{
@@ -25,6 +26,7 @@ if($find_user->num_rows == 0) {
 
     $response['status'] = "success";
     $response['message'] = "Coins requested successfully";
+    $response['table'] = "Coin_requests ";
     echo json_encode($response);
 
 }
