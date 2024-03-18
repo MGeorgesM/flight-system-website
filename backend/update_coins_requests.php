@@ -40,10 +40,10 @@ if($find_user->num_rows == 0) {
     $response['message'] = "No request found";
     echo json_encode($response);
    }
-   }
+}
    else{
     $response['status'] = "Error";
-    $response['message'] = "Coins requeste reject";
+    $response['message'] = "Coins request reject";
     echo json_encode($response);
    }
 }
