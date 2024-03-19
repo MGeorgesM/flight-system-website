@@ -87,12 +87,23 @@ header {
     background-color: #202B32;
 }
 
-.clicked {
-    color: #2F3E46;
-    background-color: #F4F6F3;
-    border: #2F3E46 1px solid;
+.proceed-btn-container {
+    width: 100%;
 }
 
-.clicked:hover {
+.proceed-btn {
+    width: 100%;
+    font-family: "Cormorant", serif;
+    background-color: none;
     color: #DEE2E6;
+    font-size: 32px;
+    padding: 36px;
+    cursor: pointer;
+    background-color: #202B32;
 }
+
+.proceed-btn:hover {
+    background-color: #2F3E46;
+    width: 100%;
+}
+

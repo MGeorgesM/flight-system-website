@@ -1,10 +1,13 @@
 const loginBtn = document.getElementById('login-btn');
 const searchSectionDeparture = document.getElementById('select-departure');
 const searchSectionReturn = document.getElementById('select-return');
+const proceedSection = document.getElementById('proceed');
 
 let selectBtns = [];
 let departureFlights = [];
 let returnFlights = [];
+let departureClicked = false;
+let returnClicked = false;
 
 const resetSearchSection = (direction) => {
     const color = direction === 'Departure' ? 'dark-text' : 'off-white-text';
@@ -97,54 +100,40 @@ const addSelectBtnEventListener = (section) => {
     });
 };
 
-// const handleButtonClick = (event) => {
-//     const flightId = parseInt(event.target.getAttribute('flight-id'));
-//     departureFlights.forEach((flight) => {
-//         if (flight.id === flightId) {
-//             localStorage.setItem('selectedDepartureFlight', JSON.stringify(flightId));
-//         } else {
-//             localStorage.setItem('selectedReturnFlight', JSON.stringify(flightId));
-//         }
-//     });
-
-//     event.target.innerHTML === 'Selected' ? (event.target.innerHTML = 'Select') : (event.target.innerHTML = 'Selected');
-//     event.target.classList.toggle('clicked');
-// };
-
 const handleButtonClick = (event) => {
     const flightId = parseInt(event.target.getAttribute('flight-id'));
     const sectionId = event.target.closest('section').id;
     const selectBtns = document.querySelectorAll(`#${sectionId} .select-btn`);
 
-    // Toggle selection state of the clicked button
     if (event.target.classList.contains('clicked')) {
         event.target.innerHTML = 'Select';
         event.target.classList.remove('clicked');
     } else {
-        // Reset style and text of all buttons in the section
         selectBtns.forEach((btn) => {
             btn.innerHTML = 'Select';
             btn.classList.remove('clicked');
         });
 
-        // Apply changes to the clicked button
         event.target.innerHTML = 'Selected';
         event.target.classList.add('clicked');
     }
 
-    // Store the selected flight in localStorage
     departureFlights.forEach((flight) => {
         if (flight.id === flightId) {
             localStorage.setItem('selectedDepartureFlight', JSON.stringify(flightId));
+            departureClicked = !departureClicked;
         } else {
             localStorage.setItem('selectedReturnFlight', JSON.stringify(flightId));
+            returnClicked = !returnClicked;
+        }
+
+        if (departureClicked && returnClicked) {
+            proceedSection.classList.remove('hidden');
+        } else {
+            proceedSection.classList.add('hidden');
         }
     });
-
-    console.log('Button clicked! Flight ID:', flightId);
-    console.log('Button class list after toggle:', event.target.classList);
 };
-
 
 getSearchResult();
 
