@@ -7,6 +7,11 @@ const destinationInput = document.getElementById('destination');
 const departureDateInput = document.getElementById('departure-date');
 const returnDateInput = document.getElementById('return-date');
 
+const topRatedFlightDisplay = document.getElementById('top-flight-display');
+const topRatedAirlineDisplay = document.getElementById('top-airline-display');
+
+const flightStatusesContainer = document.getElementById('statuses-container');
+
 const checkCurrentUser = () => {
   const user = JSON.parse(localStorage.getItem('user'));
 
@@ -34,7 +39,7 @@ const clearLocalStorage = () => {
 };
 
 const searchForFlights = async (departure_location, destination, departure_date, return_date = null) => {
-  console.log('searchForFlights')
+  console.log('searchForFlights');
   const flights = JSON.parse(localStorage.getItem('flights'));
   if (!flights) return false;
 
@@ -79,9 +84,14 @@ const searchForFlights = async (departure_location, destination, departure_date,
   return true;
 };
 
-getFlights().then((flights) => {
-  localStorage.setItem('flights', JSON.stringify(flights));
-});
+const populateFlightStatuses = (flight) => {
+  return `<div class="status dark-text">
+            <div class="status-container flex space-between">
+                <h2 class="status-flight-display">${flight.code}</h2>
+                <h2 class="status-display">${flight.status}</h2>
+            </div>
+        </div>`;
+};
 
 loginBtn.addEventListener('click', () => {
   if (currentUser) {
@@ -110,6 +120,21 @@ searchBtn.addEventListener('click', async (event) => {
   );
 
   flightsFound && (window.location.href = '/frontend/pages/search.html');
+});
+
+getHighestRating('flight').then((highestRating) => {
+  topRatedFlightDisplay.innerHTML = highestRating.code.toUpperCase();
+});
+
+getHighestRating('airline').then((highestRating) => {
+  topRatedAirlineDisplay.innerHTML = highestRating.airline_name;
+});
+
+getFlights().then((flights) => {
+  flights.forEach((flight) => {
+    flightStatusesContainer.innerHTML += populateFlightStatuses(flight);
+  });
+  localStorage.setItem('flights', JSON.stringify(flights));
 });
 
 let currentUser = checkCurrentUser();

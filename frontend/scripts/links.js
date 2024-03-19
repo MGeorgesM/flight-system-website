@@ -136,7 +136,7 @@ const getHighestRating = async (type) => {
     const response = await axios.get(url);
 
     if (response.data.status === 'success') {
-      return response.data.highest_rating;
+      return response.data.reviews;
     }
   } catch (error) {
     console.error(error);
@@ -162,13 +162,32 @@ const getFlights = async (id) => {
   }
 };
 
-const departureDate = '2024-03-20';
-const returnDate = '2024-03-21';
-const departure_location = 'New York';
-const destination = 'Los Angeles';
+//Airlines
 
-const user_id = 2;
-const user_email = 'user2@example.com';
-const departure_flight_id = 1;
-const passengers_number = 1;
-const return_flight_id = 2;
+const getAirlines = async (id) => {
+  try {
+    const params = {};
+    let url = '/airlines/get.php';
+    id && (params.id = id);
+    url = constructGetUrl(url, params);
+
+    const response = await axios.get(url);
+
+    if (response.data.status === 'success') {
+      return response.data.airlines;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// const departureDate = '2024-03-20';
+// const returnDate = '2024-03-21';
+// const departure_location = 'New York';
+// const destination = 'Los Angeles';
+
+// const user_id = 2;
+// const user_email = 'user2@example.com';
+// const departure_flight_id = 1;
+// const passengers_number = 1;
+// const return_flight_id = 2;

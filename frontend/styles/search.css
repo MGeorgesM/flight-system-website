@@ -42,7 +42,7 @@ header {
 }
 
 .result-card h2 {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 500;
 }
 
@@ -72,8 +72,7 @@ header {
     width: 100%;
 }
 
-.add-departure-btn,
-.add-return-btn {
+.select-btn {
     font-family: "Cormorant", serif;
     font-size: 17px;
     display: table-cell;
@@ -82,6 +81,10 @@ header {
     cursor: pointer;
 }
 
-.add-departure-btn:hover, .add-return-btn:hover {
+.select-btn:hover {
+    background-color: #202B32;
+}
+
+.clicked {
     background-color: #202B32;
 }

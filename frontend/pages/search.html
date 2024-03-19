@@ -52,87 +52,19 @@
     </header>
 
     <main>
-        <section class="select-departure flex column center">
+        <section class="select-departure flex column center" id="select-departure">
             <div class="select-section-title dark-text">
                 <h1>Select Departure</h1>
             </div>
-            <div class="result-card flex off-white-bg box-shadow primary-text border-radius">
-                <div class="result-card-location flex space-around">
-                    <h2 class="departure-location-display">FROM</h2>
-                    <div class="arrow-img flex center">
-                        <img src="/frontend/assets/Arrow.svg" alt="arrow">
-                    </div>
-                    <h2 class="destination-location-display">FROM</h2>
-                </div>
-                <div class="result-card-ratings flex space-around">
-                    <div class="rating-flight flex column center">
-                        <h2 class="flight-code-display">FLIGHT</h2>
-                        <div class="rating-stars flex center">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="rating-airline flex column center">
-                        <h2 class="airline-name-display">AIRLINE</h2>
-                        <div class="rating-stars flex center">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="result-card-price flex">
-                    <h2 class="price-display">PRICE</h2>
-                    <button class="add-departure-btn box-shadow primary-bg off-white-text border-radius">Select</button>
-                </div>
-            </div>
+            
         </section>
 
 
-        <section class="select-return flex column center green-bg">
+        <section class="select-return flex column center green-bg" id="select-return">
             <div class="select-section-title off-white-text">
                 <h1>Select Return</h1>
             </div>
-            <div class="result-card flex space-around off-white-bg box-shadow primary-text border-radius">
-                <div class="result-card-location flex space-between">
-                    <h2 class="departure-location-display">FROM</h2>
-                    <div class="arrow-img flex center">
-                        <img src="/frontend/assets/Arrow.svg" alt="arrow">
-                    </div>
-                    <h2 class="destination-location-display">FROM</h2>
-                </div>
-                <div class="result-card-ratings flex space-around">
-                    <div class="rating-flight flex column center">
-                        <h2 class="flight-code-display">FLIGHT</h2>
-                        <div class="rating-stars flex row center">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="rating-airline flex column center">
-                        <h2 class="airline-name-display">AIRLINE</h2>
-                        <div class="rating-stars flex row center">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-regular fa-star"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="result-card-price flex space-around">
-                    <h2 class="price-display">PRICE</h2>
-                    <button class="add-departure-btn box-shadow primary-bg off-white-text border-radius">Select</button>
-                </div>
-            </div>
+            
 
         </section>
 
@@ -154,7 +86,7 @@
     </footer>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/frontend/scripts/links.js"></script>
-    <script src="/frontend/scripts/index.js"></script>
+    <script src="/frontend/scripts/search.js"></script>
 </body>
 
 </html>
