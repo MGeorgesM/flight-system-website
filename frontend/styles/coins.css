@@ -1,0 +1,12 @@
+.coins-dashboard{
+    background-color: blue;
+    width: 80%;
+    height: 600px;
+}
+
+
+.coins-dashboard .heading{
+    width: 100%;
+    height: 80px;
+    background-color: red;
+}
