@@ -1,0 +1,119 @@
+@media screen and (max-width:1344px) {
+    .nav-elements {
+        width: 100%;
+    }
+
+    .search {
+        width: 90%;
+    }
+
+    .search-inputs-container {
+        width: 95%;
+    }
+
+    .select-departure,
+    .select-return {
+        padding: 64px 24px;
+    }
+
+    footer {
+        padding: 0 24px;
+    }
+
+    .select-section-title,
+    .result-card {
+        width: 100%;
+    }
+
+
+    .hero-container-inner {
+        text-align: center;
+        align-items: center;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:944px) {
+    .nav-search {
+        padding: 12px 12px;
+    }
+
+}
+
+@media screen and (max-width:850px) {
+    .navbar {
+        padding: 0 24px;
+    }
+
+    .nav-list {
+        gap: 32px;
+    }
+
+    .hero-container {
+        width: 100%;
+        border-radius: 0px;
+    }
+
+    .search {
+        height: auto;
+        width: 80%;
+        padding: 32px;
+    }
+
+    .search-inputs-container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .search-inputs-container div {
+        width: 100%;
+    }
+
+    .result-card {
+        height: auto;
+        padding: 32px;
+        flex-direction: column;
+    }
+
+    .result-card>div {
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    .result-card-price {
+        flex-direction: column;
+        justify-content: center;
+        gap: 32px;
+        margin: 0;
+    }
+
+    .footer-links {
+        gap: 24px;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+    .ad-text h1 {
+        font-size: 24px;
+    }
+
+    .ad-text h2 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .ad-text p {
+        font-size: 16px;
+        line-height: 1.25;
+        font-weight: 400;
+    }
+
+    .statuses-container {
+        width: 100%;
+    }
+
+    .status {
+        width: 100%;
+    }
+}
