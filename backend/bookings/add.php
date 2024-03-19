@@ -1,6 +1,13 @@
 <?php
 include('../connection.php');
 
+if(empty($_POST['user_id']) || empty($_POST['departure_flight_id']) || empty($_POST['passengers_number'])){
+    $response['status'] = "error";
+    $response['message'] = "All fields are required";
+    echo json_encode($response);
+    exit();
+}
+
 $user_id = $_POST['user_id'];
 $departure_flight_id = $_POST['departure_flight_id'];
 $return_flight_id = null;

@@ -1,6 +1,13 @@
 <?php
 include('../connection.php');
 
+if(empty($_POST['booking_id']) || empty($_POST['booking_status'])){
+    $response['status'] = "error";
+    $response['message'] = "All fields are required";
+    echo json_encode($response);
+    exit();
+}
+
 $id = $_POST['booking_id'];
 $booking_status = $_POST['booking_status'];
 
