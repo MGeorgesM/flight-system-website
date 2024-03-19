@@ -87,6 +87,7 @@ loginBtn.addEventListener('click', () => {
   if (currentUser) {
     clearLocalStorage();
     localStorage.removeItem('user');
+    localStorage.removeItem('flights');
     currentUser = null;
     loginBtn.innerHTML = 'Login';
     window.location.href = '/frontend/pages/signin.html';
