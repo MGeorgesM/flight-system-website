@@ -31,6 +31,28 @@ const constructGetUrl = (url, params) => {
 //     }
 // }
 
+//Users
+const checkCurrentUserisAdmin = async (user_id, email) => {
+
+  try {
+    const params = {};
+    let url = '/users/get.php';
+  
+    user_id && (params.user_id = user_id);
+    email && (params.email = email);
+    url = constructGetUrl(url, params);
+  
+    const response = await axios.get('/users/get_is_admin.php');
+    if (response.data.status === 'success') {
+      return response.data.users;
+    }
+  }catch(error){
+    console.error(error);
+  }
+
+}
+
+
 //Bookings
 
 const getbookings = async (user_id, email, booking_id) => {
