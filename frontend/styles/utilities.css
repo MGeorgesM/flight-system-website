@@ -1,3 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Cormorant", sans-serif;
+}
+
+a,
+li {
+    text-decoration: none;
+    list-style: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
 .flex {
     display: flex;
 }
@@ -24,7 +52,7 @@
     align-items: center;
 }
 
-.space-evenly {
+.space-around {
     justify-content: space-around;
     align-items: center;
 }
@@ -35,5 +63,21 @@
 }
 
 .box-shadow {
-    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.border {
+    border: 1px solid #ADB5BD;
+}
+
+.border-dark {
+    border: 1px solid #495057;
+}
+
+.border-radius {
+    border-radius: 8px;
+}
+
+.border-radius-l {
+    border-radius: 14px;
 }

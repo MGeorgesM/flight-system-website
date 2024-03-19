@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/styles/index.css">
+    <link rel="stylesheet" href="/frontend/styles/search.css">
+    <link rel="stylesheet" href="/frontend/styles/colors.css">
+    <link rel="stylesheet" href="/frontend/styles/queries.css">
+    <link rel="stylesheet" href="/frontend/styles/utilities.css">
+    <title>Journey - Search Results</title>
+</head>
+
+<body>
+    <header class="flex column center space-between">
+        <section class="navbar">
+            <nav class="nav-elements flex space-between">
+                <a href="#">
+                    <img class="logo" alt="logo" src="/frontend/assets/logo.png"/>
+                </a>
+                <div>
+                    <ul class="nav-list flex center">
+                        <li><a class="nav-link primary-text" href="#">Profile</a></li>
+                        <li><a id="login-btn" class="nav-login primary-bg off-white-text box-shadow" href="#">Sign Out</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </section>
+        <section class="search off-white-bg-trsp border-radius-l flex center">
+            <div class="search-inputs-container flex space-between dark-text">
+                <div>
+                    <input type="text" name="from" placeholder="Location" class="box-shadow border-radius border"
+                        required>
+                </div>
+                <div>
+                    <input type="text" name="to" placeholder="Destination" class="box-shadow border-radius border"
+                        required>
+                </div>
+                <div>
+                    <input type="date" name="departuredate" class="box-shadow border-radius border" required>
+                </div>
+                <div>
+                    <input type="date" name="returndate" class="box-shadow border-radius border">
+                </div>
+                <div>
+                    <button id="search-btn" class="nav-search box-shadow primary-bg off-white-text border-radius">Search</button>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section class="select-departure flex column center">
+            <div class="select-section-title dark-text">
+                <h1>Select Departure</h1>
+            </div>
+            <div class="result-card flex off-white-bg box-shadow primary-text border-radius">
+                <div class="result-card-location flex space-around">
+                    <h2 class="departure-location-display">FROM</h2>
+                    <div class="arrow-img flex center">
+                        <img src="/frontend/assets/Arrow.svg" alt="arrow">
+                    </div>
+                    <h2 class="destination-location-display">FROM</h2>
+                </div>
+                <div class="result-card-ratings flex space-around">
+                    <div class="rating-flight flex column center">
+                        <h2 class="flight-code-display">FLIGHT</h2>
+                        <div class="rating-stars flex center">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="rating-airline flex column center">
+                        <h2 class="airline-name-display">AIRLINE</h2>
+                        <div class="rating-stars flex center">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-card-price flex">
+                    <h2 class="price-display">PRICE</h2>
+                    <button class="add-departure-btn box-shadow primary-bg off-white-text border-radius">Select</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="select-return flex column center green-bg">
+            <div class="select-section-title off-white-text">
+                <h1>Select Return</h1>
+            </div>
+            <div class="result-card flex space-around off-white-bg box-shadow primary-text border-radius">
+                <div class="result-card-location flex space-between">
+                    <h2 class="departure-location-display">FROM</h2>
+                    <div class="arrow-img flex center">
+                        <img src="/frontend/assets/Arrow.svg" alt="arrow">
+                    </div>
+                    <h2 class="destination-location-display">FROM</h2>
+                </div>
+                <div class="result-card-ratings flex space-around">
+                    <div class="rating-flight flex column center">
+                        <h2 class="flight-code-display">FLIGHT</h2>
+                        <div class="rating-stars flex row center">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="rating-airline flex column center">
+                        <h2 class="airline-name-display">AIRLINE</h2>
+                        <div class="rating-stars flex row center">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-card-price flex space-around">
+                    <h2 class="price-display">PRICE</h2>
+                    <button class="add-departure-btn box-shadow primary-bg off-white-text border-radius">Select</button>
+                </div>
+            </div>
+
+        </section>
+
+
+    </main>
+    <footer class="flex space-between off-white-bg dark-text">
+        <div class="footer-social flex center">
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <p>Journey - Flights Management Website - SEF March 2024</p>
+        </div>
+        <div class="footer-text">
+            <div class="footer-links flex center">
+                <a href="#">Careers</a>
+                <a href="#">About Us</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/frontend/scripts/links.js"></script>
+    <script src="/frontend/scripts/index.js"></script>
+</body>
+
+</html>

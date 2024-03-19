@@ -1,3 +1,7 @@
+.primary-text {
+    color: #2F3E46;
+}
+
 .dark-text {
     color: #212529;
 }
@@ -14,20 +18,12 @@
     color: #FFFFFF;
 }
 
-.primary-text {
-    color: #202B32;
-}
-
-.dark-gray-text {
-    color: #333;
-}
-
 .off-white-text {
     color: #f8f9fa;
 }
 
 .primary-bg {
-    background-color: #202B32;
+    background-color: #2F3E46;
 }
 
 .secondary-bg {
@@ -41,3 +37,9 @@
 .green-bg {
     background-color: #354F52;
 }
+
+.off-white-bg-trsp {
+    background-color: rgba(244, 246, 243, 0.5);
+}
+
+/* Hover Color: #202B32 */
