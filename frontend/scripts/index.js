@@ -33,7 +33,7 @@ const getFlightsStatuses = async () => {
   return flightsStatuses;
 };
 
-const clearLocalStorage = () => {
+const clearFilters = () => {
   localStorage.removeItem('departureFlights');
   localStorage.removeItem('returnFlights');
 };
@@ -95,7 +95,7 @@ const populateFlightStatuses = (flight) => {
 
 loginBtn.addEventListener('click', () => {
   if (currentUser) {
-    clearLocalStorage();
+    clearFilters();
     localStorage.removeItem('user');
     localStorage.removeItem('flights');
     currentUser = null;
@@ -138,4 +138,4 @@ getFlights().then((flights) => {
 });
 
 let currentUser = checkCurrentUser();
-clearLocalStorage();
+clearFilters();

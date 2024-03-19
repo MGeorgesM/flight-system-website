@@ -74,6 +74,8 @@ header {
 
 .select-btn {
     font-family: "Cormorant", serif;
+    background-color: #2F3E46;
+    color: #DEE2E6;
     font-size: 17px;
     display: table-cell;
     vertical-align: middle;
@@ -86,5 +88,11 @@ header {
 }
 
 .clicked {
-    background-color: #202B32;
+    color: #2F3E46;
+    background-color: #F4F6F3;
+    border: #2F3E46 1px solid;
+}
+
+.clicked:hover {
+    color: #DEE2E6;
 }
