@@ -108,3 +108,7 @@ margin-top: 50px;
   margin-top: 40px;
   cursor: pointer;
 }
+.booking-card{
+  height: 13vh;
+  margin: 40px;
+}
