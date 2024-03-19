@@ -21,8 +21,8 @@ const register = async (email, username, password) => {
     const response = await axios.post('/users/signup.php', data);
 
     if (response.data.status === 'success') {
-      console.log(response.data.users);
       localStorage.setItem('user', JSON.stringify(response.data.users));
+      clearRegisterForm();
       window.location.href = '../index.html';
       return;
     } else {

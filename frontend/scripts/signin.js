@@ -6,9 +6,6 @@ const loginValidationDisplay = document.getElementById('validationDisplaySignIn'
 const clearLoginForm = () => {
   loginInput.value = '';
   loginPasswordInput.value = '';
-  emailInput.value = '';
-  usernameInput.value = '';
-  registerPasswordInput.value = '';
 };
 
 const signIn = async (login, password) => {
