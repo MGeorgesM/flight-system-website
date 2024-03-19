@@ -9,3 +9,36 @@
     height: 80px;
     background-color: red;
 }
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    font-family: sans-serif;
+    background-color: pink;
+}
+.tabs__label {
+    padding: 10px 16px;
+    cursor: pointer;
+}
+  
+.tabs__radio {
+    display: none;
+}
+  
+.tabs__content {
+    order: 1;
+    width: 100%;
+    display: none;
+    background-color: burlywood;
+}
+  
+.tabs__radio:checked + .tabs__label {
+    font-weight: bold;
+    color: #2a047d;
+    border-bottom: 2px solid #2a047d;
+}
+  
+.tabs__radio:checked + .tabs__label + .tabs__content {
+    display: initial;
+}  
