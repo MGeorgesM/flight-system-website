@@ -29,13 +29,16 @@
                     <label for="password">Password:</label>
                     <input type="password" id="register-password" name="password" placeholder="password" required>
                 </div>
-                <div>
-                    <p class="validationDisplay" id="validationDisplaySignUp"></p>
+                <div class="flex center validation-display">
+                    <p id="validationDisplaySignUp"></p>
                 </div>
                 <button class="register-btn primary-bg white-text box-shadow" type="submit">Register</button>
             </form>
             <p>Have an Account? <a href="/frontend/pages/signin.html" id="login-link" class="login-link primary-text">Sign In</a></p>
         </div>
     </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/frontend/scripts/links.js"></script>
+    <script src="/frontend/scripts/signup.js"></script>
 </body>
 </html>

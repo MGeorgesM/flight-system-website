@@ -1,3 +1,18 @@
+const loginbtn = document.getElementById('login-btn');
+
+
+let currentUser = checkCurrentUser();
+
+
+const checkCurrentUser =  () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user) {
+    loginbtn.innerHTML = 'Logout';
+  }
+  return user;
+}
+
+
 const getFlightsStatuses = async () => {
   const flights = await getFlights();
   let flightsStatuses = {};
@@ -40,3 +55,12 @@ const searchForFlights = async (departure_location, destination, departure_date,
   
       return { departureFlights };
   };
+
+
+  loginbtn.addEventListener('click', () => {
+    if (currentUser) {
+      localStorage.removeItem('user');
+      currentUser = null;
+      loginbtn.innerHTML = 'Login';
+      window.location.href = '../pages/signin.html.html';
+    });

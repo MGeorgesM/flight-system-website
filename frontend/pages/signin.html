@@ -19,19 +19,22 @@
             <form class="flex column" id="login-form">
                 <div>
                     <label for="username">Username or email:</label>
-                    <input type="text" id="login" name="username" placeholder="user@journey.com" required>
+                    <input type="text" id="login" name="login" placeholder="user@journey.com" required>
                 </div>
                 <div>
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" placeholder="password" required>
                 </div>
-                <div>
-                    <p class="validationDisplay" id="validationDisplaySignIn"></p>
+                <div class="flex center validation-display">
+                    <p id="validationDisplaySignIn"></p>
                 </div>
                 <button class="login-btn primary-bg white-text box-shadow" type="submit">Login</button>
             </form>
             <p>No Account? <a href="/frontend/pages/signup.html" id="register-link" class="register-link primary-text">Register Now</a></p>
         </div>
     </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/frontend/scripts/links.js"></script>
+    <script src="/frontend/scripts/signin.js"></script>
 </body>
 </html>
