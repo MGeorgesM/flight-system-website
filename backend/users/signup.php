@@ -14,8 +14,8 @@ if (!empty($_POST['username']) && !empty($_POST['email']) && !empty($_POST['pass
 }
 
 
-$check_username_availability = $mysqli->prepare("SELECT * FROM users WHERE username = ?");
-$check_username_availability->bind_param('s', $username);
+$check_username_availability = $mysqli->prepare("SELECT username FROM users WHERE username = ? UNION SELECT username FROM admins WHERE username = ?");
+$check_username_availability->bind_param('ss', $username , $username);
 $check_username_availability->execute();
 $check_username_availability->store_result();
 
@@ -24,31 +24,30 @@ if ($check_username_availability->num_rows > 0) {
     $response['message'] = "Username already taken";
     echo json_encode($response);
     exit;
+}
 
-    $check_email_availability_in_admins = $mysqli->prepare("SELECT * FROM admins WHERE email = ?");
-    $check_email_availability_in_admins->bind_param('s', $email);
-    $check_email_availability_in_admins->execute();
-    $check_email_availability_in_admins->store_result();
+$check_email_availability_in_admins = $mysqli->prepare("SELECT * FROM admins WHERE email = ?");
+$check_email_availability_in_admins->bind_param('s', $email);
+$check_email_availability_in_admins->execute();
+$check_email_availability_in_admins->store_result();
 
-    if($check_email_availability_in_admins->num_rows() > 0) {
-        $response['status'] = 'error';
-        $response['message'] = "Email already taken";
-        echo json_encode($response);
-        exit;
-    }
-    
-    $check_email_availability = $mysqli->prepare("SELECT * FROM users WHERE email = ?");
-    $check_email_availability->bind_param('s', $email);
-    $check_email_availability->execute();
-    $check_email_availability->store_result();
+if($check_email_availability_in_admins->num_rows() > 0) {
+    $response['status'] = 'error';
+    $response['message'] = "Email already taken";
+    echo json_encode($response);
+    exit;
+}
 
-    if ($check_email_availability->num_rows > 0) {
-        $response['status'] = 'error';
-        $response['message'] = "Email already taken";
-        echo json_encode($response);
-        exit;
-    }
-    
+$check_email_availability = $mysqli->prepare("SELECT * FROM users WHERE email = ?");
+$check_email_availability->bind_param('s', $email);
+$check_email_availability->execute();
+$check_email_availability->store_result();
+
+if ($check_email_availability->num_rows > 0) {
+    $response['status'] = 'error';
+    $response['message'] = "Email already taken";
+    echo json_encode($response);
+    exit;
 }
 
 $hashed_password = password_hash($password, PASSWORD_BCRYPT);

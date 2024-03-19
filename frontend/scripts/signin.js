@@ -3,6 +3,14 @@ const loginInput = document.getElementById('login');
 const loginPasswordInput = document.getElementById('password');
 const loginValidationDisplay = document.getElementById('validationDisplaySignIn');
 
+const clearLoginForm = () => {
+  loginInput.value = '';
+  loginPasswordInput.value = '';
+  emailInput.value = '';
+  usernameInput.value = '';
+  registerPasswordInput.value = '';
+};
+
 const signIn = async (login, password) => {
   const data = new FormData();
   data.append('login', login);
@@ -12,8 +20,8 @@ const signIn = async (login, password) => {
     const response = await axios.post('/users/signin.php', data);
 
     if (response.data.status === 'success') {
-      console.log(response.data.users);
       localStorage.setItem('user', JSON.stringify(response.data.users));
+      clearLoginForm();
       window.location.href = '../index.html';
       return;
     } else {
@@ -31,12 +39,3 @@ loginForm.addEventListener('submit', async (event) => {
   const password = loginForm.password.value;
   signIn(login, password);
 });
-
-
-const clearForms = () => {
-    loginInput.value = '';
-    loginPasswordInput.value = '';
-    emailInput.value = '';
-    usernameInput.value = '';
-    registerPasswordInput.value = '';
-  };

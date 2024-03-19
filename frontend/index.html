@@ -21,7 +21,7 @@
                 </a>
                 <div>
                     <ul class="nav-list flex center">
-                        <li><a class="nav-link primary-text" href="#">About Us</a></li>
+                        <li><a id="profile-link" class="nav-link primary-text" href="#">About Us</a></li>
                         <li><a id="login-btn" class="nav-login primary-bg off-white-text box-shadow" href="#">Login</a></li>
                     </ul>
                 </div>
@@ -36,25 +36,25 @@
             </div>
         </section>
         <section class="search off-white-bg-trsp border-radius-l flex center">
-            <div class="search-inputs-container flex space-between dark-text">
+            <form class="search-inputs-container flex space-between dark-text">
                 <div>
-                    <input type="text" name="from" placeholder="Location" class="box-shadow border-radius border"
+                    <input id="departure-location" type="text" name="from" placeholder="Location" class="box-shadow border-radius border"
                         required>
                 </div>
                 <div>
-                    <input type="text" name="to" placeholder="Destination" class="box-shadow border-radius border"
+                    <input id="destination" type="text" name="to" placeholder="Destination" class="box-shadow border-radius border"
                         required>
                 </div>
                 <div>
-                    <input type="date" name="departuredate" class="box-shadow border-radius border" required>
+                    <input id="departure-date" type="date" name="departuredate" class="box-shadow border-radius border" required>
                 </div>
                 <div>
-                    <input type="date" name="returndate" class="box-shadow border-radius border">
+                    <input id="return-date" type="date" name="returndate" class="box-shadow border-radius border">
                 </div>
                 <div>
-                    <button id="search-btn" class="nav-search box-shadow primary-bg off-white-text border-radius">Search</button>
+                    <button id="search-btn" class="nav-search box-shadow primary-bg off-white-text border-radius" type="submit">Search</button>
                 </div>
-            </div>
+            </form>
         </section>
     </header>
     <main>
