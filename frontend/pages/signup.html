@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/styles/signin.css">
+    <link rel="stylesheet" href="/frontend/styles/colors.css">
+    <link rel="stylesheet" href="/frontend/styles/queries.css">
+    <link rel="stylesheet" href="/frontend/styles/utilities.css">
+    <title>Journey - Sign In</title>
 </head>
 <body>
-    
+    <section id="register-component" class="form-component green-bg flex center">
+        <div class="container box-shadow-l off-white-bg border flex center column">
+            <div class="logo">
+                <a href="/index.html"><img src="/frontend/assets/logo.png" alt="logo"></a>
+            </div>
+            <form class="flex center column" id="register-form">
+                <div>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="username" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email" placeholder="user@journey.com" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="register-password" name="password" placeholder="password" required>
+                </div>
+                <div>
+                    <p class="validationDisplay" id="validationDisplaySignUp"></p>
+                </div>
+                <button class="register-btn primary-bg white-text box-shadow" type="submit">Register</button>
+            </form>
+            <p>Have an Account? <a href="/frontend/pages/signin.html" id="login-link" class="login-link primary-text">Sign In</a></p>
+        </div>
+    </section>
 </body>
 </html>
