@@ -1,5 +1,5 @@
 .coins-dashboard{
-    background-color: blue;
+    /* background-color: blue; */
     width: 80%;
     height: 600px;
 }
@@ -7,7 +7,8 @@
 .coins-dashboard .heading{
     width: 100%;
     height: 80px;
-    background-color: red;
+    color: black;
+    /* background-color: red; */
 }
 
 .tabs {
@@ -15,11 +16,13 @@
     flex-wrap: wrap;
     width: 100%;
     font-family: sans-serif;
-    background-color: pink;
+    /* background-color: pink; */
 }
 .tabs__label {
     padding: 10px 16px;
     cursor: pointer;
+    background-color:  #202B32;
+    color: white;
 }
   
 .tabs__radio {
@@ -30,15 +33,31 @@
     order: 1;
     width: 100%;
     display: none;
-    background-color: burlywood;
+    /* background-color: burlywood; */
+}
+
+.child{
+    /* justify-content: space-between; */
+    background-color: #8da4b9;
+    height: 40px;
+    gap: 70px;
+    padding: 10px;
 }
   
 .tabs__radio:checked + .tabs__label {
     font-weight: bold;
-    color: #2a047d;
-    border-bottom: 2px solid #2a047d;
+    color: white;
+    border-bottom: 2px solid white;
 }
   
 .tabs__radio:checked + .tabs__label + .tabs__content {
     display: initial;
-}  
+} 
+.child button{
+    padding: 7px 15px;
+    background-color: #202B32;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+} 
