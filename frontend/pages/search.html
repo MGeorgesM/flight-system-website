@@ -18,12 +18,12 @@
         <section class="navbar">
             <nav class="nav-elements flex space-between">
                 <a href="#">
-                    <img class="logo" alt="logo" src="/frontend/assets/logo.png" href="/frontend/index.html" />
+                    <img class="logo" alt="logo" src="/frontend/assets/logo.png"/>
                 </a>
                 <div>
                     <ul class="nav-list flex center">
-                        <li><a id="login-btn" class="nav-link primary-text" href="#">Profile</a></li>
-                        <li><a id="login-btn" class="nav-login primary-bg off-white-text" href="#">Sign Out</a></li>
+                        <li><a class="nav-link primary-text" href="#">Profile</a></li>
+                        <li><a id="login-btn" class="nav-login primary-bg off-white-text box-shadow" href="#">Sign Out</a></li>
                     </ul>
                 </div>
             </nav>
@@ -39,15 +39,13 @@
                         required>
                 </div>
                 <div>
-                    <input type="date" name="departuredate" placeholder="Departure"
-                        class="box-shadow border-radius border" required>
+                    <input type="date" name="departuredate" class="box-shadow border-radius border" required>
                 </div>
                 <div>
-                    <input type="date" name="returndate" placeholder="Return" class="box-shadow border-radius border">
+                    <input type="date" name="returndate" class="box-shadow border-radius border">
                 </div>
                 <div>
-                    <button id="search-btn" class="nav-search box-shadow primary-bg off-white-text border-radius"
-                        href="#">Search</button>
+                    <button id="search-btn" class="nav-search box-shadow primary-bg off-white-text border-radius">Search</button>
                 </div>
             </div>
         </section>
@@ -60,15 +58,15 @@
             </div>
             <div class="result-card flex off-white-bg box-shadow primary-text border-radius">
                 <div class="result-card-location flex space-around">
-                    <h2 id="departure-location-display">FROM</h2>
+                    <h2 class="departure-location-display">FROM</h2>
                     <div class="arrow-img flex center">
                         <img src="/frontend/assets/Arrow.svg" alt="arrow">
                     </div>
-                    <h2 id="destination-location-display">FROM</h2>
+                    <h2 class="destination-location-display">FROM</h2>
                 </div>
                 <div class="result-card-ratings flex space-around">
                     <div class="rating-flight flex column center">
-                        <h2 id="flight-code-display">FLIGHT</h2>
+                        <h2 class="flight-code-display">FLIGHT</h2>
                         <div class="rating-stars flex center">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -78,7 +76,7 @@
                         </div>
                     </div>
                     <div class="rating-airline flex column center">
-                        <h2 id="airline-name-display">AIRLINE</h2>
+                        <h2 class="airline-name-display">AIRLINE</h2>
                         <div class="rating-stars flex center">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -89,7 +87,7 @@
                     </div>
                 </div>
                 <div class="result-card-price flex">
-                    <h2 id="price-display">PRICE</h2>
+                    <h2 class="price-display">PRICE</h2>
                     <button class="add-departure-btn box-shadow primary-bg off-white-text border-radius">Select</button>
                 </div>
             </div>
@@ -102,15 +100,15 @@
             </div>
             <div class="result-card flex space-around off-white-bg box-shadow primary-text border-radius">
                 <div class="result-card-location flex space-between">
-                    <h2 id="departure-location-display">FROM</h2>
+                    <h2 class="departure-location-display">FROM</h2>
                     <div class="arrow-img flex center">
                         <img src="/frontend/assets/Arrow.svg" alt="arrow">
                     </div>
-                    <h2 id="destination-location-display">FROM</h2>
+                    <h2 class="destination-location-display">FROM</h2>
                 </div>
                 <div class="result-card-ratings flex space-around">
                     <div class="rating-flight flex column center">
-                        <h2 id="flight-code-display">FLIGHT</h2>
+                        <h2 class="flight-code-display">FLIGHT</h2>
                         <div class="rating-stars flex row center">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -120,7 +118,7 @@
                         </div>
                     </div>
                     <div class="rating-airline flex column center">
-                        <h2 id="airline-name-display">AIRLINE</h2>
+                        <h2 class="airline-name-display">AIRLINE</h2>
                         <div class="rating-stars flex row center">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -131,9 +129,8 @@
                     </div>
                 </div>
                 <div class="result-card-price flex space-around">
-                    <h2 id="price-display">PRICE</h2>
-                    <button class="add-departure-btn box-shadow primary-bg off-white-text border-radius"
-                        href="#">Select</button>
+                    <h2 class="price-display">PRICE</h2>
+                    <button class="add-departure-btn box-shadow primary-bg off-white-text border-radius">Select</button>
                 </div>
             </div>
 
