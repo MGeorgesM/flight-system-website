@@ -107,3 +107,29 @@ header {
     width: 100%;
 }
 
+.flight-details-container {
+    font-size: larger;
+    height: auto;
+    width: 100%;
+    padding: 64px 0;
+    background-color: #F4F6F3;
+}
+
+.flight-details-title {
+    font-size: 24px;
+}
+
+.flight-details {
+    width: 100%;
+    margin: 0 auto;
+    padding: 64px;
+}
+
+.flight-details-card {
+    gap: 12px;
+}
+
+.flight-details-card-content {
+    gap: 4px;
+}
+

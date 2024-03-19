@@ -14,16 +14,17 @@
 </head>
 
 <body>
-    <header class="flex column center space-between">
+    <header class="flex column center space-between hidden">
         <section class="navbar">
             <nav class="nav-elements flex space-between">
                 <a href="#">
-                    <img class="logo" alt="logo" src="/frontend/assets/logo.png"/>
+                    <img class="logo" alt="logo" src="/frontend/assets/logo.png" />
                 </a>
                 <div>
                     <ul class="nav-list flex center">
                         <li><a class="nav-link primary-text" href="#">Profile</a></li>
-                        <li><a id="login-btn" class="nav-login primary-bg off-white-text box-shadow" href="#">Sign Out</a></li>
+                        <li><a id="login-btn" class="nav-login primary-bg off-white-text box-shadow" href="#">Sign
+                                Out</a></li>
                     </ul>
                 </div>
             </nav>
@@ -45,18 +46,19 @@
                     <input type="date" name="returndate" class="box-shadow border-radius border">
                 </div>
                 <div>
-                    <button id="search-btn" class="nav-search box-shadow primary-bg off-white-text border-radius">Search</button>
+                    <button id="search-btn"
+                        class="nav-search box-shadow primary-bg off-white-text border-radius">Search</button>
                 </div>
             </div>
         </section>
     </header>
 
     <main>
-        <section class="select-departure flex column center" id="select-departure">
+        <section class="select-departure flex column center hidden" id="select-departure">
             <div class="select-section-title dark-text">
                 <h1>Select Departure</h1>
             </div>
-            
+
         </section>
 
 
@@ -64,7 +66,7 @@
             <div class="select-section-title off-white-text">
                 <h1>Select Return</h1>
             </div>
-            
+
 
         </section>
         <section id="proceed" class="proceed flex column center green-bg hidden">
@@ -72,6 +74,56 @@
                 <button id="proceed-btn" class="proceed-btn off-white-text">Book Now</button>
             </div>
         </section>
+            <section>
+                <div class="flight-details-container flex column center">
+                    <div class="flight-details-title dark-text">
+                        <h1>Flight Details</h1>
+                    </div>
+                    <div class="flight-details flex space-around">
+                        <div class="flight-details-card flex column center">
+                            <div class="flight-details-card-title dark-text">
+                                <h2>Departure</h2>
+                            </div>
+                            <div class="flight-details-card-content flex column center">
+                                <div class="flight-details-card-content-item dark-text">
+                                    <p>Flight Number: <span id="departure-flight-number">123</span></p>
+                                </div>
+                                <div class="flight-details-card-content-item dark-text">
+                                    <p>Departure Time: <span id="departure-departure-time">12:00</span></p>
+                                </div>
+                                <div class="flight-details-card-content-item dark-text">
+                                    <p>Arrival Time: <span id="departure-arrival-time">14:00</span></p>
+                                </div>
+                                <div class="flight-details-card-content-item dark-text">
+                                    <p>Price: <span id="departure-price">1000</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flight-details-card flex column center">
+                            <div class="flight-details-card-title dark-text">
+                                <h2>Return</h2>
+                            </div>
+                            <div class="flight-details-card-content flex column center">
+                                <div class="flight-details-card-content-item dark-text">
+                                    <p>Flight Number: <span id="return-flight-number">123</span></p>
+                                </div>
+                                <div class="flight-details-card-content-item dark-text">
+                                    <p>Departure Time: <span id="return-departure-time">12:00</span></p>
+                                </div>
+                                <div class="flight-details-card-content-item dark-text">
+                                    <p>Arrival Time: <span id="return-arrival-time">14:00</span></p>
+                                </div>
+                                <div class="flight-details-card-content-item dark-text">
+                                    <p>Price: <span id="return-price">1000</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="seat-selection">
+                
+            </section>
 
 
     </main>
