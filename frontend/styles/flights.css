@@ -1,0 +1,100 @@
+.flight-dashboard{
+    /* background-color: red; */
+    width: 80%;
+    height: 600px;
+}
+.flight-dashboard .heading{
+    width: 100%;
+    height: 100px;
+    color: #202B32;
+    /* background-color: pink; */
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    width:100%;
+    height: 100px;
+    font-family: sans-serif;
+}
+  
+.tabs__label {
+    padding: 10px 16px;
+    cursor: pointer;
+    background-color:  #202B32;
+    color: white;
+}
+  
+.tabs__radio {
+    display: none;
+}
+  
+.tabs__content {
+    order: 1;
+    width: 100%;
+    height: min-content;
+    color: #202B32;
+    display: none;
+    
+    padding: 10px;
+    gap: 20px;
+}
+  
+.tabs__radio:checked + .tabs__label {
+    font-weight: bold;
+    color: white;
+    border-bottom: 2px solid white;
+}
+  
+.tabs__radio:checked + .tabs__label + .tabs__content {
+    display: initial;
+}
+
+.flight-details{
+    width: 100%;
+    height: 40px;
+    background-color: #8da4b9;
+    gap: 70px;
+    padding: 10px 20px;
+}
+
+.add-flight{
+    width: 100%;
+    background-color: #8da4b9;
+    gap: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.add-flight input{
+    width: 50%;
+    padding: 7px 15px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+.add-flight button{
+    width: 40%;
+    padding: 7px 15px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: #202B32;
+    color: white;
+}
+.child{
+    justify-content: space-between;
+    background-color: #8da4b9;
+    height: 40px;
+}
+.child button{
+    padding: 7px 15px;
+    background-color: #202B32;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    
+
+}
+
+
