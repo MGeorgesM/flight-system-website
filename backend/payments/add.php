@@ -1,6 +1,13 @@
 <?php
 include('../connection.php');
 
+if(empty($_POST['user_id']) || empty($_POST['booking_id'])){
+    $response['status'] = "error";
+    $response['message'] = "All fields are required";
+    echo json_encode($response);
+    exit();
+}
+
 $user_id = $_POST['user_id'];
 $booking_id = $_POST['booking_id'];
 
@@ -33,7 +40,6 @@ $flights_id_query->execute();
 $flights_id_query->store_result();
 $flights_id_query->bind_result($departure_flight_id, $return_flight_id);
 $flights_id_query->fetch();
-
 
 $get_total_passengers = $mysqli->prepare("SELECT passengers_number FROM bookings WHERE id = ?;");
 $get_total_passengers->bind_param("i", $booking_id);
