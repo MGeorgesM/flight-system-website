@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/styles/signin.css">
+    <link rel="stylesheet" href="/frontend/styles/colors.css">
+    <link rel="stylesheet" href="/frontend/styles/queries.css">
+    <link rel="stylesheet" href="/frontend/styles/utilities.css">
+    <title>Journey - Sign In</title>
+</head>
+<body>
+    <section id="login-component" class="form-component green-bg flex center">
+        <div class="container box-shadow-l off-white-bg border flex center column">
+            <div class="logo">
+                <a href="/index.html"><img src="/frontend/assets/logo.png" alt="logo"></a>
+            </div>
+            <form class="flex column" id="login-form">
+                <div>
+                    <label for="username">Username or email:</label>
+                    <input type="text" id="login" name="username" placeholder="user@journey.com" required>
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="password" required>
+                </div>
+                <div>
+                    <p class="validationDisplay" id="validationDisplaySignIn"></p>
+                </div>
+                <button class="login-btn primary-bg white-text box-shadow" type="submit">Login</button>
+            </form>
+            <p>No Account? <a href="/frontend/pages/signup.html" id="register-link" class="register-link primary-text">Register Now</a></p>
+        </div>
+    </section>
+</body>
+</html>
