@@ -124,3 +124,17 @@
     color: white;
     transition: 0.5s;
     }
+
+.charts{
+    width: 100%;
+    height: 400px;
+    /* background-color: blue; */
+    gap: 10px;
+}
+.chart-child{
+    width: 70%;
+    height: 300px;
+    background-color:  #fbfdff;
+    border-radius: 15px;
+
+}
