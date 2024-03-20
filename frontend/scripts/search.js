@@ -61,14 +61,14 @@ const populateSearchCard = async (flight) => {
 const populateSearchCardHtml = (airlineName, airlineRatingStars, flight, flightRatingStars) => {
     return `<div class="result-card flex off-white-bg box-shadow primary-text border-radius">
             <div class="result-card-location flex space-around">
-                <div class="date flex column center">
+                <div class="display-time-location flex column center">
                     <h2 class="departure-location-display">${flight.departure_location}</h2>
                     <h2 class="departure-location-display">${formatDate(flight.departure_date)}</h2>
                 </div>
                 <div class="arrow-img flex center">
                     <img src="/frontend/assets/Arrow.svg" alt="arrow">
                 </div>
-                <div class="date flex column center">
+                <div class="display-time-location flex column center">
                 <h2 class="destination-location-display">${flight.destination}</h2>
                 <h2 class="destination-location-display">${formatDate(flight.arrival_date)}</h2>
                 </div>
@@ -148,6 +148,7 @@ const handleButtonClick = (event) => {
     }
 
     departureFlights.forEach((flight) => {
+        console.log(flight.id, flightId)
         if (flight.id === flightId) {
             localStorage.setItem('selectedDepartureFlight', JSON.stringify(flightId));
             departureClicked = !departureClicked;

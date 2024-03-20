@@ -5,6 +5,7 @@ const validationDisplay = document.getElementById('booking-validation-display');
 const checkOutBtn = document.getElementById('checkout-btn');
 const selectSeatsBtns = document.querySelectorAll('.letter');
 const loginBtn = document.getElementById('login-btn');
+const cancelBtn = document.getElementById('cancel-btn');
 
 let selectedDepartureFlight = null;
 let selectedReturnFlight = null;
@@ -27,13 +28,6 @@ const getCurrentUser = () => {
 const getSelectedFlights = () => {
     const selectedDepartureFlightId = JSON.parse(localStorage.getItem('selectedDepartureFlight'));
     const selectedReturnFlightId = JSON.parse(localStorage.getItem('selectedReturnFlight'));
-
-    getFlights(selectedDepartureFlightId).then((flight) => {
-        selectedDepartureFlight = flight;
-        populateFlightDetails(flight, 'Departure');
-        calculateTotalPrice();
-    });
-
     selectedReturnFlightId &&
         getFlights(selectedReturnFlightId).then((flight) => {
             selectedReturnFlight = flight;
@@ -41,8 +35,14 @@ const getSelectedFlights = () => {
             calculateTotalPrice();
         });
 
-    // calculateTotalPrice();
+    getFlights(selectedDepartureFlightId).then((flight) => {
+        selectedDepartureFlight = flight;
+        populateFlightDetails(flight, 'Departure');
+        calculateTotalPrice();
+    });
 };
+
+
 
 const populateFlightDetails = (flight, direction) => {
     flightDetailsContainer.innerHTML += populateFlightDetailElement(flight, direction);
@@ -91,6 +91,10 @@ const calculateTotalPrice = () => {
 const handleSeatSelect = (event) => {
     const seat = event.target;
 
+    if (seat.classList.contains('clicked') && seatSelected === 1) {
+        return;
+    }
+
     if (seat.classList.contains('clicked')) {
         seat.classList.remove('clicked');
         seatSelected--;
@@ -120,6 +124,11 @@ loginBtn.addEventListener('click', () => {
     window.location.href = '../pages/signin.html';
 });
 
+cancelBtn.addEventListener('click', () => {
+    localStorage.removeItem('selectedDepartureFlight');
+    localStorage.removeItem('selectedReturnFlight');
+    window.location.href = '../index.html';
+});
 
 getCurrentUser();
 getSelectedFlights();
