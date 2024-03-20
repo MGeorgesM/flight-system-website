@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/styles/index.css">
     <link rel="stylesheet" href="/frontend/styles/booking.css">
     <link rel="stylesheet" href="/frontend/styles/colors.css">
     <link rel="stylesheet" href="/frontend/styles/queries.css">
@@ -12,92 +13,99 @@
     <title>Confirm your Journey</title>
 </head>
 
-<body class="flex center column">
-    <div class="flight-details-container flex column center border-radius">
+<body class="green-bg">
+    <section class="navbar">
+        <nav class="nav-elements flex space-between">
+            <a href="/frontend/index.html">
+                <img class="logo" alt="logo" src="/frontend/assets/logo.png" />
+            </a>
+            <div>
+                <ul class="nav-list flex center">
+                    <li><a id="profile-link" class="nav-link primary-text" href="#">About Us</a></li>
+                    <li><a id="login-btn" class="nav-login primary-bg off-white-text box-shadow" href="#">Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+
+    <div class="flight-details-container off-white-bg flex column center border-radius box-shadow">
         <div class="flight-details-title dark-text">
             <h1>You Journey in Details</h1>
         </div>
         <div class="inner-container flex space-between">
-            <div>
+            <div class="flight-details-left">
+                <div class="username" id="user-details-container">
 
-                <div class="flight-details" id="flight-details-container">
-                    <div class="flight-details-card flex column">
-                        <div class="flight-details-card-title dark-text">
-                            <h2>${direction}</h2>
-                        </div>
-                        <div class="flight-details-card-content flex column">
-                            <div class="flight-details-card-content-item dark-text">
-                                <p>Flight Number: <span id="departure-flight-number">${flight.code}</span></p>
-                            </div>
-                            <div class="flight-details-card-content-item dark-text">
-                                <p>Departure Time: <span id="departure-departure-time">${flight.departure_date}</span>
-                                </p>
-                            </div>
-                            <div class="flight-details-card-content-item dark-text">
-                                <p>Arrival Time: <span id="departure-arrival-time">${flight.arrival_date}</span></p>
-                            </div>
-                            <div class="flight-details-card-content-item dark-text">
-                                <p>Price: <span id="departure-price">${flight.price}</span></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flight-details-card flex column">
-                        <div class="flight-details-card-title dark-text">
-                            <h2>${direction}</h2>
-                        </div>
-                        <div class="flight-details-card-content flex column">
-                            <div class="flight-details-card-content-item dark-text">
-                                <p>Flight Number: <span id="departure-flight-number">${flight.code}</span></p>
-                            </div>
-                            <div class="flight-details-card-content-item dark-text">
-                                <p>Departure Time: <span id="departure-departure-time">${flight.departure_date}</span>
-                                </p>
-                            </div>
-                            <div class="flight-details-card-content-item dark-text">
-                                <p>Arrival Time: <span id="departure-arrival-time">${flight.arrival_date}</span></p>
-                            </div>
-                            <div class="flight-details-card-content-item dark-text">
-                                <p>Price: <span id="departure-price">${flight.price}</span></p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
+                <div class="flight-details flex column" id="flight-details-container"></div>
 
             </div>
+
             <div class="seat-selection flex center column off-white-bg">
                 <div class="seat-selection-title dark-text">
-                    <h1>Seats</h1>
+                    <h1>Seating</h1>
                 </div>
                 <div class="letters flex center">
                     <div class="row flex column center">
-                        <div class="letter clicked">A</div>
-                        <div class="letter">B</div>
-                        <div class="letter">C</div>
-                        <div class="letter">D</div>
-                        <div class="letter">E</div>
-                        <div class="letter">F</div>
-                        <div class="letter">G</div>
+                        <div class="letter clicked">A1</div>
+                        <div class="letter">B1</div>
+                        <div class="letter">C1</div>
+                        <div class="letter">D1</div>
+                        <div class="letter">E1</div>
+                        <div class="letter">F1</div>
+                        <div class="letter">G1</div>
                     </div>
                     <div class="row flex column center">
-                        <div class="letter">H</div>
-                        <div class="letter">I</div>
-                        <div class="letter">J</div>
-                        <div class="letter">K</div>
-                        <div class="letter">L</div>
-                        <div class="letter">M</div>
-                        <div class="letter">N</div>
+                        <div class="letter">A2</div>
+                        <div class="letter">B2</div>
+                        <div class="letter">C2</div>
+                        <div class="letter">D2</div>
+                        <div class="letter">E2</div>
+                        <div class="letter">F2</div>
+                        <div class="letter">G2</div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="total">
-            <h1>Total: <span id="total-price">${flight.price}</span></h1>
+            <h1>Total: $<span id="total-price-display"></span></h1>
+        </div>
+        <div class="validation-display">
+            <p id="booking-validation-display"></p>
         </div>
         <div class="checkout flex center">
-            <button class="checkout-btn primary-bg white-text box-shadow border-radius"
-                id="checkout-btn">Checkout</button>
+            <a class="checkout-btn primary-bg white-text box-shadow border-radius"
+                id="checkout-btn">Checkout</a>
+        </div>
+    </div>
+
+    <footer class="flex space-between off-white-bg dark-text">
+        <div class="footer-social flex center">
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-facebook"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <p>Journey - Flights Management Website - SEF March 2024</p>
+        </div>
+        <div class="footer-text">
+            <div class="footer-links flex center">
+                <a href="#">Careers</a>
+                <a href="#">About Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="popup flex column center hidden" id="popup">
+        <div class="popup-inner green-bg flex column center border-radius border">
+            <div class="popup-text off-white-text">
+                <h1>Notice</h1>
+                <div>
+                    <p class="notice-text" id="popup-message"></p>
+                </div>
+            </div>
+            <a class="popup-btn off-white-bg border-radius border" id="continue-btn">Continue</a>
         </div>
     </div>
 

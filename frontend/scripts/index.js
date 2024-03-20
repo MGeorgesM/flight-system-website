@@ -12,80 +12,73 @@ const topRatedAirlineDisplay = document.getElementById('top-airline-display');
 
 const flightStatusesContainer = document.getElementById('statuses-container');
 
-const checkCurrentUser = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
 
-  if (user) {
-    loginBtn.innerHTML = 'Logout';
-    profileBtn.innerHTML = 'Profile';
-  }
-  return user;
-};
+
+let currentUser = null;
 
 const getFlightsStatuses = async () => {
-  const flights = await getFlights();
-  let flightsStatuses = {};
+    const flights = await getFlights();
+    let flightsStatuses = {};
 
-  flights.forEach((flight) => {
-    flightsStatuses[flight.code] = flight.status;
-  });
+    flights.forEach((flight) => {
+        flightsStatuses[flight.code] = flight.status;
+    });
 
-  return flightsStatuses;
+    return flightsStatuses;
 };
 
 const clearFilters = () => {
-  localStorage.removeItem('departureFlights');
-  localStorage.removeItem('returnFlights');
+    localStorage.removeItem('departureFlights');
+    localStorage.removeItem('returnFlights');
 };
 
-const searchForFlights = async (departure_location, destination, departure_date, return_date = null) => {
-  console.log('searchForFlights');
-  const flights = JSON.parse(localStorage.getItem('flights'));
-  if (!flights) return false;
+// const searchForFlights = async (departure_location, destination, departure_date, return_date = null) => {
+//     const flights = JSON.parse(localStorage.getItem('flights'));
+//     if (!flights) return false;
 
-  const departureDateInput = new Date(departure_date);
-  const returnDateInput = return_date ? new Date(return_date) : null;
-  let returnFlights = [];
+//     const departureDateInput = new Date(departure_date);
+//     const returnDateInput = return_date ? new Date(return_date) : null;
+//     let returnFlights = [];
 
-  departureFlights = flights.filter((flight) => {
-    const flightDepartureDbDate = new Date(flight.departure_date);
-    return (
-      flight.departure_location === departure_location &&
-      flight.destination === destination &&
-      flightDepartureDbDate.getTime() >= departureDateInput.getTime()
-    );
-  });
+//     departureFlights = flights.filter((flight) => {
+//         const flightDepartureDbDate = new Date(flight.departure_date);
+//         return (
+//             flight.departure_location === departure_location &&
+//             flight.destination === destination &&
+//             flightDepartureDbDate.getTime() >= departureDateInput.getTime()
+//         );
+//     });
 
-  if (departureFlights.length === 0) return false;
+//     if (departureFlights.length === 0) return false;
 
-  if (returnDateInput) {
-    returnFlights = flights.filter((flight) => {
-      const flightReturnDbDate = new Date(flight.departure_date);
-      return (
-        flight.destination === departure_location &&
-        flight.departure_location === destination &&
-        flightReturnDbDate.getTime() >= returnDateInput.getTime()
-      );
-    });
+//     if (returnDateInput) {
+//         returnFlights = flights.filter((flight) => {
+//             const flightReturnDbDate = new Date(flight.departure_date);
+//             return (
+//                 flight.destination === departure_location &&
+//                 flight.departure_location === destination &&
+//                 flightReturnDbDate.getTime() >= returnDateInput.getTime()
+//             );
+//         });
 
-    if (returnFlights.length === 0) return false;
+//         if (returnFlights.length === 0) return false;
 
-    departureFlights = departureFlights.filter((flight) => {
-      const flightDepartureDate = new Date(flight.departure_date);
-      return flightDepartureDate.getTime() < returnDateInput.getTime();
-    });
+//         departureFlights = departureFlights.filter((flight) => {
+//             const flightDepartureDate = new Date(flight.departure_date);
+//             return flightDepartureDate.getTime() < returnDateInput.getTime();
+//         });
 
-    if (departureFlights.length === 0) return false;
-  }
+//         if (departureFlights.length === 0) return false;
+//     }
 
-  localStorage.setItem('departureFlights', JSON.stringify(departureFlights));
-  localStorage.setItem('returnFlights', JSON.stringify(returnFlights));
+//     localStorage.setItem('departureFlights', JSON.stringify(departureFlights));
+//     localStorage.setItem('returnFlights', JSON.stringify(returnFlights));
 
-  return true;
-};
+//     return true;
+// };
 
 const populateFlightStatuses = (flight) => {
-  return `<div class="status dark-text">
+    return `<div class="status dark-text">
             <div class="status-container flex space-between">
                 <h2 class="status-flight-display">${flight.code}</h2>
                 <h2 class="status-display">${flight.status}</h2>
@@ -94,48 +87,57 @@ const populateFlightStatuses = (flight) => {
 };
 
 loginBtn.addEventListener('click', () => {
-  if (currentUser) {
-    clearFilters();
-    localStorage.removeItem('user');
-    localStorage.removeItem('flights');
-    currentUser = null;
-    loginBtn.innerHTML = 'Login';
+    if (currentUser) {
+        localStorage.clear();
+        loginBtn.innerHTML = 'Login';
+    }
     window.location.href = '/frontend/pages/signin.html';
-  }
-  window.location.href = '/frontend/pages/signin.html';
 });
 
 searchBtn.addEventListener('click', async (event) => {
-  event.preventDefault();
-  const departureLocationInputValue = departureLocationInput.value;
-  const destinationInputValue = destinationInput.value;
-  const departureDateInputValue = departureDateInput.value;
-  const returnDateInputValue = returnDateInput.value;
+    event.preventDefault();
+    if (!currentUser) {
+        window.location.href = '/frontend/pages/signin.html';
+    }
+    const departureLocationInputValue = departureLocationInput.value;
+    const destinationInputValue = destinationInput.value;
+    const departureDateInputValue = departureDateInput.value;
+    const returnDateInputValue = returnDateInput.value;
 
-  let flightsFound = await searchForFlights(
-    destinationInputValue,
-    departureLocationInputValue,
-    departureDateInputValue,
-    returnDateInputValue
-  );
+    let flightsFound = await searchForFlights(
+        destinationInputValue,
+        departureLocationInputValue,
+        departureDateInputValue,
+        returnDateInputValue
+    );
 
-  flightsFound && (window.location.href = '/frontend/pages/search.html');
+    if (flightsFound) {
+        window.location.href = '/frontend/pages/search.html';
+    } else {    
+        showPopup('No flights found. Please adjust your search criteria.');
+    }
+
+    flightsFound && (window.location.href = '/frontend/pages/search.html');
+});
+
+continueBtn.addEventListener('click', () => {
+    popup.classList.add('hidden');
 });
 
 getHighestRating('flight').then((highestRating) => {
-  topRatedFlightDisplay.innerHTML = highestRating.code.toUpperCase();
+    topRatedFlightDisplay.innerHTML = highestRating.code.toUpperCase();
 });
 
 getHighestRating('airline').then((highestRating) => {
-  topRatedAirlineDisplay.innerHTML = highestRating.airline_name;
+    topRatedAirlineDisplay.innerHTML = highestRating.airline_name;
 });
 
 getFlights().then((flights) => {
-  flights.forEach((flight) => {
-    flightStatusesContainer.innerHTML += populateFlightStatuses(flight);
-  });
-  localStorage.setItem('flights', JSON.stringify(flights));
+    flights.forEach((flight) => {
+        flightStatusesContainer.innerHTML += populateFlightStatuses(flight);
+    });
+    localStorage.setItem('flights', JSON.stringify(flights));
 });
 
-let currentUser = checkCurrentUser();
 clearFilters();
+checkCurrentUser();

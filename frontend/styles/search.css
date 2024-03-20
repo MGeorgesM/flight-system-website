@@ -17,6 +17,11 @@ header {
     box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.1);
 }
 
+.select-return {
+    display: flex;
+    flex-direction: column;
+}
+
 .select-section-title {
     width: 1200px;
 }
@@ -85,6 +90,11 @@ header {
 
 .select-btn:hover {
     background-color: #202B32;
+}
+
+.proceed {
+    display: flex;
+    flex-direction: column;
 }
 
 .proceed-btn-container {

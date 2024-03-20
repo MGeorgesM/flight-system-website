@@ -1,7 +1,7 @@
 const signupForm = document.getElementById('register-form');
 const emailInput = document.getElementById('email');
 const usernameInput = document.getElementById('username');
-const passwordInput = document.getElementById('password');
+const passwordInput = document.getElementById('register-password');
 const registerValidationDisplay = document.getElementById('validationDisplaySignUp');
 
 
@@ -22,8 +22,8 @@ const register = async (email, username, password) => {
 
     if (response.data.status === 'success') {
       localStorage.setItem('user', JSON.stringify(response.data.users));
-      clearRegisterForm();
       window.location.href = '../index.html';
+      clearRegisterForm();
       return;
     } else {
       throw new Error(response.data.message);

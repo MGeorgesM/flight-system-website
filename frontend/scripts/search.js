@@ -1,13 +1,26 @@
-const loginBtn = document.getElementById('login-btn');
-const searchSectionDeparture = document.getElementById('select-departure');
-const searchSectionReturn = document.getElementById('select-return');
+
+
+const sectionDeparture = document.getElementById('select-departure');
+const sectionReturn = document.getElementById('select-return');
 const proceedSection = document.getElementById('proceed');
+const proceedBtn = document.getElementById('proceed-btn');
+
+
+const searchBtn = document.getElementById('search-btn');
+
+const departureLocationInput = document.getElementById('departure-location');
+const destinationInput = document.getElementById('destination');
+const departureDateInput = document.getElementById('departure-date');
+const returnDateInput = document.getElementById('return-date');
 
 let selectBtns = [];
 let departureFlights = [];
 let returnFlights = [];
 let departureClicked = false;
 let returnClicked = false;
+
+let currentUser = null;
+
 
 const resetSearchSection = (direction) => {
     const color = direction === 'Departure' ? 'dark-text' : 'off-white-text';
@@ -68,24 +81,30 @@ const populateSearchCardHtml = (airlineName, airlineRatingStars, flight, flightR
 };
 
 const getSearchResult = async () => {
-    searchSectionDeparture.innerHTML = resetSearchSection('Departure');
-    searchSectionReturn.innerHTML = resetSearchSection('Return');
+    sectionDeparture.innerHTML = resetSearchSection('Departure');
+    sectionReturn.innerHTML = resetSearchSection('Return');
     departureFlights = JSON.parse(localStorage.getItem('departureFlights'));
     returnFlights = JSON.parse(localStorage.getItem('returnFlights'));
 
     departureFlights &&
         departureFlights.forEach(async (flight) => {
             const html = await populateSearchCard(flight);
-            searchSectionDeparture.innerHTML += html;
-            addSelectBtnEventListener(searchSectionDeparture);
+            sectionDeparture.innerHTML += html;
+            addSelectBtnEventListener(sectionDeparture);
         });
 
-    returnFlights &&
+    if (returnFlights) {
         returnFlights.forEach(async (flight) => {
             const html = await populateSearchCard(flight);
-            searchSectionReturn.innerHTML += html;
-            addSelectBtnEventListener(searchSectionReturn);
+            sectionReturn.innerHTML += html;
+            addSelectBtnEventListener(sectionReturn);
+            sectionReturn.classList.remove('hidden');
         });
+    } else {
+        returnClicked = true;
+        sectionReturn.classList.add('hidden');
+    }
+
 };
 
 const addSelectBtnEventListener = (section) => {
@@ -128,10 +147,13 @@ const handleButtonClick = (event) => {
         }
 
         if (departureClicked && returnClicked) {
+            console.log('proceed');
             proceedSection.classList.remove('hidden');
         } else {
             proceedSection.classList.add('hidden');
         }
+
+        console.log(departureClicked, returnClicked);
     });
 };
 
@@ -140,4 +162,35 @@ loginBtn.addEventListener('click', () => {
     window.location.href = '../pages/signin.html';
 });
 
+proceedBtn.addEventListener('click', () => {
+
+});
+
+searchBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+    if (!currentUser) {
+        window.location.href = '/frontend/pages/signin.html';
+    }
+    const departureLocationInputValue = departureLocationInput.value;
+    const destinationInputValue = destinationInput.value;
+    const departureDateInputValue = departureDateInput.value;
+    const returnDateInputValue = returnDateInput.value;
+
+    let flightsFound = await searchForFlights(
+        destinationInputValue,
+        departureLocationInputValue,
+        departureDateInputValue,
+        returnDateInputValue
+    );
+
+    if (flightsFound) {
+        window.location.href = '/frontend/pages/search.html';
+    } else {    
+        showPopup('No flights found. Please adjust your search criteria.');
+    }
+
+    flightsFound && (window.location.href = '/frontend/pages/search.html');
+});
+
+checkCurrentUser()
 getSearchResult();

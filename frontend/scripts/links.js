@@ -53,6 +53,26 @@ const checkCurrentUserisAdmin = async (user_id, email) => {
 }
 
 
+  const getUser = async (user_id) => {
+
+    try {
+      const params = {};
+      let url = '/users/get.php';
+      user_id && (params.user_id = user_id);
+      url = constructGetUrl(url, params);
+  
+      const response = await axios.get(url);
+  
+      if (response.data.status === 'success') {
+        return response.data.users;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  
+  }
+
+
 //Bookings
 
 const getbookings = async (user_id, email, booking_id) => {
@@ -75,7 +95,7 @@ const getbookings = async (user_id, email, booking_id) => {
   }
 };
 
-const addBooking = async (user_id, departure_flight_id, passengers_number, return_flight_id = null) => {
+const addBooking = async (user_id, departure_flight_id, passengers_number = 1, return_flight_id = null) => {
   const data = new FormData();
   data.append('user_id', user_id);
   data.append('departure_flight_id', departure_flight_id);
@@ -84,7 +104,11 @@ const addBooking = async (user_id, departure_flight_id, passengers_number, retur
 
   try {
     const response = await axios.post('/bookings/add.php', data);
-    return response.data;
+    if (response.data.status === 'success') {
+      return response.data.booking;
+    } else {
+      throw new Error(response.data.message);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -176,6 +200,27 @@ const getAirlines = async (id) => {
     if (response.data.status === 'success') {
       return response.data.airlines;
     }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+//Payments
+
+const addPayment = async (user_id, booking_id) => {
+  const data = new FormData();
+  data.append('booking_id', booking_id);
+  data.append('user_id', user_id);
+
+  try {
+    const response = await axios.post('/payments/add.php', data);
+
+    if (response.data.status === 'success') {
+      return;
+    } else {
+      throw new Error(response.data.message);
+    }
+
   } catch (error) {
     console.error(error);
   }
