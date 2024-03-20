@@ -147,19 +147,12 @@ const handleButtonClick = (event) => {
         if (flight.id === flightId) {
             localStorage.setItem('selectedDepartureFlight', JSON.stringify(flightId));
             departureClicked = !departureClicked;
+            console.log('clicked departure', departureClicked)
         } else {
             localStorage.setItem('selectedReturnFlight', JSON.stringify(flightId));
             returnClicked = !returnClicked;
+            console.log('clicked return', returnClicked)
         }
-
-        if (departureClicked && returnClicked) {
-            console.log('proceed');
-            proceedSection.classList.remove('hidden');
-        } else {
-            proceedSection.classList.add('hidden');
-        }
-
-        console.log(departureClicked, returnClicked);
     });
 };
 
@@ -178,3 +171,5 @@ continueBtn.addEventListener('click', () => {
 
 
 getSearchResult();
+console.log('clicked return', returnClicked)
+console.log('clicked departure', departureClicked)
