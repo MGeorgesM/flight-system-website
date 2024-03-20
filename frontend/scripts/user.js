@@ -4,7 +4,9 @@ const getFlightDetails = (flightId) => {
       .then((response) => {
         const data = response.data;
         if (data.status === "success") {
-          return data.flight; 
+          console.log(data.flights);
+
+          return data.flights; 
         } else {
           throw new Error(data.message);
         }
@@ -14,7 +16,6 @@ const getFlightDetails = (flightId) => {
         throw error; 
       });
   };
-  
   const getBookingsAndFlightDetails = (id, email) => {
     axios
       .get(`http://localhost/FLIGHT-SYSTEM-WEBSITE/backend/bookings/get.php?user_id=${id}&email=${email}`)
@@ -22,6 +23,7 @@ const getFlightDetails = (flightId) => {
         const data = response.data;
         if (data.status === "success") {
           const bookings = data.bookings;
+          console.log(bookings);
           const flightPromises = bookings.map((booking) => {
             const departureFlightId = booking.departure_flight_id;
             return getFlightDetails(departureFlightId); 
