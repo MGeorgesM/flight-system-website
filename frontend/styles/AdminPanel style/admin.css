@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main-container{
+    width: 100%;
+    height: 100vh;
+    background-color: #ADB5BD;
+}
+
+.admin-panel{
+    width: 80%;
+    height: 700px;
+    background-color: #DEE2E6;
+    border-radius: 10px;
+}
+
+.admin-side-bar{
+    width: 20%;
+    height: 700px;
+    background-color: #202B32;
+    gap: 40px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    
+}
+
+.heading{
+    width: 100%;
+    height: 100px;
+    color: white;
+    /* background-color: pink; */
+}
+.side-tools{
+    width: 100%;
+    height: 300px;
+    /* background-color: rgb(189, 122, 77); */
+}
+.tools{
+    width: 100%;
+    height: 300px;
+    margin: 10px;
+    /* background-color: aqua; */
+}
+
+.tools li{
+    list-style:  none;
+    margin: 20px;
+   
+}
+.tools a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+
+.tools i{
+    font-size: 20px;
+}
+
+.admin-dashborad{
+    width: 80%;
+    height: 700px;
+    /* background-color: pink; */
+}
+.cards{
+    width: 100%;
+    height: 200px;
+    /* background-color: blueviolet; */
+    justify-content: space-around;
+    align-items: center;
+}
+.card-child1{
+    width: 30%;
+    height: 150px;
+    background-color: white;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 15px;
+
+    
+}
+.card-child2{
+    width: 30%;
+    height: 150px;
+    background-color: white;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 15px;
+
+    
+}
+.card-child3{
+    width: 30%;
+    height: 150px;
+    background-color: white;
+    justify-content: space-around;
+    padding: 10px;
+    border-radius: 15px;
+
+    
+}
+.card-child1 i{
+    font-size: 20px;
+    position: absolute;
+    left: 42%;
+    transform: translateY(-100%);
+}
+.card-child2 i{
+    font-size: 20px;
+    position: absolute;
+    left: 64%;
+    transform: translateY(-100%);
+}
+.card-child3 i{
+    font-size: 20px;
+    position: absolute;
+    right: 14%;
+    transform: translateY(-100%);
+}
+
+.card-child1:hover,
+.card-child2:hover,
+.card-child3:hover {
+    background-color: #202B32;
+    color: white;
+    transition: 0.5s;
+}
+
+.charts{
+    width: 100%;
+    height: 400px;
+    /* background-color: blue; */
+    gap: 10px;
+}
+.chart-child{
+    width: 70%;
+    height: 300px;
+    background-color:  #fbfdff;
+    border-radius: 15px;
+
+}
