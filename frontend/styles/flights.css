@@ -81,10 +81,34 @@
     background-color: #202B32;
     color: white;
 }
-.child{
-    justify-content: space-between;
-    background-color: #8da4b9;
-    height: 40px;
+
+.flight-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.flight-table th {
+    
+    width: 10%;
+    padding: 8px;
+    text-align: left;
+}
+
+.flight-table td {
+    
+    padding: 8px;
+    text-align: left;
+    
+}
+
+
+.flight-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.flight-table th {
+    background-color: #202B32;
+    color: white;
 }
 .child button{
     padding: 7px 15px;
