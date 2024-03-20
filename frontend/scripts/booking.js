@@ -4,45 +4,27 @@ const totalPriceDisplay = document.getElementById('total-price-display');
 const validationDisplay = document.getElementById('booking-validation-display');
 const checkOutBtn = document.getElementById('checkout-btn');
 const selectSeatsBtns = document.querySelectorAll('.letter');
-const loginBtn = document.getElementById('login-btn');
 const cancelBtn = document.getElementById('cancel-btn');
+
 
 let selectedDepartureFlight = null;
 let selectedReturnFlight = null;
 let seatSelected = 1;
-let currentUser = null;
-
-const getCurrentUser = () => {
-    currentUser = JSON.parse(localStorage.getItem('user'));
-    console.log(currentUser);
-
-    if (!currentUser) {
-        window.location.href = '/frontend/pages/signin.html';
-    }
-
-    getUser(currentUser.id).then((user) => {
-        populateUserDetails(user);
-    });
-};
 
 const getSelectedFlights = () => {
-    const selectedDepartureFlightId = JSON.parse(localStorage.getItem('selectedDepartureFlight'));
-    const selectedReturnFlightId = JSON.parse(localStorage.getItem('selectedReturnFlight'));
+    const selectedDepartureFlightId = JSON.parse(localStorage.getItem('selectedDepartureFlightId'));
+    const selectedReturnFlightId = JSON.parse(localStorage.getItem('selectedReturnFlightId'));
     selectedReturnFlightId &&
         getFlights(selectedReturnFlightId).then((flight) => {
             selectedReturnFlight = flight;
             populateFlightDetails(flight, 'Return');
-            calculateTotalPrice();
         });
 
     getFlights(selectedDepartureFlightId).then((flight) => {
         selectedDepartureFlight = flight;
         populateFlightDetails(flight, 'Departure');
-        calculateTotalPrice();
     });
 };
-
-
 
 const populateFlightDetails = (flight, direction) => {
     flightDetailsContainer.innerHTML += populateFlightDetailElement(flight, direction);
@@ -78,7 +60,7 @@ const populateUserDetails = (user) => {
 const populateUserDetailsElement = (user) => {
     return `<h1 id="username-dislpay">${user.username}</h1>
             <p id="address-display">${user.address ? user.address : ''}</p>
-            <p id="passport-display">${user.passport ? user.passport : ''}</p>`;
+            <p id="passport-display">${user.passport_number ? user.passport_number : ''}</p>`;
 };
 
 const calculateTotalPrice = () => {
@@ -127,8 +109,10 @@ loginBtn.addEventListener('click', () => {
 cancelBtn.addEventListener('click', () => {
     localStorage.removeItem('selectedDepartureFlight');
     localStorage.removeItem('selectedReturnFlight');
-    window.location.href = '../index.html';
+    window.location.href = '../pages/search.html';
 });
 
-getCurrentUser();
 getSelectedFlights();
+populateUserDetails(currentUser);
+
+console.log(currentUser)

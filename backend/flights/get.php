@@ -36,7 +36,8 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
 } else {
     $query = $mysqli->prepare('SELECT flights.*, airlines.airline_name AS airline_name
         FROM flights
-        JOIN airlines ON flights.airline_id = airlines.id;
+        JOIN airlines ON flights.airline_id = airlines.id
+        ORDER BY flights.departure_date;
     ');
 
     $query->execute();
