@@ -24,6 +24,16 @@ if (!empty($_POST['passport_number'])) {
     $updated_passport_number = $_POST['passport_number'];
     $fields_to_update[] = "passport_number = '$updated_passport_number'";
 }
+if (!empty($_POST['username'])) {
+    $updated_username = $_POST['username'];
+    $fields_to_update[] = "username = '$updated_username'";
+}
+
+if (!empty($_POST['email'])) {
+    $updated_email = $_POST['email'];
+    $fields_to_update[] = "email = '$updated_email'";
+}
+
 
 if (!empty($_POST['coins'])) {
     $updated_coins = $_POST['coins'];
