@@ -110,7 +110,7 @@ const addBooking = async (user_id, departure_flight_id, passengers_number = 1, r
       throw new Error(response.data.message);
     }
   } catch (error) {
-    console.error(error);
+    throw error.message;
   }
 };
 

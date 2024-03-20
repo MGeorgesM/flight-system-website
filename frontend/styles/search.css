@@ -60,7 +60,7 @@ header {
 }
 
 .result-card-location {
-    justify-content:  space-between;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -69,8 +69,13 @@ header {
     align-items: center;
 }
 
+.departure-location-display,
+.destination-location-display {
+    text-align: center;
+}
+
 .arrow-img {
-    width: 50%;
+    width: 40%;
 }
 
 .arrow-img img {

@@ -36,3 +36,10 @@ loginForm.addEventListener('submit', async (event) => {
   const password = loginForm.password.value;
   signIn(login, password);
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+  const currentUser = JSON.parse(localStorage.getItem('user'));
+  if (currentUser) {
+      window.location.href = '../index.html';
+  }
+});

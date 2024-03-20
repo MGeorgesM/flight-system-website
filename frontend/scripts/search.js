@@ -1,17 +1,8 @@
-
-
 const sectionDeparture = document.getElementById('select-departure');
 const sectionReturn = document.getElementById('select-return');
+
 const proceedSection = document.getElementById('proceed');
 const proceedBtn = document.getElementById('proceed-btn');
-
-
-const searchBtn = document.getElementById('search-btn');
-
-const departureLocationInput = document.getElementById('departure-location');
-const destinationInput = document.getElementById('destination');
-const departureDateInput = document.getElementById('departure-date');
-const returnDateInput = document.getElementById('return-date');
 
 let selectBtns = [];
 let departureFlights = [];
@@ -20,7 +11,6 @@ let departureClicked = false;
 let returnClicked = false;
 
 let currentUser = null;
-
 
 const resetSearchSection = (direction) => {
     const color = direction === 'Departure' ? 'dark-text' : 'off-white-text';
@@ -43,6 +33,20 @@ const populateRatingStars = (rating) => {
     return ratingStars;
 };
 
+const formatDate = (date) => {
+    const newDate = new Date(date);
+    return newDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: false,
+    });
+
+}
+
+
 const populateSearchCard = async (flight) => {
     const airlineName = await getAirlines(flight.airline_id);
     const airlineRating = await getFlightOrAirlineAverageRating(flight.airline_id, 'airline');
@@ -57,11 +61,17 @@ const populateSearchCard = async (flight) => {
 const populateSearchCardHtml = (airlineName, airlineRatingStars, flight, flightRatingStars) => {
     return `<div class="result-card flex off-white-bg box-shadow primary-text border-radius">
             <div class="result-card-location flex space-around">
-                <h2 class="departure-location-display">${flight.departure_location}</h2>
+                <div class="date flex column center">
+                    <h2 class="departure-location-display">${flight.departure_location}</h2>
+                    <h2 class="departure-location-display">${formatDate(flight.departure_date)}</h2>
+                </div>
                 <div class="arrow-img flex center">
                     <img src="/frontend/assets/Arrow.svg" alt="arrow">
                 </div>
+                <div class="date flex column center">
                 <h2 class="destination-location-display">${flight.destination}</h2>
+                <h2 class="destination-location-display">${formatDate(flight.arrival_date)}</h2>
+                </div>
             </div>
             <div class="result-card-ratings flex space-around">
                 <div class="rating-flight flex column center">
@@ -163,13 +173,18 @@ loginBtn.addEventListener('click', () => {
 });
 
 proceedBtn.addEventListener('click', () => {
+    window.location.href = '/frontend/pages/booking.html';
+});
 
+continueBtn.addEventListener('click', () => {
+    popup.classList.add('hidden');
 });
 
 searchBtn.addEventListener('click', async (event) => {
     event.preventDefault();
     if (!currentUser) {
         window.location.href = '/frontend/pages/signin.html';
+        localStorage.clear();
     }
     const departureLocationInputValue = departureLocationInput.value;
     const destinationInputValue = destinationInput.value;

@@ -65,7 +65,7 @@ const populateFlightDetailElement = (flight, direction) => {
                         <p>Arrival Time: <span id="departure-arrival-time">${flight.arrival_date}</span></p>
                     </div>
                     <div class="flight-details-card-content-item dark-text">
-                        <p>Price: <span id="departure-price">${flight.price}</span></p>
+                        <p>Price: <span id="departure-price">$${flight.price}</span></p>
                     </div>
                 </div>
             </div>`;
@@ -77,8 +77,8 @@ const populateUserDetails = (user) => {
 
 const populateUserDetailsElement = (user) => {
     return `<h1 id="username-dislpay">${user.username}</h1>
-            <p id="address-display">${user.address}</p>
-            <p id="passport-display">${user.passport}</p>`;
+            <p id="address-display">${user.address ? user.address : ''}</p>
+            <p id="passport-display">${user.passport ? user.passport : ''}</p>`;
 };
 
 const calculateTotalPrice = () => {
@@ -108,11 +108,11 @@ selectSeatsBtns.forEach((btn) => {
 
 checkOutBtn.addEventListener('click', async () => {
     try {
-        await addPayment(currentUser.id, currentBooking.id);
+        await addBooking(currentUser.id, selectedDepartureFlight.id, seatSelected, selectedReturnFlight.id);
     } catch (error) {
-        validationDisplay.textContent = error.message;
+        validationDisplay.textContent = error;
     }
-    window.location.href = '/frontend/pages/confirmation.html';
+    // window.location.href = '/frontend/pages/confirmation.html';
 });
 
 loginBtn.addEventListener('click', () => {

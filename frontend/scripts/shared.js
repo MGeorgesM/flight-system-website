@@ -1,6 +1,13 @@
 const loginBtn = document.getElementById('login-btn');
 const profileBtn = document.getElementById('profile-link');
 
+const searchBtn = document.getElementById('search-btn');
+const departureLocationInput = document.getElementById('departure-location');
+const destinationInput = document.getElementById('destination');
+const departureDateInput = document.getElementById('departure-date');
+const returnDateInput = document.getElementById('return-date');
+
+
 const popup = document.getElementById('popup');
 const popupMessage = document.getElementById('popup-message');
 const continueBtn = document.getElementById('continue-btn');
@@ -16,8 +23,8 @@ const searchForFlights = async (departure_location, destination, departure_date,
     departureFlights = flights.filter((flight) => {
         const flightDepartureDbDate = new Date(flight.departure_date);
         return (
-            flight.departure_location === departure_location &&
-            flight.destination === destination &&
+            flight.departure_location.toLowerCase() === departure_location.toLowerCase() &&
+            flight.destination.toLowerCase() === destination.toLowerCase() &&
             flightDepartureDbDate.getTime() >= departureDateInput.getTime()
         );
     });
@@ -28,8 +35,8 @@ const searchForFlights = async (departure_location, destination, departure_date,
         returnFlights = flights.filter((flight) => {
             const flightReturnDbDate = new Date(flight.departure_date);
             return (
-                flight.destination === departure_location &&
-                flight.departure_location === destination &&
+                flight.destination.toLowerCase() === departure_location.toLowerCase() &&
+                flight.departure_location.toLowerCase() === destination.toLowerCase() &&
                 flightReturnDbDate.getTime() >= returnDateInput.getTime()
             );
         });

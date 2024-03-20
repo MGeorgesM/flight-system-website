@@ -41,3 +41,10 @@ signupForm.addEventListener('submit', async (event) => {
   const password = signupForm.password.value;
   register(email, username, password);
 });
+
+window.addEventListener('DOMContentLoaded', () => {
+  const currentUser = JSON.parse(localStorage.getItem('user'));
+  if (currentUser) {
+      window.location.href = '../index.html';
+  }
+});
