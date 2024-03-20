@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/frontend/styles/colors.css">
     <link rel="stylesheet" href="/frontend/styles/queries.css">
     <link rel="stylesheet" href="/frontend/styles/utilities.css">
-    <title>Your Payment</title>
+    <title>Your Payment Details</title>
 </head>
 
 <body class="green-bg">
@@ -31,20 +31,30 @@
     </section>
     <div class="flight-details-container off-white-bg flex column center border-radius box-shadow">
         <div class="flight-details-title dark-text">
-            <h1>Payement</h1>
+            <h1>Order Details</h1>
+            <p id="user-display"></p>
         </div>
-        <div class="order-details">
-            
-            
+        <div>
+            <div class="order-details">
+                <h2>Fligh/Flights:</h2>
+                <p id="flight-departure-display"></p>
+                <p id="flight-return-display"></p>
+                <h2>Seats:</h2>
+                <p id="seats-display"></p>
+            </div>
+            <div class="logo-order">
+                <img src="/frontend/assets/logo.png" alt="logo">
+            </div>
         </div>
         <div class="total">
             <h1>Due now: $<span id="total-price-display"></span></h1>
+            <h2>Available Coins: <span id="user-coins-display"></span></h2>
         </div>
         <div class="validation-display">
-            <p id="booking-validation-display"></p>
+            <p id="payment-validation-display"></p>
         </div>
         <div class="checkout flex center">
-            <a class="checkout-btn primary-bg white-text box-shadow border-radius" id="checkout-btn">Confirm</a>
+            <a class="checkout-btn primary-bg white-text box-shadow border-radius" id="checkout-btn">Checkout</a>
             <a class="cancel-btn off-white-bg primary-text box-shadow border border-radius" id="cancel-btn">Cancel</a>
         </div>
     </div>
@@ -63,6 +73,18 @@
             </div>
         </div>
     </footer>
+
+    <div class="popup flex column center hidden" id="popup">
+        <div class="popup-inner green-bg flex column space-evenly box-shadow border-radius">
+            <div class="popup-text off-white-text">
+                <h1>Notice</h1>
+                <div>
+                    <p class="notice-text" id="popup-message"></p>
+                </div>
+            </div>
+            <a class="popup-btn off-white-bg border-radius border" id="continue-btn">Continue</a>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/frontend/scripts/links.js"></script>

@@ -88,12 +88,16 @@ const handleSeatSelect = (event) => {
     console.log(seatsSelected);
 };
 
-
 selectSeatsBtns.forEach((btn) => {
     btn.addEventListener('click', handleSeatSelect);
 });
 
 checkOutBtn.addEventListener('click', async () => {
+    if (seatsSelected.length === 0) {
+        popup.classList.remove('hidden');
+        popupMessage.innerText = 'Please select at least one seat';
+        return;
+    }
     try {
         await addBooking(currentUser.id, selectedDepartureFlight.id, seatsSelected.length, selectedReturnFlight.id);
     } catch (error) {

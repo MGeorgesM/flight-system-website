@@ -198,7 +198,7 @@ const addPayment = async (user_id, booking_id) => {
             throw new Error(response.data.message);
         }
     } catch (error) {
-        console.error(error);
+        throw error.message;
     }
 };
 
