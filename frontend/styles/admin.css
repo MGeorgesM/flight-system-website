@@ -74,7 +74,7 @@
 .card-child1{
     width: 30%;
     height: 150px;
-    background-color: #ADB5BD;
+    background-color: white;
     justify-content: space-around;
     padding: 10px;
     border-radius: 15px;
@@ -84,7 +84,7 @@
 .card-child2{
     width: 30%;
     height: 150px;
-    background-color: #ADB5BD;
+    background-color: white;
     justify-content: space-around;
     padding: 10px;
     border-radius: 15px;
@@ -94,7 +94,7 @@
 .card-child3{
     width: 30%;
     height: 150px;
-    background-color: #ADB5BD;
+    background-color: white;
     justify-content: space-around;
     padding: 10px;
     border-radius: 15px;
@@ -110,13 +110,13 @@
 .card-child2 i{
     font-size: 20px;
     position: absolute;
-    left: 60%;
+    left: 64%;
     transform: translateY(-100%);
 }
 .card-child3 i{
     font-size: 20px;
     position: absolute;
-    right: 20%;
+    right: 14%;
     transform: translateY(-100%);
 }
 
