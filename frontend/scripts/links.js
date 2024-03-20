@@ -172,3 +172,6 @@ const user_email = 'user2@example.com';
 const departure_flight_id = 1;
 const passengers_number = 1;
 const return_flight_id = 2;
+
+//Users
+  

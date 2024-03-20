@@ -1,0 +1,196 @@
+.main {
+  height: 100%;
+  margin: 30px 0;
+}
+
+.profile-image > img {
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+}
+.nav {
+  padding-top: 20px;
+  gap: 100px;
+}
+.profile-btn,
+.booking-btn {
+  font-family: "Cormorant", serif;
+  font-size: 17px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.first-input-container {
+  margin-top: 50px;
+}
+.input-container {
+  margin-top: 40px;
+}
+.input-style {
+  font-family: "Cormorant", serif;
+  font-size: 17px;
+  font-weight: 500;
+  width: 530px;
+  vertical-align: middle;
+  padding: 10px 10px;
+
+  cursor: pointer;
+}
+.main {
+  margin: 30px 0;
+}
+.container {
+  min-height: 100vh;
+  height: 100%;
+  margin: 30px 0;
+  width: 80%;
+  padding: 20px;
+  background-color: #dee2e6;
+  border-radius: 15px;
+}
+.profile-image > img {
+  height: 180px;
+  width: 180px;
+  border-radius: 50%;
+}
+.nav {
+  padding-top: 20px;
+  gap: 100px;
+}
+.profile-btn,
+.booking-btn,.add-review-btn {
+  font-family: "Cormorant", serif;
+  font-size: 17px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.first-input-container {
+  margin-top: 50px;
+}
+.input-container {
+  margin-top: 40px;
+}
+.input-style {
+  font-family: "Cormorant", serif;
+  font-size: 17px;
+  font-weight: 500;
+  max-width: 530px;
+  vertical-align: middle;
+  padding: 10px 10px;
+
+  cursor: pointer;
+}
+.input-style-last {
+  font-family: "Cormorant", serif;
+  font-size: 17px;
+  font-weight: 500;
+  width: 100%;
+  cursor: pointer;
+  padding: 10px 10px;
+}
+.update-btn {
+  font-family: "Cormorant", serif;
+  font-size: 17px;
+  vertical-align: middle;
+  width: 150px;
+  padding: 8px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+.booking-card {
+  height: 13vh;
+  margin: 40px;
+  padding: 0 40px;
+}
+.booking{
+  display: none;
+}
+.line{
+  width: 200px;
+  height: 3px;
+  margin: 20px;
+}
+@media screen and (max-width: 1290px) {
+  .input-style {
+    width: 450px;
+  }
+}
+@media screen and (max-width: 1220px) {
+  .input-style {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 1100px) {
+
+    .line{
+      width: 150px;
+      height: 3px;
+      margin: 20px;
+    }
+  .first-input-container {
+    gap: 40px;
+    flex-direction: column;
+  }
+  .input-container {
+    gap: 40px;
+    flex-direction: column;
+  }
+  .container{
+    height: 100%;
+  }
+}
+@media screen and (max-width: 950px) {
+  .booking-card {
+   margin: 40px 20px;
+   padding: 20px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .input-style {
+    width: 300px;
+  }
+  .booking-card {
+    margin: 40px 0px;
+    padding: 10px;
+   }
+  .line{
+    width: 0px;
+    margin: 0px;
+
+  }
+  .input-style-last {
+   height: 150px;
+ vertical-align: text-top;
+  }
+  .profile-image > img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .input-style {
+    width: 250px;
+  }
+  .profile-image > img {
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+  }
+  .input-style-last {
+   height: 100px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .input-style {
+    width: 200px;
+  }
+  .input-style-last {
+   height: 100px;
+  }
+}

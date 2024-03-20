@@ -46,7 +46,9 @@ button {
     justify-content: center;
     align-items: center;
 }
-
+.align-center {
+    align-items: center;
+}
 .space-evenly {
     justify-content: space-evenly;
     align-items: center;
@@ -84,4 +86,7 @@ button {
 
 .border-radius-l {
     border-radius: 14px;
+}
+.border-radius-l2 {
+    border-radius: 11px;
 }
