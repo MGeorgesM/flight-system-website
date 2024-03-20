@@ -50,13 +50,6 @@
     display: initial;
 }
 
-.flight-details{
-    width: 100%;
-    height: 40px;
-    background-color: #8da4b9;
-    gap: 70px;
-    padding: 10px 20px;
-}
 
 .add-flight{
     width: 100%;
@@ -110,15 +103,13 @@
     background-color: #202B32;
     color: white;
 }
-.child button{
-    padding: 7px 15px;
+.flight-table button{
+    padding: 5px 7px;
     background-color: #202B32;
     color: white;
     border-radius: 10px;
     border: none;
     outline: none;
-    
 
 }
-
 
