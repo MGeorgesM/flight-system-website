@@ -1,10 +1,11 @@
 <?php
 include('../connection.php');
 
-$id = $_GET['user_id'];
 
 
 if(isset($id) && !empty($id)) {
+    $id = $_GET['user_id'];
+
     $find_user = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
     $find_user->bind_param('i', $id);
     $find_user->execute();
