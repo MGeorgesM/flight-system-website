@@ -40,21 +40,17 @@
                     <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
                     <label for="tab1" class="tabs__label">Coins</label>
                     <div class="tabs__content">
-                        <table class="coin-table">
-                            <tr>
+                        <table class="coin-table" id="coin-table">
+                            <thead>
+                                <tr>
                                 <th>ID</th>
                                 <th>User_id</th>
                                 <th>Amount</th>
                                 <th>Status</th>
                                 <th>Date</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>12345</td>
-                                <td>$50</td>
-                                <td>Completed</td>
-                                <td>2024-03-20</td>
-                            </tr>
+                            </thead>
+                            <tbody></tbody>
                         </table>
                     </div>
                     <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
@@ -86,5 +82,7 @@
         </div>
             </div>            
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../scripts/coins.js"></script>
 </body>
 </html>
