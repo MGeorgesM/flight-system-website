@@ -1,65 +1,134 @@
-const getFlightDetails = (flightId) => {
-    return axios
-      .get(`http://localhost/FLIGHT-SYSTEM-WEBSITE/backend/flights/get.php?id=${flightId}`)
-      .then((response) => {
-        const data = response.data;
-        if (data.status === "success") {
-          return data.flight; 
-        } else {
-          throw new Error(data.message);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching flight details:", error);
-        throw error; 
-      });
-  };
-  
-  const getBookingsAndFlightDetails = (id, email) => {
-    axios
-      .get(`http://localhost/FLIGHT-SYSTEM-WEBSITE/backend/bookings/get.php?user_id=${id}&email=${email}`)
-      .then((response) => {
-        const data = response.data;
-        if (data.status === "success") {
-          const bookings = data.bookings;
-          const flightPromises = bookings.map((booking) => {
-            const departureFlightId = booking.departure_flight_id;
-            return getFlightDetails(departureFlightId); 
-          });
-          return Promise.all(flightPromises); 
-        } else {
-          throw new Error(data.message); 
-        }
-      })
-      .then((flightDetails) => {
-        showBooking(flightDetails); 
-      })
-      .catch((error) => {
-        console.error("Error fetching bookings:", error);
-      });
-  };
-  
-  const showBooking = (flightList) => {
-    const bookingCard = document.getElementById("booking-section");
-    bookingCard.innerHTML = generateBookingCardHtml(flightList);
-  };
-  
-  const generateBookingCardHtml = (flightList) => {
-    let html = "";
-    flightList.forEach((flight, index) => {
-      html += `
-          <div class="flex align-center booking-card onclick-nav-bg border-radius space space-evenly">
-              <p class="dark-text">From ${flight.departure_location}</p>
-              <div class="line primary-bg flex"></div>
-              <p class="dark-text">To ${flight.destination}</p>
-              <p>${flight.code}</p>
-              <p class="dark-text">${flight.airline_name}</p>
-              <button class="add-review-btn box-shadow primary-bg off-white-text border-radius" id="add-review-btn">Add Review</button>
-          </div>
-      `;
+const userDetailsContainer = document.getElementById('user-details-container');
+const flightDetailsContainer = document.getElementById('flight-details-container');
+const totalPriceDisplay = document.getElementById('total-price-display');
+const validationDisplay = document.getElementById('booking-validation-display');
+const checkOutBtn = document.getElementById('checkout-btn');
+const selectSeatsBtns = document.querySelectorAll('.letter');
+const loginBtn = document.getElementById('login-btn');
+const cancelBtn = document.getElementById('cancel-btn');
+
+let selectedDepartureFlight = null;
+let selectedReturnFlight = null;
+let seatSelected = 1;
+let currentUser = null;
+
+const getCurrentUser = () => {
+    currentUser = JSON.parse(localStorage.getItem('user'));
+    console.log(currentUser);
+
+    if (!currentUser) {
+        window.location.href = '/frontend/pages/signin.html';
+    }
+
+    getUser(currentUser.id).then((user) => {
+        populateUserDetails(user);
     });
-    return html;
-  };
-  
-  getBookingsAndFlightDetails(1, "afif@example.com");
-  
+};
+
+const getSelectedFlights = () => {
+    const selectedDepartureFlightId = JSON.parse(localStorage.getItem('selectedDepartureFlight'));
+    const selectedReturnFlightId = JSON.parse(localStorage.getItem('selectedReturnFlight'));
+    selectedReturnFlightId &&
+        getFlights(selectedReturnFlightId).then((flight) => {
+            selectedReturnFlight = flight;
+            populateFlightDetails(flight, 'Return');
+            calculateTotalPrice();
+        });
+
+    getFlights(selectedDepartureFlightId).then((flight) => {
+        selectedDepartureFlight = flight;
+        populateFlightDetails(flight, 'Departure');
+        calculateTotalPrice();
+    });
+};
+
+
+
+const populateFlightDetails = (flight, direction) => {
+    flightDetailsContainer.innerHTML += populateFlightDetailElement(flight, direction);
+};
+
+const populateFlightDetailElement = (flight, direction) => {
+    return `<div class="flight-details-card flex column">
+                <div class="flight-details-card-title dark-text">
+                    <h2>${direction}</h2>
+                </div>
+                <div class="flight-details-card-content flex column">
+                    <div class="flight-details-card-content-item dark-text">
+                        <p>Flight Number: <span id="departure-flight-number">${flight.code}</span></p>
+                    </div>
+                    <div class="flight-details-card-content-item dark-text">
+                        <p>Departure Time: <span id="departure-departure-time">${flight.departure_date}</span>
+                        </p>
+                    </div>
+                    <div class="flight-details-card-content-item dark-text">
+                        <p>Arrival Time: <span id="departure-arrival-time">${flight.arrival_date}</span></p>
+                    </div>
+                    <div class="flight-details-card-content-item dark-text">
+                        <p>Price: <span id="departure-price">$${flight.price}</span></p>
+                    </div>
+                </div>
+            </div>`;
+};
+
+const populateUserDetails = (user) => {
+    userDetailsContainer.innerHTML += populateUserDetailsElement(user);
+};
+
+const populateUserDetailsElement = (user) => {
+    return `<h1 id="username-dislpay">${user.username}</h1>
+            <p id="address-display">${user.address ? user.address : ''}</p>
+            <p id="passport-display">${user.passport ? user.passport : ''}</p>`;
+};
+
+const calculateTotalPrice = () => {
+    const departurePrice = parseInt(selectedDepartureFlight.price);
+    const returnPrice = selectedReturnFlight ? parseInt(selectedReturnFlight.price) : 0;
+    const totalPrice = (departurePrice + returnPrice) * seatSelected;
+    totalPriceDisplay.innerText = totalPrice;
+};
+
+const handleSeatSelect = (event) => {
+    const seat = event.target;
+
+    if (seat.classList.contains('clicked') && seatSelected === 1) {
+        return;
+    }
+
+    if (seat.classList.contains('clicked')) {
+        seat.classList.remove('clicked');
+        seatSelected--;
+    } else {
+        seat.classList.add('clicked');
+        seatSelected++;
+    }
+
+    calculateTotalPrice();
+};
+
+selectSeatsBtns.forEach((btn) => {
+    btn.addEventListener('click', handleSeatSelect);
+});
+
+checkOutBtn.addEventListener('click', async () => {
+    try {
+        await addBooking(currentUser.id, selectedDepartureFlight.id, seatSelected, selectedReturnFlight.id);
+    } catch (error) {
+        validationDisplay.textContent = error;
+    }
+    // window.location.href = '/frontend/pages/confirmation.html';
+});
+
+loginBtn.addEventListener('click', () => {
+    localStorage.clear();
+    window.location.href = '../pages/signin.html';
+});
+
+cancelBtn.addEventListener('click', () => {
+    localStorage.removeItem('selectedDepartureFlight');
+    localStorage.removeItem('selectedReturnFlight');
+    window.location.href = '../index.html';
+});
+
+getCurrentUser();
+getSelectedFlights();

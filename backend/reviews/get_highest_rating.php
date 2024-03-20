@@ -8,8 +8,7 @@ if(isset($_GET['type']) && !empty($_GET['type'])){
 
         $query = $mysqli->prepare('SELECT airlines.airline_name, AVG(reviews.rating_airline) AS avg_airline_rating
         FROM reviews
-        JOIN flights ON reviews.flight_id = flights.id
-        JOIN airlines ON flights.airline_id = airlines.id
+        JOIN airlines ON reviews.airline_id = airlines.id
         GROUP BY airlines.airline_name
         ORDER BY avg_airline_rating DESC
         LIMIT 1;');

@@ -1,0 +1,135 @@
+body {
+    height: 100vh;
+}
+
+.navbar {
+    position: unset;
+}
+
+.flight-details-container {
+    height: auto;
+    width: 50%;
+    min-width: 500px;
+    margin: 48px auto;
+    padding: 48px 64px;
+}
+
+.username {
+    text-transform: capitalize;
+    margin-bottom: 16px;
+}
+
+.username h1 {
+    font-size: 30px;
+}
+
+.username p {
+    font-size: 20px;
+}
+
+.inner-container {
+    width: 100%;
+}
+
+.flight-details-title h1 {
+    text-align: center;
+    font-size: 44px;
+    padding: 32px 0 48px 0;
+}
+
+.flight-details-card-content h2 {
+    font-size: 24px;
+}
+
+.flight-details-card-content p {
+    font-size: 20px;
+}
+
+.flight-details {
+    gap: 16px;
+    width: 100%;
+}
+
+.flight-details-card {
+    width: 100%;
+}
+
+.seat-selection {
+    padding: 16px;
+}
+
+.seat-selection-title h1 {
+    font-size: 20px;
+}
+
+.seat-selection-title h1 {
+    font-size: 24px;
+    font-weight: 400;
+    padding-bottom: 24px;
+}
+
+.letters {
+    gap: 32px;
+}
+
+.letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 16px;
+    font-size: 20px;
+    background-color: #354F52;
+    color: #f8f9fa;
+    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.letter:hover {
+    background-color: #52796F;
+    transform: translateY(-3%);
+}
+
+.row {
+    gap: 12px;
+}
+
+.total {
+    padding: 32px 0 16px 0;
+}
+
+.total h1 {
+    font-size: 30px;
+}
+
+.validation-display {
+    font-size: 24px;
+    color: #f03e3eed;
+}
+
+.checkout {
+    gap: 16px;
+    margin-top: 16px;
+    width: 100%;
+}
+
+.checkout-btn,
+.cancel-btn {
+    width: 40%;
+    font-family: "Cormorant", serif;
+    font-size: 24px;
+    padding: 16px 24px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.checkout-btn:hover {
+    background-color: #2F3E46;
+}
+
+.cancel-btn:hover {
+    background-color: #2F3E46;
+    color: #DEE2E6;
+}

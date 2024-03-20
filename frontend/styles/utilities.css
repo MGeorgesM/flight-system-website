@@ -87,6 +87,20 @@ button {
 .border-radius-l {
     border-radius: 14px;
 }
+
+.clicked {
+    color: #2F3E46;
+    background-color: #F4F6F3;
+    border: #2F3E46 1px solid;
+}
+
+.clicked:hover {
+    color: #DEE2E6;
+}
+
+.hidden {
+    display: none;
+}
 .border-radius-l2 {
     border-radius: 11px;
 }

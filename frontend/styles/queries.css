@@ -31,13 +31,16 @@
         align-items: center;
         width: 100%;
     }
+
+    .flight-details-container{
+        padding: 48px;
+    }
 }
 
 @media screen and (max-width:944px) {
     .nav-search {
         padding: 12px 12px;
     }
-
 }
 
 @media screen and (max-width:850px) {
@@ -90,7 +93,6 @@
     .footer-links {
         gap: 24px;
     }
-
 }
 
 @media screen and (max-width:600px) {
