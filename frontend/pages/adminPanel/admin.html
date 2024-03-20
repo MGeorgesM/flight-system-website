@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/styles/AdminPanel style/admin.css">
+    <link rel="stylesheet" href="/frontend/styles/utilities.css">
+</head>
+<body>
+    <div class="main-container flex center">
+        <div class="admin-panel flex ">
+            <div class="admin-side-bar flex column ">
+
+                <div class="heading flex center">
+                    <h1>Admin</h1>
+                </div>
+                <div class="side-tools flex center">
+                    <div class="tools flex center">
+                        <ul>
+                            <li><a href="./admin.html"><i class="fa-solid fa-bars"> </i> Dashboard</a></li>
+                            <li><a href="./flights.html"><i class="fa-solid fa-plane"> </i> Flights</a></li>
+                            <li><a href="./coins.html"><i class="fa-solid fa-coins"> </i> Coins</a></li>
+                            <li><a href="./ADbooking.html"><i class="fa-solid fa-address-book"> </i> Booking</a></li>
+                            <li><a href="./chat.html"><i class="fa-regular fa-comments"> </i> Chats</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="admin-dashborad">
+                <div class="cards flex ">
+                    <div class="card-child1 flex column">
+                        <div>
+                            <div>
+                                <h3>Total Flights</h3>
+                                <i class="fa-solid fa-plane-departure"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h1>3256</h1>
+                        </div>
+                        
+                    </div>
+                    <div class="card-child2 flex column">
+                        <div>
+                            <div>
+                                <h3>Total Booking</h3>
+                                <i class="fa-solid fa-address-book"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h1>3256</h1>
+                        </div>
+                    </div>
+                    <div class="card-child3 flex column">
+                        <div>
+                            <div>
+                                <h3>Total Users </h3>
+                                <i class="fa-brands fa-bitcoin"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h1>3256</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="charts flex center ">
+                    <div class="chart-child">
+                        
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/frontend/scripts/AdminPanel/chart.js"></script>
+    
+</body>
+</html>

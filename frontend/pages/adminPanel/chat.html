@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/frontend/styles/AdminPanel style/admin.css">
+    <link rel="stylesheet" href="/frontend/styles/utilities.css">
+    <link rel="stylesheet" href="/frontend/styles/AdminPanel style/chat.css">
+</head>
+<body>
+    <div class="main-container flex center">
+        <div class="admin-panel flex ">
+            <div class="admin-side-bar flex column ">
+
+                <div class="heading flex center">
+                    <h1>Admin</h1>
+                </div>
+
+                <div class="side-tools flex center">
+                    <div class="tools flex center">
+                        <ul>
+                            <li><a href="./admin.html"><i class="fa-solid fa-bars"> </i> Dashboard</a></li>
+                            <li><a href="./flights.html"><i class="fa-solid fa-plane"> </i> Flights</a></li>
+                            <li><a href="./coins.html"><i class="fa-solid fa-coins"> </i> Coins</a></li>
+                            <li><a href="./ADbooking.html"><i class="fa-solid fa-address-book"> </i> Booking</a></li>
+                            <li><a href=""><i class="fa-regular fa-comments"> </i> Chats</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+           <div class="user-dashboard flex column ">
+            <div class="heading flex center">
+                <h1>Chats</h1>
+            </div>
+            <div class="admin-chat ">
+                <div class="tabs flex center">
+                    <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
+                    <label for="tab1" class="tabs__label">Reviews</label>
+                    <div class="tabs__content">
+                        <table class="reviews-table">
+                            <tr>
+                                <th>ID</th>
+                                <th>User_id</th>
+                                <th>flight_id</th>
+                                <th>airline_id</th>
+                                <th>rating_flight</th>
+                                <th>rating_airline</th>
+                                <th>review_text</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>12345</td>
+                                <td>$50</td>
+                                <td>Completed</td>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20</td>
+                                
+                            </tr>
+                        </table>
+                    </div>
+                    <input type="radio" class="tabs__radio" name="tabs-example" id="tab3" checked>
+                    <label for="tab3" class="tabs__label">Update Reviews</label>
+                    <div class="tabs__content">
+                        <table class="reviews-table">
+                            <tr>
+                                <th>ID</th>
+                                <th>User_id</th>
+                                <th>flight_id</th>
+                                <th>airline_id</th>
+                                <th>rating_flight</th>
+                                <th>rating_airline</th>
+                                <th>review_text</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>12345</td>
+                                <td>$50</td>
+                                <td>Completed</td>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20</td>
+                                <td>2024-03-20</td>
+                                
+                            </tr>
+                        </table>
+                    </div>
+                    <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
+                    <label for="tab2" class="tabs__label">Chat</label>
+                    <div class="tabs__content flex center">
+                        <div class="chats flex center">
+                            <div class="chat-container">
+                            <div class="chat-box" id="chat-box"></div>
+                            <input type="text" placeholder="Type your message..." id="user-input">
+                            <button >Send</button>
+                      </div>
+                        </div>
+                       
+                    </div>
+                  </div>
+                
+                
+            </div>  
+           </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
