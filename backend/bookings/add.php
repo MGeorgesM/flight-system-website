@@ -44,7 +44,7 @@ $user_fields = [
 foreach($user_fields as $field => $value) {
     if(empty($value) || is_null($value)) {
         $response['status'] = 'error';
-        $response['message'] = "User data incomplete";
+        $response['message'] = "User data incomplete. Please complete your profile.";
         echo json_encode($response);
         exit;
     }

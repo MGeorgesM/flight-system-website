@@ -25,6 +25,10 @@ const showPopup = (message) => {
     popupMessage.innerText = message;
 };
 
+continueBtn.addEventListener('click', () => {
+    popup.classList.add('hidden');
+});
+
 profileBtn.addEventListener('click', () => {
     if (profileBtn.innerHTML === 'Profile') {
         window.location.href = '../frontend/pages/user.html';

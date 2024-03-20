@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/frontend/styles/index.css">
     <link rel="stylesheet" href="/frontend/styles/booking.css">
+    <link rel="stylesheet" href="/frontend/styles/payment.css">
     <link rel="stylesheet" href="/frontend/styles/colors.css">
     <link rel="stylesheet" href="/frontend/styles/queries.css">
     <link rel="stylesheet" href="/frontend/styles/utilities.css">
-    <title>Confirm your Journey</title>
+    <title>Your Payment</title>
 </head>
 
 <body class="green-bg">
@@ -28,50 +29,16 @@
             </div>
         </nav>
     </section>
-
-
     <div class="flight-details-container off-white-bg flex column center border-radius box-shadow">
         <div class="flight-details-title dark-text">
-            <h1>You Journey in Details</h1>
+            <h1>Payement</h1>
         </div>
-        <div class="inner-container flex space-between">
-            <div class="flight-details-left">
-                <div class="username" id="user-details-container">
-
-                </div>
-
-                <div class="flight-details flex column" id="flight-details-container"></div>
-
-            </div>
-
-            <div class="seat-selection flex center column off-white-bg">
-                <div class="seat-selection-title dark-text">
-                    <h1>Seating</h1>
-                </div>
-                <div class="letters flex center">
-                    <div class="row flex column center">
-                        <div class="letter clicked">A1</div>
-                        <div class="letter">B1</div>
-                        <div class="letter">C1</div>
-                        <div class="letter">D1</div>
-                        <div class="letter">E1</div>
-                        <div class="letter">F1</div>
-                        <div class="letter">G1</div>
-                    </div>
-                    <div class="row flex column center">
-                        <div class="letter">A2</div>
-                        <div class="letter">B2</div>
-                        <div class="letter">C2</div>
-                        <div class="letter">D2</div>
-                        <div class="letter">E2</div>
-                        <div class="letter">F2</div>
-                        <div class="letter">G2</div>
-                    </div>
-                </div>
-            </div>
+        <div class="order-details">
+            
+            
         </div>
-        <div class="total hidden">
-            <h1>Total: $<span id="total-price-display"></span></h1>
+        <div class="total">
+            <h1>Due now: $<span id="total-price-display"></span></h1>
         </div>
         <div class="validation-display">
             <p id="booking-validation-display"></p>
@@ -97,22 +64,10 @@
         </div>
     </footer>
 
-    <div class="popup flex column center hidden" id="popup">
-        <div class="popup-inner green-bg flex column space-evenly box-shadow border-radius">
-            <div class="popup-text off-white-text">
-                <h1>Notice</h1>
-                <div>
-                    <p class="notice-text" id="popup-message"></p>
-                </div>
-            </div>
-            <a class="popup-btn off-white-bg border-radius border" id="continue-btn">Continue</a>
-        </div>
-    </div>
-
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/frontend/scripts/links.js"></script>
     <script src="/frontend/scripts/shared.js"></script>
-    <script src="/frontend/scripts/booking.js"></script>
+    <script src="/frontend/scripts/payment.js"></script>
 </body>
 
 </html>
