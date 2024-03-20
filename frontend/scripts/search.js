@@ -10,8 +10,6 @@ let returnFlights = [];
 let departureClicked = false;
 let returnClicked = false;
 
-let currentUser = null;
-
 const resetSearchSection = (direction) => {
     const color = direction === 'Departure' ? 'dark-text' : 'off-white-text';
     return `<div class="select-section-title ${color}">
@@ -43,9 +41,7 @@ const formatDate = (date) => {
         minute: 'numeric',
         hour12: false,
     });
-
 }
-
 
 const populateSearchCard = async (flight) => {
     const airlineName = await getAirlines(flight.airline_id);
@@ -168,10 +164,10 @@ const handleButtonClick = (event) => {
     });
 };
 
-loginBtn.addEventListener('click', () => {
-    localStorage.clear();
-    window.location.href = '../pages/signin.html';
-});
+// loginBtn.addEventListener('click', () => {
+//     localStorage.clear();
+//     window.location.href = '../pages/signin.html';
+// });
 
 proceedBtn.addEventListener('click', () => {
     window.location.href = '/frontend/pages/booking.html';
@@ -181,32 +177,31 @@ continueBtn.addEventListener('click', () => {
     popup.classList.add('hidden');
 });
 
-searchBtn.addEventListener('click', async (event) => {
-    event.preventDefault();
-    if (!currentUser) {
-        window.location.href = '/frontend/pages/signin.html';
-        localStorage.clear();
-    }
-    const departureLocationInputValue = departureLocationInput.value;
-    const destinationInputValue = destinationInput.value;
-    const departureDateInputValue = departureDateInput.value;
-    const returnDateInputValue = returnDateInput.value;
+// searchBtn.addEventListener('click', async (event) => {
+//     event.preventDefault();
+//     if (!currentUser) {
+//         window.location.href = '/frontend/pages/signin.html';
+//         localStorage.clear();
+//     }
+//     const departureLocationInputValue = departureLocationInput.value;
+//     const destinationInputValue = destinationInput.value;
+//     const departureDateInputValue = departureDateInput.value;
+//     const returnDateInputValue = returnDateInput.value;
 
-    let flightsFound = await searchForFlights(
-        destinationInputValue,
-        departureLocationInputValue,
-        departureDateInputValue,
-        returnDateInputValue
-    );
+//     let flightsFound = await searchForFlights(
+//         destinationInputValue,
+//         departureLocationInputValue,
+//         departureDateInputValue,
+//         returnDateInputValue
+//     );
 
-    if (flightsFound) {
-        window.location.href = '/frontend/pages/search.html';
-    } else {    
-        showPopup('No flights found. Please adjust your search criteria.');
-    }
+//     if (flightsFound) {
+//         window.location.href = '/frontend/pages/search.html';
+//     } else {    
+//         showPopup('No flights found. Please adjust your search criteria.');
+//     }
 
-    flightsFound && (window.location.href = '/frontend/pages/search.html');
-});
+//     flightsFound && (window.location.href = '/frontend/pages/search.html');
+// });
 
-checkCurrentUser()
 getSearchResult();

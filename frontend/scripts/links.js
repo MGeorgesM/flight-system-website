@@ -18,14 +18,14 @@ const constructGetUrl = (url, params) => {
 const checkCurrentUserisAdmin = async (user_id, email) => {
     try {
         const params = {};
-        let url = '/users/get.php';
+        let url = '/users/get_is_admin.php';
 
         user_id && (params.user_id = user_id);
         email && (params.email = email);
         url = constructGetUrl(url, params);
 
-        const response = await axios.get('/users/get_is_admin.php');
-        if (response.data.status === 'success') {
+        const response = await axios.get(url);
+        if (response.data.message === 'success') {
             return response.data.users;
         }
     } catch (error) {
@@ -202,13 +202,3 @@ const addPayment = async (user_id, booking_id) => {
     }
 };
 
-// const departureDate = '2024-03-20';
-// const returnDate = '2024-03-21';
-// const departure_location = 'New York';
-// const destination = 'Los Angeles';
-
-// const user_id = 2;
-// const user_email = 'user2@example.com';
-// const departure_flight_id = 1;
-// const passengers_number = 1;
-// const return_flight_id = 2;

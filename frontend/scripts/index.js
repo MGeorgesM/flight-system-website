@@ -1,9 +1,12 @@
+const departureLocationInput = document.getElementById('departure-location');
+const destinationInput = document.getElementById('destination');
+const departureDateInput = document.getElementById('departure-date');
+const returnDateInput = document.getElementById('return-date');
+
 const topRatedFlightDisplay = document.getElementById('top-flight-display');
 const topRatedAirlineDisplay = document.getElementById('top-airline-display');
 
 const flightStatusesContainer = document.getElementById('statuses-container');
-
-let currentUser = null;
 
 const getFlightsStatuses = async () => {
     const flights = await getFlights();
@@ -30,41 +33,6 @@ const populateFlightStatuses = (flight) => {
         </div>`;
 };
 
-loginBtn.addEventListener('click', () => {
-    if (currentUser) {
-        localStorage.clear();
-        loginBtn.innerHTML = 'Login';
-    }
-    window.location.href = '/frontend/pages/signin.html';
-});
-
-searchBtn.addEventListener('click', async (event) => {
-    event.preventDefault();
-    if (!currentUser) {
-        window.location.href = '/frontend/pages/signin.html';
-        localStorage.clear();
-    }
-    const departureLocationInputValue = departureLocationInput.value;
-    const destinationInputValue = destinationInput.value;
-    const departureDateInputValue = departureDateInput.value;
-    const returnDateInputValue = returnDateInput.value;
-
-    let flightsFound = await searchForFlights(
-        destinationInputValue,
-        departureLocationInputValue,
-        departureDateInputValue,
-        returnDateInputValue
-    );
-
-    if (flightsFound) {
-        window.location.href = '/frontend/pages/search.html';
-    } else {    
-        showPopup('No flights found. Please adjust your search criteria.');
-    }
-
-    flightsFound && (window.location.href = '/frontend/pages/search.html');
-});
-
 continueBtn.addEventListener('click', () => {
     popup.classList.add('hidden');
 });
@@ -85,4 +53,39 @@ getFlights().then((flights) => {
 });
 
 clearFilters();
-checkCurrentUser();
+
+document.getElementById('flight-search-form').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const departureLocation = document.getElementById('departure-location').value.toLowerCase();
+    const destination = document.getElementById('destination').value.toLowerCase();
+    const departureDate = new Date(document.getElementById('departure-date').value);
+    const returnDate = document.getElementById('return-date').value
+        ? new Date(document.getElementById('return-date').value)
+        : null;
+
+    const flights = JSON.parse(localStorage.getItem('flights'));
+
+    const filteredDepartureFlights = flights.filter((flight) => {
+        const flightDepartureDate = new Date(flight.departure_date);
+        const matchDeparture = flight.departure_location.toLowerCase() === departureLocation;
+        const matchDestination = flight.destination.toLowerCase() === destination;
+        const matchDepartureDate = flightDepartureDate >= departureDate;
+
+        const matchReturnDate = returnDate ? new Date(flight.arrival_date) <= returnDate : true;
+        console.log(matchReturnDate);
+        return matchDeparture && matchDestination && matchDepartureDate && matchReturnDate;
+    });
+
+    if (returnDate) {
+        const filteredReturnFlights = flights.filter((flight) => {
+            const flightDepartureDate = new Date(flight.departure_date);
+
+            const matchDeparture = flight.departure_location.toLowerCase() === destination;
+            const matchDestination = flight.destination.toLowerCase() === departureLocation;
+            const matchDepartureDate = flightDepartureDate >= returnDate;
+
+            return matchDeparture && matchDestination && matchDepartureDate;
+        });
+    }
+});

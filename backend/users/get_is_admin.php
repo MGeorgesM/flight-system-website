@@ -1,9 +1,9 @@
 <?php
 include('../connection.php');
 
-if(!empty($_GET['id']) && !empty($_GET['email'])) {
-    $user_id = $_GET['login'];
-    $email = $_GET['password'];
+if(!empty($_GET['user_id']) && !empty($_GET['email'])) {
+    $user_id = $_GET['user_id'];
+    $email = $_GET['email'];
 } else {
     $response['status'] = 'error';
     $response['message'] = "All fields are required";
@@ -23,3 +23,5 @@ if ($query->num_rows() >0) {
     $response['status'] = "success";
     $response['users'] = false;
 }
+
+echo json_encode($response);
