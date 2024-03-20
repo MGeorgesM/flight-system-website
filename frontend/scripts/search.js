@@ -1,14 +1,23 @@
 const sectionDeparture = document.getElementById('select-departure');
 const sectionReturn = document.getElementById('select-return');
 
-const proceedSection = document.getElementById('proceed');
 const proceedBtn = document.getElementById('proceed-btn');
 
 let selectBtns = [];
 let departureFlights = [];
 let returnFlights = [];
-let departureClicked = false;
-let returnClicked = false;
+let selectedDepartureFlightId = null;
+let selectedReturnFlightId = null;
+
+const deleteClickedFlightsFromLocalStorage = () => {
+    localStorage.removeItem('selectedDepartureFlightId');
+    localStorage.removeItem('selectedReturnFlightId');
+}
+
+const loadClickedFlightsFromLocalStorage = () => {
+    selectedDepartureFlightId = JSON.parse(localStorage.getItem('selectedDepartureFlightId'));
+    selectedReturnFlightId = JSON.parse(localStorage.getItem('selectedReturnFlightId'));
+}
 
 const resetSearchSection = (direction) => {
     const color = direction === 'Departure' ? 'dark-text' : 'off-white-text';
@@ -41,7 +50,7 @@ const formatDate = (date) => {
         minute: 'numeric',
         hour12: false,
     });
-}
+};
 
 const populateSearchCard = async (flight) => {
     const airlineName = await getAirlines(flight.airline_id);
@@ -110,58 +119,56 @@ const getSearchResult = async () => {
         returnClicked = true;
         sectionReturn.classList.add('hidden');
     }
-
 };
 
-const addSelectBtnEventListener = (section) => {
-    const selectBtns = section.querySelectorAll('.select-btn');
+// const addSelectBtnEventListener = () => {
+//     const selectBtns = document.querySelectorAll('.select-btn');
+
+//     selectBtns.forEach((btn) => {
+//         btn.addEventListener('click', (event) => {
+//             const flightId = parseInt(btn.getAttribute('flight-id'));
+//             const sectionId = event.target.closest('section').id;
+
+//             if (sectionId === 'select-departure') {
+//                 localStorage.setItem('selectedDepartureFlightId', flightId);
+//             } else {
+//                 localStorage.setItem('selectedReturnFlightId', flightId);
+//             }
+//         });
+//     });
+// };
+const addSelectBtnEventListener = () => {
+    const selectBtns = document.querySelectorAll('.select-btn');
 
     selectBtns.forEach((btn) => {
-        btn.removeEventListener('click', handleButtonClick);
-    });
+        btn.addEventListener('click', (event) => {
+            const flightId = parseInt(btn.getAttribute('flight-id'));
+            const sectionId = event.target.closest('section').id;
 
-    selectBtns.forEach((btn) => {
-        btn.addEventListener('click', handleButtonClick);
-    });
-};
+            // Remove 'clicked' class from all buttons in the same section
+            const section = sectionId === 'select-departure' ? sectionDeparture : sectionReturn;
+            section.querySelectorAll('.select-btn').forEach((btn) => {
+                btn.classList.remove('clicked');
+            });
 
-const handleButtonClick = (event) => {
-    const flightId = parseInt(event.target.getAttribute('flight-id'));
-    const sectionId = event.target.closest('section').id;
-    const selectBtns = document.querySelectorAll(`#${sectionId} .select-btn`);
+            // Toggle 'clicked' class for the clicked button
+            btn.classList.toggle('clicked');
 
-    if (event.target.classList.contains('clicked')) {
-        event.target.innerHTML = 'Select';
-        event.target.classList.remove('clicked');
-    } else {
-        selectBtns.forEach((btn) => {
-            btn.innerHTML = 'Select';
-            btn.classList.remove('clicked');
+            if (sectionId === 'select-departure') {
+                localStorage.setItem('selectedDepartureFlightId', flightId);
+            } else {
+                localStorage.setItem('selectedReturnFlightId', flightId);
+            }
         });
-
-        event.target.innerHTML = 'Selected';
-        event.target.classList.add('clicked');
-    }
-
-    departureFlights.forEach((flight) => {
-        if (flight.id === flightId) {
-            localStorage.setItem('selectedDepartureFlight', JSON.stringify(flightId));
-            departureClicked = !departureClicked;
-            console.log('clicked departure', departureClicked)
-        } else {
-            localStorage.setItem('selectedReturnFlight', JSON.stringify(flightId));
-            returnClicked = !returnClicked;
-            console.log('clicked return', returnClicked)
-        }
     });
 };
-
-// loginBtn.addEventListener('click', () => {
-//     localStorage.clear();
-//     window.location.href = '../pages/signin.html';
-// });
 
 proceedBtn.addEventListener('click', () => {
+    loadClickedFlightsFromLocalStorage();
+    if (!selectedDepartureFlightId || !selectedReturnFlightId) {
+        showPopup('Please select both departure and return flights.');
+        return;
+    }
     window.location.href = '/frontend/pages/booking.html';
 });
 
@@ -169,7 +176,5 @@ continueBtn.addEventListener('click', () => {
     popup.classList.add('hidden');
 });
 
-
+deleteClickedFlightsFromLocalStorage();
 getSearchResult();
-console.log('clicked return', returnClicked)
-console.log('clicked departure', departureClicked)
