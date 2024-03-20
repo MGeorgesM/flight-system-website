@@ -1,0 +1,60 @@
+.flight-details-container {
+    font-size: larger;
+    height: auto;
+    width: 100%;
+    padding: 64px 0;
+    background-color: #F4F6F3;
+}
+
+.flight-details-title {
+    font-size: 24px;
+}
+
+.flight-details {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 64px;
+}
+
+.flight-details-card {
+    gap: 12px;
+}
+
+.flight-details-card-content {
+    gap: 4px;
+}
+
+.seat-selection-title {
+    font-size: 20px;
+    padding-bottom: 32px;
+    background-color: #F4F6F3;
+}
+
+.letters {
+    gap: 64px;
+}
+
+.letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    padding: 16px;
+    font-size: 24px;
+    background-color: #354F52;
+    color: aliceblue;
+    box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.letter:hover {
+    background-color: #52796F;
+    transform: translateY(-3%);
+}
+
+.row {
+    gap: 24px;
+    margin: 0 32px;
+}

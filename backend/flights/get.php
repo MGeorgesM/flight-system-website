@@ -20,7 +20,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         $query->bind_result($id, $airline_id, $departure_location, $destination, $departure_date,$arrival_date, $price, $status,$code,$airline_name);
         $query->fetch();
         $response['status'] = 'success';
-        $response['flight'] = [
+        $response['flights'] = [
             'id' => $id,
             'airline_id' => $airline_id,
             'departure_location' => $departure_location,

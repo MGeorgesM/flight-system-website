@@ -135,9 +135,9 @@ const handleButtonClick = (event) => {
     });
 };
 
-getSearchResult();
-
 loginBtn.addEventListener('click', () => {
     localStorage.clear();
     window.location.href = '../pages/signin.html';
 });
+
+getSearchResult();
