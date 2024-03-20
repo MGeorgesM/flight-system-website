@@ -17,11 +17,20 @@
 .white-text {
     color: #FFFFFF;
 }
+.place-holder-text{
+    color: #ADB5BD;
+}
+.onclick-nav-bg{
+    background-color: #ADB5BD;
 
+}
 .off-white-text {
     color: #f8f9fa;
 }
+.light-bg{
+    background-color: #495057;
 
+}
 .primary-bg {
     background-color: #2F3E46;
 }

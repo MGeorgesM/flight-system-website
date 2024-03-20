@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/frontend/styles/colors.css" />
+    <link rel="stylesheet" href="/frontend/styles/utilities.css" />
+    <link rel="stylesheet" href="/frontend/styles/user.css" />
+    <title>Profile - Booking History</title>
+  </head>
+  <body>
+    <section class="main-section flex center">
+      <div class="container flex column">
+        <div class="profile-image flex center">
+          <img src="/frontend/assets/profile.jpeg" alt="Profile Image" />
+        </div>
+        <div class="nav flex center">
+          <button
+            class="profile-btn box-shadow primary-bg off-white-text border-radius"
+            id="profile-btn"
+          >
+            Profile
+          </button>
+          <button
+            class="booking-btn box-shadow onclick-nav-bg off-white-text border-radius"
+            id="booking-btn"
+          >
+            Booking
+          </button>
+        </div>
+        <div id="profile-section">
+          <div class="first-input-container flex space-between">
+            <input
+              type="text"
+              placeholder="First Name"
+              id="first-name"
+              class="input-style box-shadow light-bg place-holder-text border-radius"
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              id="last-name"
+              class="input-style box-shadow light-bg place-holder-text border-radius"
+            />
+          </div>
+          <div class="input-container flex space-between">
+            <input
+              type="text"
+              placeholder="User Name"
+              id="user-name"
+              class="input-style box-shadow light-bg place-holder-text border-radius"
+            />
+            <input
+              type="text"
+              placeholder="Email"
+              id="email"
+              class="input-style box-shadow light-bg place-holder-text border-radius"
+            />
+          </div>
+          <div class="input-container flex space-between">
+            <input
+              type="password"
+              placeholder="Password"
+              id="password"
+              class="input-style box-shadow light-bg place-holder-text border-radius"
+            />
+            <input
+              type="text"
+              placeholder="Passport Number"
+              id="passport-number"
+              class="input-style box-shadow light-bg place-holder-text border-radius"
+            />
+          </div>
+          <div class="input-container flex space-between">
+            <input
+              type="text"
+              placeholder="Address"
+              id="address"
+              class="input-style-last box-shadow light-bg place-holder-text border-radius"
+            />
+          </div>
+          <div class="flex center">
+            <button
+              class="update-btn flex center box-shadow primary-bg off-white-text border-radius"
+              id="update-btn"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+        <div id="booking-section" class="booking">
+          <div
+            class="flex align-center booking-card onclick-nav-bg border-radius space space-evenly"
+          >
+              <p class="dark-text">From</p>
+              <div class="line primary-bg flex"></div>
+              <p class="dark-text">To</p>
+
+            <p>Flight code</p>
+            <p class="dark-text">Airline Name</p>
+            <button
+              class="add-review-btn box-shadow primary-bg off-white-text border-radius"
+              id="add-review-btn"
+            >
+              Add Review
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="/frontend/scripts/profile.js"></script>
+    <script src="/frontend/scripts/user.js"></script>
+  </body>
+</html>
