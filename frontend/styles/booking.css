@@ -1,19 +1,33 @@
+body {
+    height: 100vh;
+}
 .flight-details-container {
-    font-size: larger;
     height: auto;
-    width: 100%;
-    padding: 64px 0;
+    width: 80%;
+    margin: auto;
+    padding: 64px 128px;
     background-color: #F4F6F3;
 }
+.inner-container {
+    width: 100%;
+}
 
-.flight-details-title {
+.flight-details-title h1 {
+    font-size: 36px;
+    padding: 32px 0 48px 0;
+}
+
+.flight-details-card-content h2 {
     font-size: 24px;
 }
 
+.flight-details-card-content p {
+    font-size: 20px;
+}
+
 .flight-details {
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 64px;
+    gap: 26px;
+    width: 50%;
 }
 
 .flight-details-card {
@@ -24,26 +38,27 @@
     gap: 4px;
 }
 
-.seat-selection-title {
+.seat-selection-title h1 {
     font-size: 20px;
-    padding-bottom: 32px;
-    background-color: #F4F6F3;
 }
 
-.letters {
-    gap: 64px;
+.seat-selection-title h1 {
+    font-size: 36px;
+    font-weight: 400;
+    padding-bottom: 24px;
+
 }
 
 .letter {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     padding: 16px;
-    font-size: 24px;
+    font-size: 20px;
     background-color: #354F52;
-    color: aliceblue;
+    color: #f8f9fa;
     box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.05);
     border-radius: 50%;
     cursor: pointer;
@@ -57,4 +72,24 @@
 .row {
     gap: 24px;
     margin: 0 32px;
+}
+
+.checkout {
+    margin-top: 16px;
+    width: 100%;
+}
+
+.checkout-btn {
+    width: 40%;
+    font-family: "Cormorant", serif;
+    background-color: none;
+    color: #DEE2E6;
+    font-size: 24px;
+    padding: 24px;
+    cursor: pointer;
+    background-color: #202B32;
+}
+
+.checkout-btn:hover {
+    background-color: #2F3E46;
 }

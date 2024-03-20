@@ -12,49 +12,95 @@
     <title>Confirm your Journey</title>
 </head>
 
-<body>
-    <div>
-        <div class="flight-details-container flex column center">
-            <div class="flight-details-title dark-text">
-                <h1>Flight Details</h1>
+<body class="flex center column">
+    <div class="flight-details-container flex column center border-radius">
+        <div class="flight-details-title dark-text">
+            <h1>You Journey in Details</h1>
+        </div>
+        <div class="inner-container flex space-between">
+            <div>
+
+                <div class="flight-details" id="flight-details-container">
+                    <div class="flight-details-card flex column">
+                        <div class="flight-details-card-title dark-text">
+                            <h2>${direction}</h2>
+                        </div>
+                        <div class="flight-details-card-content flex column">
+                            <div class="flight-details-card-content-item dark-text">
+                                <p>Flight Number: <span id="departure-flight-number">${flight.code}</span></p>
+                            </div>
+                            <div class="flight-details-card-content-item dark-text">
+                                <p>Departure Time: <span id="departure-departure-time">${flight.departure_date}</span>
+                                </p>
+                            </div>
+                            <div class="flight-details-card-content-item dark-text">
+                                <p>Arrival Time: <span id="departure-arrival-time">${flight.arrival_date}</span></p>
+                            </div>
+                            <div class="flight-details-card-content-item dark-text">
+                                <p>Price: <span id="departure-price">${flight.price}</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flight-details-card flex column">
+                        <div class="flight-details-card-title dark-text">
+                            <h2>${direction}</h2>
+                        </div>
+                        <div class="flight-details-card-content flex column">
+                            <div class="flight-details-card-content-item dark-text">
+                                <p>Flight Number: <span id="departure-flight-number">${flight.code}</span></p>
+                            </div>
+                            <div class="flight-details-card-content-item dark-text">
+                                <p>Departure Time: <span id="departure-departure-time">${flight.departure_date}</span>
+                                </p>
+                            </div>
+                            <div class="flight-details-card-content-item dark-text">
+                                <p>Arrival Time: <span id="departure-arrival-time">${flight.arrival_date}</span></p>
+                            </div>
+                            <div class="flight-details-card-content-item dark-text">
+                                <p>Price: <span id="departure-price">${flight.price}</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-            <div class="flight-details flex space-around" id="flight-details-container"></div>
+            <div class="seat-selection flex center column off-white-bg">
+                <div class="seat-selection-title dark-text">
+                    <h1>Seats</h1>
+                </div>
+                <div class="letters flex center">
+                    <div class="row flex column center">
+                        <div class="letter clicked">A</div>
+                        <div class="letter">B</div>
+                        <div class="letter">C</div>
+                        <div class="letter">D</div>
+                        <div class="letter">E</div>
+                        <div class="letter">F</div>
+                        <div class="letter">G</div>
+                    </div>
+                    <div class="row flex column center">
+                        <div class="letter">H</div>
+                        <div class="letter">I</div>
+                        <div class="letter">J</div>
+                        <div class="letter">K</div>
+                        <div class="letter">L</div>
+                        <div class="letter">M</div>
+                        <div class="letter">N</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="total">
+            <h1>Total: <span id="total-price">${flight.price}</span></h1>
+        </div>
+        <div class="checkout flex center">
+            <button class="checkout-btn primary-bg white-text box-shadow border-radius"
+                id="checkout-btn">Checkout</button>
         </div>
     </div>
-    <div class="seat-selection flex center column off-white-bg">
-        <div class="seat-selection-title dark-text">
-            <h1>Seat Selection</h1>
-        </div>
-        <div class="letters flex wrap center">
-            <div class="row flex center">
-                <div class="letter clicked">A</div>
-                <div class="letter">B</div>
-                <div class="letter">C</div>
-                <div class="letter">D</div>
-                <div class="letter">E</div>
-                <div class="letter">F</div>
-                <div class="letter">G</div>
-            </div>
-            <div class="row flex center">
-                <div class="letter">H</div>
-                <div class="letter">I</div>
-                <div class="letter">J</div>
-                <div class="letter">K</div>
-                <div class="letter">L</div>
-                <div class="letter">M</div>
-                <div class="letter">N</div>
-            </div>
-        </div>
-    </div>
-    <div class="total">
-        <div class="total-title dark-text">
-            <h1>Total</h1>
-        </div>
-        <div class="total-amount flex center">
-            <p id="total-amount"></p>
-        </div>
-    </div>
-    
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/frontend/scripts/links.js"></script>
     <script src="/frontend/scripts/booking.js"></script>
