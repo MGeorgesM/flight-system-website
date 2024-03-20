@@ -49,9 +49,11 @@ const getFlightDetails = (flightId) => {
     flightList.forEach((flight, index) => {
       html += `
           <div class="flex align-center booking-card onclick-nav-bg border-radius space space-evenly">
+            <div class="flex space-between">
               <p class="dark-text">From ${flight.departure_location}</p>
               <div class="line primary-bg flex"></div>
               <p class="dark-text">To ${flight.destination}</p>
+              </div>
               <p>${flight.code}</p>
               <p class="dark-text">${flight.airline_name}</p>
               <button class="add-review-btn box-shadow primary-bg off-white-text border-radius" id="add-review-btn">Add Review</button>
