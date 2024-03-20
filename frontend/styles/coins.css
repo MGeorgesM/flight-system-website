@@ -53,8 +53,28 @@
 .tabs__radio:checked + .tabs__label + .tabs__content {
     display: initial;
 } 
-.child button{
-    padding: 7px 15px;
+ 
+.coin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.coin-table th,
+.coin-table td {
+    padding: 8px;
+    text-align: left;
+}
+
+.coin-table th {
+    background-color: #202B32;
+    color: white;
+}
+
+.coin-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+.coin-table button{
+    padding: 5px 7px;
     background-color: #202B32;
     color: white;
     border-radius: 10px;
