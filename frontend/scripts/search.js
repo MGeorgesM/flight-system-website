@@ -144,7 +144,6 @@ const handleButtonClick = (event) => {
     }
 
     departureFlights.forEach((flight) => {
-        console.log(flight.id, flightId)
         if (flight.id === flightId) {
             localStorage.setItem('selectedDepartureFlight', JSON.stringify(flightId));
             departureClicked = !departureClicked;
@@ -177,31 +176,5 @@ continueBtn.addEventListener('click', () => {
     popup.classList.add('hidden');
 });
 
-// searchBtn.addEventListener('click', async (event) => {
-//     event.preventDefault();
-//     if (!currentUser) {
-//         window.location.href = '/frontend/pages/signin.html';
-//         localStorage.clear();
-//     }
-//     const departureLocationInputValue = departureLocationInput.value;
-//     const destinationInputValue = destinationInput.value;
-//     const departureDateInputValue = departureDateInput.value;
-//     const returnDateInputValue = returnDateInput.value;
-
-//     let flightsFound = await searchForFlights(
-//         destinationInputValue,
-//         departureLocationInputValue,
-//         departureDateInputValue,
-//         returnDateInputValue
-//     );
-
-//     if (flightsFound) {
-//         window.location.href = '/frontend/pages/search.html';
-//     } else {    
-//         showPopup('No flights found. Please adjust your search criteria.');
-//     }
-
-//     flightsFound && (window.location.href = '/frontend/pages/search.html');
-// });
 
 getSearchResult();

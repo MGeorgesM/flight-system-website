@@ -30,7 +30,7 @@
             </nav>
         </section>
         <section class="search off-white-bg-trsp border-radius-l flex center">
-            <form class="search-inputs-container flex space-between dark-text">
+            <form id="flight-search-form" class="search-inputs-container flex space-between dark-text">
                 <div>
                     <input id="departure-location" type="text" name="from" placeholder="Location"
                         class="box-shadow border-radius border" required>
@@ -47,8 +47,8 @@
                     <input id="return-date" type="date" name="returndate" class="box-shadow border-radius border">
                 </div>
                 <div>
-                    <a id="search-btn" class="nav-search box-shadow primary-bg off-white-text border-radius"
-                        href="">Search</a>
+                    <button id="search-btn" class="nav-search box-shadow primary-bg off-white-text border-radius"
+                        type="submit">Search</button>
                 </div>
             </form>
         </section>

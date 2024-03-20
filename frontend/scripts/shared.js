@@ -1,7 +1,10 @@
 const loginBtn = document.getElementById('login-btn');
 const profileBtn = document.getElementById('profile-link');
 
-const searchBtn = document.getElementById('search-btn');
+const departureLocationInput = document.getElementById('departure-location');
+const destinationInput = document.getElementById('destination');
+const departureDateInput = document.getElementById('departure-date');
+const returnDateInput = document.getElementById('return-date');
 
 const popup = document.getElementById('popup');
 const popupMessage = document.getElementById('popup-message');
@@ -10,62 +13,53 @@ const continueBtn = document.getElementById('continue-btn');
 
 let currentUser = null;
 
+document.getElementById('flight-search-form').addEventListener('submit', function (event) {
+    event.preventDefault();
 
+    const departureLocation = document.getElementById('departure-location').value.toLowerCase();
+    const destination = document.getElementById('destination').value.toLowerCase();
+    const departureDate = new Date(document.getElementById('departure-date').value);
+    const returnDate = document.getElementById('return-date').value
+        ? new Date(document.getElementById('return-date').value)
+        : null;
 
+    const flights = JSON.parse(localStorage.getItem('flights'));
 
-// const searchForFlights = (departure_location, destination, departure_date, return_date) => {
-//     const flights = JSON.parse(localStorage.getItem('flights'));
-    
-//     if (!flights) return false;
+    const filteredDepartureFlights = flights.filter((flight) => {
+        const flightDepartureDate = new Date(flight.departure_date);
+        const matchDeparture = flight.departure_location.toLowerCase() === departureLocation;
+        const matchDestination = flight.destination.toLowerCase() === destination;
+        const matchDepartureDate = flightDepartureDate >= departureDate;
 
-//     const departureDateInput = new Date(departure_date);
-//     const returnDateInput = return_date ? new Date(return_date) : null;
-//     let returnFlights = [];
+        const matchReturnDate = returnDate ? new Date(flight.arrival_date) <= returnDate : true;
+        return matchDeparture && matchDestination && matchDepartureDate && matchReturnDate;
+    });
 
-//     departureFlights = flights.filter((flight) => {
-//         const flightDepartureDbDate = new Date(flight.departure_date);
-//         return (
-//             flight.departure_location.toLowerCase() === departure_location.toLowerCase() &&
-//             flight.destination.toLowerCase() === destination.toLowerCase() &&
-//             flightDepartureDbDate.getTime() >= departureDateInput.getTime()
-//         );
-//     });
+    localStorage.setItem('departureFlights', JSON.stringify(filteredDepartureFlights));
 
-//     console.log('departure found 1', departureFlights)
+    if (returnDate) {
+        const filteredReturnFlights = flights.filter((flight) => {
+            const flightDepartureDate = new Date(flight.departure_date);
 
-//     if (departureFlights.length === 0) return false;
+            const matchDeparture = flight.departure_location.toLowerCase() === destination;
+            const matchDestination = flight.destination.toLowerCase() === departureLocation;
+            const matchDepartureDate = flightDepartureDate >= returnDate;
 
-//     if (returnDateInput) {
-//         returnFlights = flights.filter((flight) => {
-//             const flightReturnDbDate = new Date(flight.departure_date);
-//             return (
-//                 flight.destination.toLowerCase() === departure_location.toLowerCase() &&
-//                 flight.departure_location.toLowerCase() === destination.toLowerCase() &&
-//                 flightReturnDbDate.getTime() >= returnDateInput.getTime()
-//             );
-//         });
+            return matchDeparture && matchDestination && matchDepartureDate;
+        });
 
-//         if (returnFlights.length === 0) return false;
+        localStorage.setItem('returnFlights', JSON.stringify(filteredReturnFlights));
+    } else {
+        localStorage.removeItem('returnFlights');
+    }
 
-//         departureFlights = departureFlights.filter((flight) => {
-//             const flightDepartureDate = new Date(flight.departure_date);
-//             return flightDepartureDate.getTime() < returnDateInput.getTime();
-//         });
+    if (filteredDepartureFlights.length > 0) {
+        window.location.href = '/frontend/pages/search.html';
+    } else {
+        showPopup('No flights found. Please adjust your search criteria.');
+    }
+});
 
-//         console.log('departure found 2', departureFlights)
-
-//         if (departureFlights.length === 0) return false;
-//     }
-
-//     departureFlights.sort((a, b) => new Date(a.departure_date) - new Date(b.departure_date));
-//     returnFlights.sort((a, b) => new Date(a.departure_date) - new Date(b.departure_date));
-    
-
-//     localStorage.setItem('departureFlights', JSON.stringify(departureFlights));
-//     localStorage.setItem('returnFlights', JSON.stringify(returnFlights));
-
-//     return true;
-// };
 
 const checkCurrentUser = () => {
     currentUser = JSON.parse(localStorage.getItem('user')) || null;

@@ -1,8 +1,3 @@
-const departureLocationInput = document.getElementById('departure-location');
-const destinationInput = document.getElementById('destination');
-const departureDateInput = document.getElementById('departure-date');
-const returnDateInput = document.getElementById('return-date');
-
 const topRatedFlightDisplay = document.getElementById('top-flight-display');
 const topRatedAirlineDisplay = document.getElementById('top-airline-display');
 
@@ -54,38 +49,3 @@ getFlights().then((flights) => {
 
 clearFilters();
 
-document.getElementById('flight-search-form').addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    const departureLocation = document.getElementById('departure-location').value.toLowerCase();
-    const destination = document.getElementById('destination').value.toLowerCase();
-    const departureDate = new Date(document.getElementById('departure-date').value);
-    const returnDate = document.getElementById('return-date').value
-        ? new Date(document.getElementById('return-date').value)
-        : null;
-
-    const flights = JSON.parse(localStorage.getItem('flights'));
-
-    const filteredDepartureFlights = flights.filter((flight) => {
-        const flightDepartureDate = new Date(flight.departure_date);
-        const matchDeparture = flight.departure_location.toLowerCase() === departureLocation;
-        const matchDestination = flight.destination.toLowerCase() === destination;
-        const matchDepartureDate = flightDepartureDate >= departureDate;
-
-        const matchReturnDate = returnDate ? new Date(flight.arrival_date) <= returnDate : true;
-        console.log(matchReturnDate);
-        return matchDeparture && matchDestination && matchDepartureDate && matchReturnDate;
-    });
-
-    if (returnDate) {
-        const filteredReturnFlights = flights.filter((flight) => {
-            const flightDepartureDate = new Date(flight.departure_date);
-
-            const matchDeparture = flight.departure_location.toLowerCase() === destination;
-            const matchDestination = flight.destination.toLowerCase() === departureLocation;
-            const matchDepartureDate = flightDepartureDate >= returnDate;
-
-            return matchDeparture && matchDestination && matchDepartureDate;
-        });
-    }
-});
