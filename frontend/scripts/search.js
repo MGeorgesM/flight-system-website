@@ -121,22 +121,7 @@ const getSearchResult = async () => {
     }
 };
 
-// const addSelectBtnEventListener = () => {
-//     const selectBtns = document.querySelectorAll('.select-btn');
 
-//     selectBtns.forEach((btn) => {
-//         btn.addEventListener('click', (event) => {
-//             const flightId = parseInt(btn.getAttribute('flight-id'));
-//             const sectionId = event.target.closest('section').id;
-
-//             if (sectionId === 'select-departure') {
-//                 localStorage.setItem('selectedDepartureFlightId', flightId);
-//             } else {
-//                 localStorage.setItem('selectedReturnFlightId', flightId);
-//             }
-//         });
-//     });
-// };
 const addSelectBtnEventListener = () => {
     const selectBtns = document.querySelectorAll('.select-btn');
 

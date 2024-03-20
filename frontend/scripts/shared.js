@@ -44,59 +44,57 @@ loginBtn.addEventListener('click', () => {
 checkCurrentUser();
 checkCurrentUserisAdmin(currentUser.id, currentUser.email).then((isAdmin) => {
     if (isAdmin) {
-        console.log('im her')
         profileBtn.innerHTML = 'Admin Panel';
     } else {
         profileBtn.innerHTML = 'Profile';
     }
 });
 
-document.getElementById('flight-search-form').addEventListener('submit', function (event) {
-    event.preventDefault();
+if (document.title === 'Journey - Search Results' || document.title === 'Jouney - Welcome') {
+    document.getElementById('flight-search-form').addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    const departureLocation = document.getElementById('departure-location').value.toLowerCase();
-    const destination = document.getElementById('destination').value.toLowerCase();
-    const departureDate = new Date(document.getElementById('departure-date').value);
-    const returnDate = document.getElementById('return-date').value
-        ? new Date(document.getElementById('return-date').value)
-        : null;
+        const departureLocation = document.getElementById('departure-location').value.toLowerCase();
+        const destination = document.getElementById('destination').value.toLowerCase();
+        const departureDate = new Date(document.getElementById('departure-date').value);
+        const returnDate = document.getElementById('return-date').value
+            ? new Date(document.getElementById('return-date').value)
+            : null;
 
-    const flights = JSON.parse(localStorage.getItem('flights'));
+        const flights = JSON.parse(localStorage.getItem('flights'));
 
-    const filteredDepartureFlights = flights.filter((flight) => {
-        const flightDepartureDate = new Date(flight.departure_date);
-        const matchDeparture = flight.departure_location.toLowerCase() === departureLocation;
-        const matchDestination = flight.destination.toLowerCase() === destination;
-        const matchDepartureDate = flightDepartureDate >= departureDate;
-
-        const matchReturnDate = returnDate ? new Date(flight.arrival_date) <= returnDate : true;
-        return matchDeparture && matchDestination && matchDepartureDate && matchReturnDate;
-    });
-
-    localStorage.setItem('departureFlights', JSON.stringify(filteredDepartureFlights));
-
-    if (returnDate) {
-        const filteredReturnFlights = flights.filter((flight) => {
+        const filteredDepartureFlights = flights.filter((flight) => {
             const flightDepartureDate = new Date(flight.departure_date);
+            const matchDeparture = flight.departure_location.toLowerCase() === departureLocation;
+            const matchDestination = flight.destination.toLowerCase() === destination;
+            const matchDepartureDate = flightDepartureDate >= departureDate;
 
-            const matchDeparture = flight.departure_location.toLowerCase() === destination;
-            const matchDestination = flight.destination.toLowerCase() === departureLocation;
-            const matchDepartureDate = flightDepartureDate >= returnDate;
-
-            return matchDeparture && matchDestination && matchDepartureDate;
+            const matchReturnDate = returnDate ? new Date(flight.arrival_date) <= returnDate : true;
+            return matchDeparture && matchDestination && matchDepartureDate && matchReturnDate;
         });
 
-        localStorage.setItem('returnFlights', JSON.stringify(filteredReturnFlights));
-    } else {
-        localStorage.removeItem('returnFlights');
-    }
+        localStorage.setItem('departureFlights', JSON.stringify(filteredDepartureFlights));
 
-    if (filteredDepartureFlights.length > 0) {
-        window.location.href = '/frontend/pages/search.html';
-    } else {
-        showPopup('No flights found. Please adjust your search criteria.');
-    }
-});
+        if (returnDate) {
+            const filteredReturnFlights = flights.filter((flight) => {
+                const flightDepartureDate = new Date(flight.departure_date);
 
+                const matchDeparture = flight.departure_location.toLowerCase() === destination;
+                const matchDestination = flight.destination.toLowerCase() === departureLocation;
+                const matchDepartureDate = flightDepartureDate >= returnDate;
 
+                return matchDeparture && matchDestination && matchDepartureDate;
+            });
 
+            localStorage.setItem('returnFlights', JSON.stringify(filteredReturnFlights));
+        } else {
+            localStorage.removeItem('returnFlights');
+        }
+
+        if (filteredDepartureFlights.length > 0) {
+            window.location.href = '/frontend/pages/search.html';
+        } else {
+            showPopup('No flights found. Please adjust your search criteria.');
+        }
+    });
+}

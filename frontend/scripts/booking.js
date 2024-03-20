@@ -12,22 +12,19 @@ let selectedReturnFlight = null;
 let seatSelected = 1;
 
 const getSelectedFlights = () => {
-    const selectedDepartureFlightId = JSON.parse(localStorage.getItem('selectedDepartureFlight'));
-    const selectedReturnFlightId = JSON.parse(localStorage.getItem('selectedReturnFlight'));
+    const selectedDepartureFlightId = JSON.parse(localStorage.getItem('selectedDepartureFlightId'));
+    const selectedReturnFlightId = JSON.parse(localStorage.getItem('selectedReturnFlightId'));
     selectedReturnFlightId &&
         getFlights(selectedReturnFlightId).then((flight) => {
             selectedReturnFlight = flight;
             populateFlightDetails(flight, 'Return');
-            calculateTotalPrice();
         });
 
     getFlights(selectedDepartureFlightId).then((flight) => {
         selectedDepartureFlight = flight;
         populateFlightDetails(flight, 'Departure');
-        calculateTotalPrice();
     });
 };
-
 
 const populateFlightDetails = (flight, direction) => {
     flightDetailsContainer.innerHTML += populateFlightDetailElement(flight, direction);
@@ -116,3 +113,6 @@ cancelBtn.addEventListener('click', () => {
 });
 
 getSelectedFlights();
+populateUserDetails(currentUser);
+
+console.log(currentUser)
