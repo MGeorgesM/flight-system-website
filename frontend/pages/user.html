@@ -39,7 +39,7 @@
             <input
               type="text"
               placeholder="Last Name"
-                id="last-name"
+              id="last-name"
               class="input-style box-shadow light-bg place-holder-text border-radius"
             />
           </div>
@@ -53,7 +53,7 @@
             <input
               type="text"
               placeholder="Email"
-                id="email"
+              id="email"
               class="input-style box-shadow light-bg place-holder-text border-radius"
             />
           </div>
@@ -61,13 +61,13 @@
             <input
               type="password"
               placeholder="Password"
-                id="password"
+              id="password"
               class="input-style box-shadow light-bg place-holder-text border-radius"
             />
             <input
               type="text"
               placeholder="Passport Number"
-                id="passport-number"
+              id="passport-number"
               class="input-style box-shadow light-bg place-holder-text border-radius"
             />
           </div>
@@ -75,27 +75,42 @@
             <input
               type="text"
               placeholder="Address"
-                id="address"
+              id="address"
               class="input-style-last box-shadow light-bg place-holder-text border-radius"
             />
           </div>
           <div class="flex center">
             <button
-              class="update-btn flex center box-shadow primary-bg off-white-text border-radius" id="update-btn"
+              class="update-btn flex center box-shadow primary-bg off-white-text border-radius"
+              id="update-btn"
             >
               Update
             </button>
           </div>
         </div>
-        <div id="booking-section">
+        <div id="booking-section" class="booking">
           <div
-            class="flex center booking-card onclick-nav-bg border-radius"
-          ></div>
+            class="flex align-center booking-card onclick-nav-bg border-radius space space-evenly"
+          >
+              <p class="dark-text">From</p>
+              <div class="line primary-bg flex"></div>
+              <p class="dark-text">To</p>
+
+            <p>Flight code</p>
+            <p class="dark-text">Airline Name</p>
+            <button
+              class="add-review-btn box-shadow primary-bg off-white-text border-radius"
+              id="add-review-btn"
+            >
+              Add Review
+            </button>
+          </div>
         </div>
       </div>
     </section>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <script src="/frontend/scripts/user.js"></script>
+    <script src="/frontend/scripts/profile.js"></script>
+    <script src="/frontend/scripts/booking.js"></script>
   </body>
 </html>
