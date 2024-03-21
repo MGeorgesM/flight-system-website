@@ -9,37 +9,50 @@ const userCoinsDisplay = document.getElementById('user-coins-display');
 const checkoutBtn = document.getElementById('checkout-btn');
 const cancelBtn = document.getElementById('cancel-btn');
 
+const departureFightId = JSON.parse(localStorage.getItem('selectedDepartureFlightId')) || null;
+const returnFightId = JSON.parse(localStorage.getItem('selectedReturnFlightId')) || null;
+const bookingId = JSON.parse(localStorage.getItem('bookingId')) || null;
+
 let totalPrice = null;
-
-const populateFlightDetails = () => {
-    const departureFlight = JSON.parse(localStorage.getItem('selectedDepartureFlight'));
-    const returnFlight = JSON.parse(localStorage.getItem('selectedReturnFlight'));
-
-    flightDepartureDisplay.innerText = `${departureFlight.code} - $${departureFlight.price}`;
-    flightReturnDisplay.innerText = returnFlight ? `${returnFlight.code} - $${returnFlight.price}` : 'No Return';
-};
+let departureFlight = null;
+let returnFlight = null;
 
 const populateSeatsDisplay = () => {
-    const seats = JSON.parse(localStorage.getItem('selectedSeats'));
+    const seats = JSON.parse(localStorage.getItem('seatsSelected'));
     seatsDisplay.innerText = seats.join(', ');
 };
 
 const populateTotalPrice = () => {
     const totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
-    totalPriceDisplay.innerText = `$${totalPrice}`;
+    totalPriceDisplay.innerText = `${totalPrice}`;
+};
+
+const clearLocalStorage = () => {
+    localStorage.removeItem('selectedDepartureFlightId');
+    localStorage.removeItem('selectedReturnFlightId');
+    localStorage.removeItem('seatsSelected');
+    localStorage.removeItem('totalPrice');
+    localStorage.removeItem('bookingId');
 };
 
 getUser(currentUser.id).then((user) => {
     userDisplay.innerText = `${user.first_name} ${user.last_name}`;
     userCoinsDisplay.innerText = user.coins;
-    populateFlightDetails();
     populateSeatsDisplay();
     populateTotalPrice();
 });
 
+getFlights(departureFightId).then((flight) => {
+    flightDepartureDisplay.innerText = `${flight.code} - $${flight.price}`;
+});
+
+getFlights(returnFightId).then((flight) => {
+    flightReturnDisplay.innerText = `${flight.code} - $${flight.price}`;
+});
+
 checkoutBtn.addEventListener('click', async () => {
     try {
-        const response = await addPayment(currentUser.id, totalPrice);
+        const response = await addPayment(currentUser.id, bookingId);
         if (response.data.status === 'success') {
             showPopup('Payment Successful');
             setTimeout(() => {
@@ -47,6 +60,11 @@ checkoutBtn.addEventListener('click', async () => {
             }, 2000);
         }
     } catch (error) {
-        validationDisplay.innerText = error;
+        popup.classList.remove('hidden');
+        popupMessage.innerText = error;
     }
+});
+
+cancelBtn.addEventListener('click', () => {
+    window.location.href = '../pages/booking.html';
 });

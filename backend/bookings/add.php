@@ -26,7 +26,6 @@ if($find_user->num_rows == 0) {
     exit;
 }
 
-
 $find_user->bind_result($id, $username, $email, $password, $first_name, $last_name, $address, $passport_number, $coins);
 $find_user->fetch();
 
@@ -50,7 +49,6 @@ foreach($user_fields as $field => $value) {
     }
 }
 
-
 $find_departure_flight = $mysqli->prepare("SELECT * FROM flights WHERE id = ?");
 $find_departure_flight->bind_param('i', $departure_flight_id);
 $find_departure_flight->execute();
@@ -62,7 +60,6 @@ if($find_departure_flight->num_rows == 0) {
     echo json_encode($response);
     exit;
 }
-
 
 if(!empty($_POST['return_flight_id'])) {
     $return_flight_id = $_POST['return_flight_id'];
@@ -79,11 +76,13 @@ if(!empty($_POST['return_flight_id'])) {
     }
 }
 
-
 $add_booking = $mysqli->prepare("INSERT INTO bookings (user_id, departure_flight_id, return_flight_id, passengers_number) VALUES (?, ?, ?, ?)");
 $add_booking->bind_param('iiii', $user_id, $departure_flight_id, $return_flight_id, $passengers_number);
 $add_booking->execute();
 
+$inserted_id = $mysqli->insert_id;
+
 $response['status'] = 'success';
 $response['message'] = "Booking added";
+$response['bookings'] = $inserted_id;
 echo json_encode($response);

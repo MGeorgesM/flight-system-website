@@ -58,7 +58,7 @@ const populateUserDetails = (user) => {
 };
 
 const populateUserDetailsElement = (user) => {
-    return `<h1 id="username-dislpay">${user.username}</h1>
+    return `<h1 id="username-dislpay">${user.first_name ? user.first_name : ''}</h1>
             <p id="address-display">${user.address ? user.address : ''}</p>
             <p id="passport-display">${user.passport_number ? user.passport_number : ''}</p>`;
 };
@@ -66,8 +66,7 @@ const populateUserDetailsElement = (user) => {
 const calculateTotalPrice = () => {
     const departurePrice = parseInt(selectedDepartureFlight.price);
     const returnPrice = selectedReturnFlight ? parseInt(selectedReturnFlight.price) : 0;
-    const totalPrice = (departurePrice + returnPrice) * seatsSelected.length;
-    totalPriceDisplay.innerText = totalPrice;
+    totalPrice = (departurePrice + returnPrice) * seatsSelected.length;
 };
 
 const handleSeatSelect = (event) => {
@@ -85,27 +84,38 @@ const handleSeatSelect = (event) => {
     }
 
     calculateTotalPrice();
-    console.log(seatsSelected);
 };
 
 selectSeatsBtns.forEach((btn) => {
     btn.addEventListener('click', handleSeatSelect);
 });
 
-checkOutBtn.addEventListener('click', async () => {
+checkOutBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+
     if (seatsSelected.length === 0) {
         popup.classList.remove('hidden');
         popupMessage.innerText = 'Please select at least one seat';
         return;
     }
+    calculateTotalPrice();
     try {
-        await addBooking(currentUser.id, selectedDepartureFlight.id, seatsSelected.length, selectedReturnFlight.id);
+        const response = await addBooking(
+            currentUser.id,
+            selectedDepartureFlight.id,
+            seatsSelected.length,
+            selectedReturnFlight.id
+        );
+        if (response) {
+            localStorage.setItem('bookingId', response);
+        }
     } catch (error) {
         popup.classList.remove('hidden');
         popupMessage.innerText = error;
     }
-    localStorage.addItem('seatsSelected', seatsSelected);
-    localStorage.addItem('totalPrice', totalPriceDisplay.innerText);
+
+    localStorage.setItem('seatsSelected', JSON.stringify(seatsSelected));
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
     window.location.href = '/frontend/pages/payment.html';
 });
 
