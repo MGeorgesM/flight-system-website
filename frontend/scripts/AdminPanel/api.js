@@ -25,6 +25,7 @@ const getAllBookings = (id, email, handler) => {
       const data = response.data;
       if (data.status === "success") {
         const bookings = data.bookings;
+        console.log("Bookings:", bookings);
         handler(bookings);
       } else {
         throw new Error(data.message);

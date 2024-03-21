@@ -41,19 +41,18 @@ const generateFlightHtml = (flights, index) => {
 
 const getFlightDataInputs = () => {
     flightData = {
-      departure_location: departureLocation.value.trim(),
-      destination: destination.value.trim(),
-      departure_date: departureDate.value.trim(),
-      arrival_date: arrivalDate.value.trim(),
-      code: code.value.trim(),
-      price: price.value.trim(),
-      status: newstatus.value.trim(),
+      departure_location: departureLocation.value,
+      destination: destination.value,
+      departure_date: departureDate.value,
+      arrival_date: arrivalDate.value,
+      code: code.value,
+      price: price.value,
+      status: newstatus.value,
       airline_id: 1
     };
     console.log(flightData);
     return flightData;
-};
-
+  };
 allFlightsElements.forEach((element) => {
   getAllFlights((flights) => showingAllFlights(flights, element));
 });

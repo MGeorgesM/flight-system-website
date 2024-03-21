@@ -1,6 +1,8 @@
 <?php
 include('../connection.php');
 
+$bookings = []; // Initialize $bookings as an empty array
+
 if(!empty($_GET['user_id'])) {
     $user_id = $_GET['user_id'];
 }
@@ -115,3 +117,4 @@ if(isset($booking_id) && !empty($booking_id)) {
     $response['bookings'] = $bookings;
     echo json_encode($response);
 }
+?>
