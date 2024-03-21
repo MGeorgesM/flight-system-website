@@ -27,14 +27,6 @@ const populateTotalPrice = () => {
     totalPriceDisplay.innerText = `${totalPrice}`;
 };
 
-const clearLocalStorage = () => {
-    localStorage.removeItem('selectedDepartureFlightId');
-    localStorage.removeItem('selectedReturnFlightId');
-    localStorage.removeItem('seatsSelected');
-    localStorage.removeItem('totalPrice');
-    localStorage.removeItem('bookingId');
-};
-
 getUser(currentUser.id).then((user) => {
     userDisplay.innerText = `${user.first_name} ${user.last_name}`;
     userCoinsDisplay.innerText = user.coins;
@@ -54,10 +46,11 @@ checkoutBtn.addEventListener('click', async () => {
     try {
         const response = await addPayment(currentUser.id, bookingId);
         if (response.data.status === 'success') {
-            showPopup('Payment Successful');
+            popup.classList.remove('hidden');
+            popupMessage.innerText = 'Payment Successful Thank you for choosing Journey';
             setTimeout(() => {
-                window.location.href = '/frontend/pages/user.html';
-            }, 2000);
+                window.location.href = '../index.html';
+            }, 3000);
         }
     } catch (error) {
         popup.classList.remove('hidden');

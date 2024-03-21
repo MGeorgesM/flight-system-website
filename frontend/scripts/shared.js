@@ -25,6 +25,16 @@ const showPopup = (message) => {
     popupMessage.innerText = message;
 };
 
+const clearLocalStorage = () => {
+    localStorage.removeItem('selectedDepartureFlightId');
+    localStorage.removeItem('selectedReturnFlightId');
+    localStorage.removeItem('selectedDepartureFlight');
+    localStorage.removeItem('selectedReturnFlight');
+    localStorage.removeItem('seatsSelected');
+    localStorage.removeItem('totalPrice');
+    localStorage.removeItem('bookingId');
+};
+
 continueBtn.addEventListener('click', () => {
     popup.classList.add('hidden');
 });

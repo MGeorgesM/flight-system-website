@@ -106,12 +106,13 @@ checkOutBtn.addEventListener('click', async (event) => {
             seatsSelected.length,
             selectedReturnFlight.id
         );
-        if (response) {
+        if (response.data.status === 'success') {
             localStorage.setItem('bookingId', response);
         }
     } catch (error) {
         popup.classList.remove('hidden');
         popupMessage.innerText = error;
+        return
     }
 
     localStorage.setItem('seatsSelected', JSON.stringify(seatsSelected));
@@ -125,8 +126,7 @@ loginBtn.addEventListener('click', () => {
 });
 
 cancelBtn.addEventListener('click', () => {
-    localStorage.removeItem('selectedDepartureFlight');
-    localStorage.removeItem('selectedReturnFlight');
+    clearLocalStorage();
     window.location.href = '../pages/search.html';
 });
 
