@@ -1,5 +1,3 @@
-//CHECK BASE URL BEFORE TESTING SORT THE FUNCTIONS BY THEIR TABLENAME
-
 axios.defaults.baseURL = 'http://localhost/flight-system-website/backend';
 
 const constructGetUrl = (url, params) => {
@@ -10,7 +8,7 @@ const constructGetUrl = (url, params) => {
             constructedUrl += `${key}=${params[key]}&`;
         }
     }
-    console.log(constructedUrl);
+    // console.log(constructedUrl);
     return constructedUrl;
 };
 
@@ -51,7 +49,6 @@ const getUser = async (user_id) => {
 };
 
 //Bookings
-
 const getbookings = async (user_id, email, booking_id) => {
     try {
         const params = {};

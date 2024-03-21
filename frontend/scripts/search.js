@@ -130,13 +130,11 @@ const addSelectBtnEventListener = () => {
             const flightId = parseInt(btn.getAttribute('flight-id'));
             const sectionId = event.target.closest('section').id;
 
-            // Remove 'clicked' class from all buttons in the same section
             const section = sectionId === 'select-departure' ? sectionDeparture : sectionReturn;
             section.querySelectorAll('.select-btn').forEach((btn) => {
                 btn.classList.remove('clicked');
             });
 
-            // Toggle 'clicked' class for the clicked button
             btn.classList.toggle('clicked');
 
             if (sectionId === 'select-departure') {
@@ -150,9 +148,19 @@ const addSelectBtnEventListener = () => {
 
 proceedBtn.addEventListener('click', () => {
     loadClickedFlightsFromLocalStorage();
-    if (!selectedDepartureFlightId || !selectedReturnFlightId) {
-        showPopup('Please select both departure and return flights.');
-        return;
+
+    if (returnFlights && returnFlights.length > 0) {
+
+        if (!selectedDepartureFlightId || !selectedReturnFlightId) {
+            showPopup('Please select both departure and return flights.');
+            return;
+        }
+    } else {
+
+        if (!selectedDepartureFlightId) {
+            showPopup('Please select a departure flight.');
+            return;
+        }
     }
     window.location.href = '/frontend/pages/booking.html';
 });

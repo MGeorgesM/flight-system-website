@@ -54,6 +54,7 @@ const populateFlightDetailElement = (flight, direction) => {
 };
 
 const populateUserDetails = (user) => {
+    userDetailsContainer.innerHTML = '';
     userDetailsContainer.innerHTML += populateUserDetailsElement(user);
 };
 
@@ -104,10 +105,10 @@ checkOutBtn.addEventListener('click', async (event) => {
             currentUser.id,
             selectedDepartureFlight.id,
             seatsSelected.length,
-            selectedReturnFlight.id
+            selectedReturnFlight ? selectedReturnFlight.id : null
         );
         if (response.data.status === 'success') {
-            localStorage.setItem('bookingId', response);
+            localStorage.setItem('bookingId', response.data.bookings);
         }
     } catch (error) {
         popup.classList.remove('hidden');
@@ -132,5 +133,6 @@ cancelBtn.addEventListener('click', () => {
 
 getSelectedFlights();
 getUser(currentUser.id).then((user) => {
+    console.log(user)
     populateUserDetails(user);
 });
