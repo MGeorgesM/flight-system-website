@@ -51,4 +51,4 @@ const getAllFlights = (handler) => {
           console.error("Error fetching bookings:", error);
         });
     };
-    
+  

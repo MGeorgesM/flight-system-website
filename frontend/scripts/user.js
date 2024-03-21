@@ -63,5 +63,5 @@ const getFlightDetails = (flightId) => {
     return html;
   };
   
-  getBookingsAndFlightDetails(1, "afif@example.com");
+  getBookingsAndFlightDetails(1, "user1@example.com");
   
