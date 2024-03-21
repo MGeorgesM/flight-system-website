@@ -61,3 +61,7 @@ checkoutBtn.addEventListener('click', async () => {
 cancelBtn.addEventListener('click', () => {
     window.location.href = '../pages/booking.html';
 });
+
+continueBtn.addEventListener('click', () => {
+    window.location.href = '../index.html';
+});

@@ -41,7 +41,7 @@ continueBtn && continueBtn.addEventListener('click', () => {
 
 profileBtn.addEventListener('click', () => {
     if (profileBtn.innerHTML === 'Profile') {
-        window.location.href = '../frontend/pages/user.html';
+        window.location.href = '/frontend/pages/user.html';
     } else {
         window.location.href = '/frontend/pages/adminPanel/admin.html';
     }
