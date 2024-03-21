@@ -25,7 +25,7 @@ const checkCurrentUserisAdmin = async (user_id, email) => {
         url = constructGetUrl(url, params);
 
         const response = await axios.get(url);
-        if (response.data.message === 'success') {
+        if (response.data.status === 'success') {
             return response.data.users;
         }
     } catch (error) {

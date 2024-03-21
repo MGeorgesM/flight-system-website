@@ -4,7 +4,7 @@ const getFlightDetails = (flightId) => {
       .then((response) => {
         const data = response.data;
         if (data.status === "success") {
-          console.log(data.flights);
+          // console.log(data.flights);
 
           return data.flights; 
         } else {
@@ -23,7 +23,7 @@ const getFlightDetails = (flightId) => {
         const data = response.data;
         if (data.status === "success") {
           const bookings = data.bookings;
-          console.log(bookings);
+          // console.log(bookings);
           const flightPromises = bookings.map((booking) => {
             const departureFlightId = booking.departure_flight_id;
             return getFlightDetails(departureFlightId); 
@@ -63,5 +63,5 @@ const getFlightDetails = (flightId) => {
     return html;
   };
   
-  getBookingsAndFlightDetails(1, "afif@example.com");
-  
+  currentUser = JSON.parse(localStorage.getItem("user")) || null;
+  getBookingsAndFlightDetails(currentUser.id, currentUser.email);

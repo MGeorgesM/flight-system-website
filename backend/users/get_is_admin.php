@@ -16,7 +16,7 @@ $query->bind_param('is', $user_id, $email);
 $query->execute();
 $query->store_result();
 
-if ($query->num_rows() >0) {
+if ($query->num_rows() > 0) {
     $response['status'] = "success";
     $response['users'] = true;
 } else {

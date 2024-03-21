@@ -35,7 +35,7 @@ const clearLocalStorage = () => {
     localStorage.removeItem('bookingId');
 };
 
-continueBtn.addEventListener('click', () => {
+continueBtn && continueBtn.addEventListener('click', () => {
     popup.classList.add('hidden');
 });
 
@@ -43,7 +43,7 @@ profileBtn.addEventListener('click', () => {
     if (profileBtn.innerHTML === 'Profile') {
         window.location.href = '../frontend/pages/user.html';
     } else {
-        window.location.href = './admin.html';
+        window.location.href = '/frontend/pages/adminPanel/admin.html';
     }
 });
 
