@@ -32,7 +32,13 @@ const getBookingsAndFlightDetails = (id, email) => {
         console.log(bookings);
         const flightPromises = bookings.map((booking) => {
           const departureFlightId = booking.departure_flight_id;
-          return getFlightDetails(departureFlightId);
+          const bookingId = booking.id; 
+          const passenger_number= booking.passengers_number;
+          return getFlightDetails(departureFlightId).then((flightDetails) => ({
+            ...flightDetails,
+            bookingId: bookingId,
+            passenger_number: passenger_number
+          }));
         });
         return Promise.all(flightPromises);
       } else {
@@ -46,6 +52,7 @@ const getBookingsAndFlightDetails = (id, email) => {
       console.error("Error fetching bookings:", error);
     });
 };
+
 const deletebooking = (id, handler) => {
   const formData = new FormData();
   formData.append("id", id);
@@ -79,11 +86,12 @@ const generateBookingCardHtml = (flightList) => {
       <td>${flight.destination}</td>
       <td>${flight.code}</td>
       <td>${flight.price}</td>
+      <td>${flight.passenger_number}</td>
       <td>${flight.status}</td>
       <td>${flight.airline_name}</td>
       <td>${flight.departure_date}</td>
       <td>${flight.arrival_date}</td>
-      <td><button class="delete-btn" onclick="deletebooking(${flight.id})">Delete</button></td>
+      <td><button class="delete-btn" onclick="deletebooking(${flight.bookingId})">Delete</button></td>
         </tr>
       `;
   });
