@@ -40,7 +40,8 @@
                     <label for="tab1" class="tabs__label">Booking</label>
                     <div class="tabs__content">
                         <table class="booking-table">
-                            <tr>
+                            <thead>
+                                 <tr>
                                 <th>ID</th>
                                 <th> user_id</th>
                                 <th>departure_flight_id</th>
@@ -49,22 +50,18 @@
                                 <th>passengers_number</th>
                                 <th>Update</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>12345</td>
-                                <td>$50</td>
-                                <td>Completed</td>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20</td>
-                                <td></td>
-                            </tr>
+                            
+                            </thead>
+                            <tbody></tbody>
                         </table>
                     </div>
                     <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
                     <label for="tab2" class="tabs__label">Update Booking</label>
                     <div class="tabs__content">
+                       <form action="">
                         <table class="booking-table">
-                            <tr>
+                            <thead>
+                                  <tr>
                                 <th>ID</th>
                                 <th> user_id</th>
                                 <th>departure_flight_id</th>
@@ -72,22 +69,60 @@
                                 <th>booking_status</th>
                                 <th>passengers_number</th>
                                 <th>Update</th>
-
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>12345</td>
-                                <td>$50</td>
-                                <td>Completed</td>
-                                <td>2024-03-20</td>
-                                <td>2024-03-20</td>
-                                <td><button>Update</button></td>
-                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                          
                         </table>
+                       </form>
                     </div>
                   </div>
             </div>
         </div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/frontend/scripts/AdminPanel/dashboardbooking.js"></script>
+    <script>
+        const getBooking = () => {
+    fetch('https://jsonplaceholder.typicode.com/todos', {
+        method: "GET",
+    })
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        showBookings(data);
+    })
+    .catch((error) => {
+        console.error(error);
+    });
+}
+
+const showBookings = (data) => {
+    const tableBody = document.querySelector("#booking-table tbody");
+    tableBody.innerHTML = ""; // Clear existing table data
+
+    data.forEach(function(item) {
+        var row = "<tr>" +
+                    "<td>" + item.id + "</td>" +
+                    "<td>" + item.name + "</td>" +
+                    "<td>" + item.email + "</td>" +
+                    "<td>" + item.additional_field1 + "</td>" +
+                    "<td>" + item.additional_field2 + "</td>" +
+                    "<td>" + item.additional_field3 + "</td>" +
+                    "<td>" + item.additional_field4 + "</td>" +
+                    "<td>" + item.additional_field5 + "</td>" +
+                    "<td>" + item.additional_field6 + "</td>" +
+                    "<td>" + item.additional_field7 + "</td>" +
+                  "</tr>";
+        tableBody.innerHTML += row;
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    getBooking();
+});
+    </script>
 </body>
 </html>
