@@ -56,7 +56,7 @@ loginBtn.addEventListener('click', () => {
 });
 
 checkCurrentUser();
-checkCurrentUserisAdmin(currentUser.id, currentUser.email).then((isAdmin) => {
+currentUser && checkCurrentUserisAdmin(currentUser.id, currentUser.email).then((isAdmin) => {
     if (isAdmin) {
         profileBtn.innerHTML = 'Admin Panel';
     } else {
