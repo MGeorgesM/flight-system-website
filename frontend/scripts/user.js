@@ -23,7 +23,6 @@ const getFlightDetails = (flightId) => {
         const data = response.data;
         if (data.status === "success") {
           const bookings = data.bookings;
-          // console.log(bookings);
           const flightPromises = bookings.map((booking) => {
             const departureFlightId = booking.departure_flight_id;
             return getFlightDetails(departureFlightId); 

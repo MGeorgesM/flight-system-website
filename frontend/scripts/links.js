@@ -199,3 +199,23 @@ const addPayment = async (user_id, booking_id) => {
     }
 };
 
+//Coins Requests
+
+const addCoinsRequest = async (user_id, amount) => {
+    const data = new FormData();
+    data.append('user_id', user_id);
+    data.append('amount', amount);
+
+    try {
+        const response = await axios.post('/coins_requests/add.php', data);
+
+        if (response.data.status === 'success') {
+            return response;
+        } else {
+            throw new Error(response.data.message);
+        }
+    } catch (error) {
+        throw error.message;
+    }
+};
+

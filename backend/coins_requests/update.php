@@ -24,6 +24,16 @@ if (isset($_POST['request_id']) && isset($_POST['action'])) {
     if ($query->affected_rows > 0) {
         $response['status'] = 'success';
         $response['message'] = 'Status updated successfully.';
+        $get_request_amount = $mysqli->prepare('SELECT user_id, amount FROM coins_requests WHERE id = ?');
+        $get_request_amount->bind_param('i', $request_id);
+        $get_request_amount->execute();
+        $get_request_amount->store_result();
+        $get_request_amount->bind_result($user_id, $amount);
+        $get_request_amount->fetch();
+        $update_user_balance = $mysqli->prepare('UPDATE users SET coins = coins + ? WHERE id = ?');
+        $update_user_balance->bind_param('ii', $amount, $user_id);
+        $update_user_balance->execute();
+        
     } else {
         $response['status'] = 'error';
         $response['message'] = 'Failed to update status.';

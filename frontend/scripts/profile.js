@@ -10,6 +10,7 @@ const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const passportNumberInput = document.getElementById("passport-number");
 const addressInput = document.getElementById("address");
+const coinsRquestInput = document.getElementById("coins-request");
 
 let userData = {};
 profileTab.addEventListener("click", () => toggleVisibility(true));
@@ -26,6 +27,7 @@ const getUserToProfile = (id) => {
       if (data.status === "success") {
         const userData = data.users;
         populateUserData(userData);
+        
         return userData;
       } else {
       }
@@ -35,6 +37,9 @@ const getUserToProfile = (id) => {
 
 const updateUser = (id) => {
   getUserDataFromInputs();
+  const { coins_request, ...userEditedProfile} = userData;
+  console.log(userEditedProfile);
+  console.log(coins_request);
   const formData = new FormData();
   formData.append("user_id", id);
   Object.entries(userData).map(([key, value]) => formData.append(key, value));
@@ -51,6 +56,14 @@ const updateUser = (id) => {
       } else {
       }
     });
+
+  if (coins_request) {
+    try {
+      addCoinsRequest(id, coins_request);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 };
 
 
@@ -90,6 +103,7 @@ const getUserDataFromInputs = () => {
     password: passwordInput.value,
     passport_number: passportNumberInput.value,
     address: addressInput.value,
+    coins_request: coinsRquestInput.value,
   };
 };
 
