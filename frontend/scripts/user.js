@@ -12,7 +12,7 @@ const getFlightDetails = (flightId) => {
         }
       })
       .catch((error) => {
-        console.error("Error fetching flight details:", error);
+        console.log("Error fetching flight details:", error);
         throw error; 
       });
   };
@@ -36,7 +36,7 @@ const getFlightDetails = (flightId) => {
         showBooking(flightDetails); 
       })
       .catch((error) => {
-        console.error("Error fetching bookings:", error);
+        console.log("Error fetching bookings:", error);
       });
   };
   

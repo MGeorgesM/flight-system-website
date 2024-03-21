@@ -53,7 +53,6 @@ const updateUser = (id) => {
       const data = response.data;
       if (data.status === "success") {
         getUserToProfile(id);
-      } else {
       }
     });
 
@@ -64,6 +63,8 @@ const updateUser = (id) => {
       console.error(error);
     }
   }
+  popup.classList.remove("hidden");
+  popupMessage.innerText = "Profile Updated";
 };
 
 
