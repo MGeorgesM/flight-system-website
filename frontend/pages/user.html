@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/frontend/styles/utilities.css" />
     <link rel="stylesheet" href="/frontend/styles/queries.css" />
     <link rel="stylesheet" href="/frontend/styles/user.css" />
+    <link rel="stylesheet" href="/frontend/styles/review.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -133,9 +134,27 @@
           </div>
         </div>
       </div>
-      <!-- <div class="popup flex center">
-        <div class="popup-content"></div>
-      </div> -->
+      <div id="review-popup" class="review-popup flex center">
+        <div class="review-card off-white-bg ">
+          <div class="btn flex center">
+            <button class="flight-btn box-shadow primary-bg off-white-text border-radius" id="flight-btn">Flight</button>
+            <button class="airline-btnbox-shadow onclick-nav-bg off-white-text border-radius " id="airline-btn">AirLine</button>
+          </div>
+          <div class="star-rate flex center">
+            <div class="stars" data-rating="1">&#9733;</div>
+            <div class="stars" data-rating="2">&#9733;</div>
+            <div class="stars" data-rating="3">&#9733;</div>
+            <div class="stars" data-rating="4">&#9733;</div>
+            <div class="stars" data-rating="5">&#9733;</div>
+          </div>
+      
+          <textarea name="" id="" cols="30" rows="5" placeholder="Describe Your Experience" class="light-bg"></textarea>
+          <div class="submit flex center ">
+            <button id="submit-btn" class="box-shadow primary-bg off-white-text border-radius">Submit</button>
+          </div>
+        </div>
+      </div>
+      
     </section>
     <footer class="flex space-between off-white-bg dark-text">
       <div class="footer-social flex center">
@@ -156,6 +175,8 @@
     <script src="/frontend/scripts/links.js"></script>
     <script src="/frontend/scripts/shared.js"></script>
     <script src="/frontend/scripts/profile.js"></script>
+    <script src="/frontend/scripts/review.js"></script>
+
     <script src="/frontend/scripts/user.js"></script>
   </body>
 </html>
