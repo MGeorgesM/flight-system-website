@@ -1,0 +1,37 @@
+.review-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+  }
+  .stars {
+    display: inline-block;
+    font-size: 30px;
+    color: #ffd700;
+    cursor: pointer;
+  }
+
+  .btn{
+    gap: 40px;
+    padding: 20px;
+  }
+
+  button{
+    padding: 7px 10px;
+    background-color: gray ;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    color: white;
+  }
+
+.submit button{
+    padding: 10px 20px;
+    background-color: gray;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    color: white;
+
+}
