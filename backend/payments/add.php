@@ -29,7 +29,7 @@ $check_booking->store_result();
 
 if($check_booking->num_rows === 0){
     $response['status'] = 'error';
-    $response['message'] = "Invalid user or booking";
+    $response['message'] = "Payment already done or booking does not exist!";
     echo json_encode($response);
     exit();
 }    

@@ -1,4 +1,6 @@
 body {
+    display: flex;
+    flex-direction: column;
     height: 100vh;
 }
 
@@ -10,7 +12,7 @@ body {
     height: auto;
     width: 50%;
     min-width: 500px;
-    margin: 48px auto;
+    margin: 64px auto;
     padding: 48px 64px;
 }
 
@@ -28,6 +30,7 @@ body {
 }
 
 .inner-container {
+    margin-bottom: 16px;
     width: 100%;
 }
 

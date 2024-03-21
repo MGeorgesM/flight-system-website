@@ -6,10 +6,10 @@ const checkOutBtn = document.getElementById('checkout-btn');
 const selectSeatsBtns = document.querySelectorAll('.letter');
 const cancelBtn = document.getElementById('cancel-btn');
 
-
 let selectedDepartureFlight = null;
 let selectedReturnFlight = null;
-let seatSelected = 1;
+let seatsSelected = ['A1'];
+let totalPrice = null;
 
 const getSelectedFlights = () => {
     const selectedDepartureFlightId = JSON.parse(localStorage.getItem('selectedDepartureFlightId'));
@@ -58,7 +58,7 @@ const populateUserDetails = (user) => {
 };
 
 const populateUserDetailsElement = (user) => {
-    return `<h1 id="username-dislpay">${user.username}</h1>
+    return `<h1 id="username-dislpay">${user.first_name ? user.first_name : ''}</h1>
             <p id="address-display">${user.address ? user.address : ''}</p>
             <p id="passport-display">${user.passport_number ? user.passport_number : ''}</p>`;
 };
@@ -66,23 +66,21 @@ const populateUserDetailsElement = (user) => {
 const calculateTotalPrice = () => {
     const departurePrice = parseInt(selectedDepartureFlight.price);
     const returnPrice = selectedReturnFlight ? parseInt(selectedReturnFlight.price) : 0;
-    const totalPrice = (departurePrice + returnPrice) * seatSelected;
-    totalPriceDisplay.innerText = totalPrice;
+    totalPrice = (departurePrice + returnPrice) * seatsSelected.length;
 };
 
 const handleSeatSelect = (event) => {
     const seat = event.target;
+    const seatId = seat.textContent;
 
-    if (seat.classList.contains('clicked') && seatSelected === 1) {
-        return;
-    }
+    const seatIndex = seatsSelected.indexOf(seatId);
 
-    if (seat.classList.contains('clicked')) {
+    if (seatIndex !== -1) {
+        seatsSelected.splice(seatIndex, 1);
         seat.classList.remove('clicked');
-        seatSelected--;
     } else {
+        seatsSelected.push(seatId);
         seat.classList.add('clicked');
-        seatSelected++;
     }
 
     calculateTotalPrice();
@@ -92,13 +90,34 @@ selectSeatsBtns.forEach((btn) => {
     btn.addEventListener('click', handleSeatSelect);
 });
 
-checkOutBtn.addEventListener('click', async () => {
-    try {
-        await addBooking(currentUser.id, selectedDepartureFlight.id, seatSelected, selectedReturnFlight.id);
-    } catch (error) {
-        validationDisplay.textContent = error;
+checkOutBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    if (seatsSelected.length === 0) {
+        popup.classList.remove('hidden');
+        popupMessage.innerText = 'Please select at least one seat';
+        return;
     }
-    // window.location.href = '/frontend/pages/confirmation.html';
+    calculateTotalPrice();
+    try {
+        const response = await addBooking(
+            currentUser.id,
+            selectedDepartureFlight.id,
+            seatsSelected.length,
+            selectedReturnFlight.id
+        );
+        if (response.data.status === 'success') {
+            localStorage.setItem('bookingId', response);
+        }
+    } catch (error) {
+        popup.classList.remove('hidden');
+        popupMessage.innerText = error;
+        return
+    }
+
+    localStorage.setItem('seatsSelected', JSON.stringify(seatsSelected));
+    localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+    window.location.href = '/frontend/pages/payment.html';
 });
 
 loginBtn.addEventListener('click', () => {
@@ -107,12 +126,11 @@ loginBtn.addEventListener('click', () => {
 });
 
 cancelBtn.addEventListener('click', () => {
-    localStorage.removeItem('selectedDepartureFlight');
-    localStorage.removeItem('selectedReturnFlight');
+    clearLocalStorage();
     window.location.href = '../pages/search.html';
 });
 
 getSelectedFlights();
-populateUserDetails(currentUser);
-
-console.log(currentUser)
+getUser(currentUser.id).then((user) => {
+    populateUserDetails(user);
+});
