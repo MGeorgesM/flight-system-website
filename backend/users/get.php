@@ -3,7 +3,7 @@ include('../connection.php');
 
 
 
-if(isset($id) && !empty($id)) {
+if(!empty($_GET['user_id'])) {
     $id = $_GET['user_id'];
 
     $find_user = $mysqli->prepare("SELECT * FROM users WHERE id = ?");

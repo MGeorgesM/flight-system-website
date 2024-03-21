@@ -31,6 +31,8 @@ const getUserToProfile = (id) => {
       }
     });
 };
+
+
 const updateUser = (id) => {
   getUserDataFromInputs();
   const formData = new FormData();
@@ -91,5 +93,4 @@ const getUserDataFromInputs = () => {
   };
 };
 
-currentUser = JSON.parse(localStorage.getItem("user")) || null;
-getUserToProfile(currentUser.id);
+getUserToProfile(currentUser.id)
