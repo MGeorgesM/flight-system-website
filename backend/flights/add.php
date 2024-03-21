@@ -9,9 +9,9 @@ $arrival_date = $_POST['arrival_date'];
 $price = $_POST['price'];
 $status = $_POST['status'];
 $airline_id = $_POST["airline_id"];
-
-$query = $mysqli->prepare("INSERT INTO flights (departure_location, destination, departure_date, arrival_date, price, status, airline_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-$query->bind_param('ssssdsi', $departure_location, $destination, $departure_date, $arrival_date, $price, $status, $airline_id);
+$code = $_POST["code"];
+$query = $mysqli->prepare("INSERT INTO flights (departure_location, destination, departure_date, arrival_date, price, status, airline_id, code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$query->bind_param('ssssdsis', $departure_location, $destination, $departure_date, $arrival_date, $price, $status, $airline_id, $code);
 
 
 
@@ -25,7 +25,9 @@ if ($query->execute()) {
         'arrival_date' => $arrival_date,
         'price' => $price,
         'status' => $status,
-        'airline_id' => $airline_id
+        'airline_id' => $airline_id,
+        'code'=> $code,
+
     ];
     $response['status'] = 'success';
     $response['flights'] = $flight_details;

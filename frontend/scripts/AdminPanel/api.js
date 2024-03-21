@@ -70,3 +70,24 @@ const deleteFlight = (id, handler) => {
       console.error("Error deleting flight:", error);
     });
 };
+const addFlight = (flightData, handler) => {
+    
+  const formData = new FormData();
+  Object.entries(flightData).map(([key, value]) => formData.append(key, value));
+  axios
+    .post(
+      `http://localhost/FLIGHT-SYSTEM-WEBSITE/backend/flights/add.php`,
+      formData
+    )
+    .then((response) => {
+      const data = response.data;
+      if (data.status === "success") {
+        handler();
+      } else {
+        throw new Error(data.message);
+      }
+    })
+    .catch((error) => {
+      console.error("Error adding flight:", error);
+    });
+};

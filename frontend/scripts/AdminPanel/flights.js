@@ -1,6 +1,16 @@
 const allFlightsElements = document.querySelectorAll(".all-flights");
 const deleteBtn = document.getElementById("delete-btn");
 const editBtn = document.getElementById("edit-btn");
+const departureLocation= document.getElementById("departure-location");
+const destination= document.getElementById("destination");
+const departureDate= document.getElementById("departure-date");
+const arrivalDate= document.getElementById("arrival-date");
+const code= document.getElementById("code");
+const price= document.getElementById("price");
+const newstatus= document.getElementById("status");
+const airlineName= document.getElementById("airline-name");
+const addBtn = document.getElementById("add-btn");
+
 const showingAllFlights = (flights, elementIndex) => {
   const index = Array.from(allFlightsElements).indexOf(elementIndex);
   elementIndex.innerHTML = generateFlightHtml(flights, index);
@@ -29,6 +39,21 @@ const generateFlightHtml = (flights, index) => {
   return html;
 };
 
+const getFlightDataInputs = () => {
+    flightData = {
+      departure_location: departureLocation.value.trim(),
+      destination: destination.value.trim(),
+      departure_date: departureDate.value.trim(),
+      arrival_date: arrivalDate.value.trim(),
+      code: code.value.trim(),
+      price: price.value.trim(),
+      status: newstatus.value.trim(),
+      airline_id: 1
+    };
+    console.log(flightData);
+    return flightData;
+};
+
 allFlightsElements.forEach((element) => {
   getAllFlights((flights) => showingAllFlights(flights, element));
 });
@@ -39,5 +64,12 @@ const deleteflightwithId = (flightId) => {
     allFlightsElements.forEach((element) => {
       getAllFlights((flights) => showingAllFlights(flights, element));
     })
-    );
+  );
 };
+addBtn.addEventListener("click", () => {
+  addFlight( getFlightDataInputs(), () => {
+    allFlightsElements.forEach((element) => {
+      getAllFlights((flights) => showingAllFlights(flights, element));
+    });
+  });
+});
