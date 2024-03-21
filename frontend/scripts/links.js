@@ -82,7 +82,7 @@ const addBooking = async (user_id, departure_flight_id, passengers_number = 1, r
     try {
         const response = await axios.post('/bookings/add.php', data);
         if (response.data.status === 'success') {
-            return response.data.booking;
+            return response;
         } else {
             throw new Error(response.data.message);
         }
@@ -193,12 +193,12 @@ const addPayment = async (user_id, booking_id) => {
         const response = await axios.post('/payments/add.php', data);
 
         if (response.data.status === 'success') {
-            return;
+            return response;
         } else {
             throw new Error(response.data.message);
         }
     } catch (error) {
-        console.error(error);
+        throw error.message;
     }
 };
 

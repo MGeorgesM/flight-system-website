@@ -28,10 +28,6 @@ const populateFlightStatuses = (flight) => {
         </div>`;
 };
 
-continueBtn.addEventListener('click', () => {
-    popup.classList.add('hidden');
-});
-
 getHighestRating('flight').then((highestRating) => {
     topRatedFlightDisplay.innerHTML = highestRating.code.toUpperCase();
 });
