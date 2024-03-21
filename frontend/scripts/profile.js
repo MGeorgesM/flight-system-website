@@ -1,6 +1,6 @@
 const profile = document.getElementById("profile-section");
 const booking = document.getElementById("booking-section");
-const profileBtn = document.getElementById("profile-btn");
+const profileTab = document.getElementById("profile-btn");
 const bookingBtn = document.getElementById("booking-btn");
 const updateBtn = document.getElementById("update-btn");
 const firstNameInput = document.getElementById("first-name");
@@ -12,11 +12,11 @@ const passportNumberInput = document.getElementById("passport-number");
 const addressInput = document.getElementById("address");
 
 let userData = {};
-profileBtn.addEventListener("click", () => toggleVisibility(true));
+profileTab.addEventListener("click", () => toggleVisibility(true));
 bookingBtn.addEventListener("click", () => toggleVisibility(false));
 updateBtn.addEventListener("click", () => updateUser(1, userData));
 
-const getUser = (id) => {
+const getUserToProfile = (id) => {
   axios
     .get(
       `http://localhost/flight-system-website/backend/users/get.php?user_id=${id}`
@@ -31,6 +31,8 @@ const getUser = (id) => {
       }
     });
 };
+
+
 const updateUser = (id) => {
   getUserDataFromInputs();
   const formData = new FormData();
@@ -45,7 +47,7 @@ const updateUser = (id) => {
     .then((response) => {
       const data = response.data;
       if (data.status === "success") {
-        getUser(id);
+        getUserToProfile(id);
       } else {
       }
     });
@@ -74,9 +76,9 @@ const populateUserData = ({
 const toggleVisibility = (showProfile) => {
   profile.style.display = showProfile ? "block" : "none";
   booking.style.display = showProfile ? "none" : "block";
-  profileBtn.classList.toggle("primary-bg", showProfile);
+  profileTab.classList.toggle("primary-bg", showProfile);
   bookingBtn.classList.toggle("primary-bg", !showProfile);
-  profileBtn.classList.toggle("onclick-nav-bg", !showProfile);
+  profileTab.classList.toggle("onclick-nav-bg", !showProfile);
   bookingBtn.classList.toggle("onclick-nav-bg", showProfile);
 };
 const getUserDataFromInputs = () => {
@@ -91,4 +93,4 @@ const getUserDataFromInputs = () => {
   };
 };
 
-getUser(1);
+getUserToProfile(currentUser.id)
