@@ -63,5 +63,5 @@ const getFlightDetails = (flightId) => {
     return html;
   };
   
-  getBookingsAndFlightDetails(1, "afif@example.com");
-  
+  currentUser = JSON.parse(localStorage.getItem("user")) || null;
+  getBookingsAndFlightDetails(currentUser.id, currentUser.email);
