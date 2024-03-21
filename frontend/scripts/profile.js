@@ -14,7 +14,7 @@ const addressInput = document.getElementById("address");
 let userData = {};
 profileTab.addEventListener("click", () => toggleVisibility(true));
 bookingBtn.addEventListener("click", () => toggleVisibility(false));
-updateBtn.addEventListener("click", () => updateUser(1, userData));
+updateBtn.addEventListener("click", () => updateUser(currentUser.id, userData));
 
 const getUserToProfile = (id) => {
   axios
