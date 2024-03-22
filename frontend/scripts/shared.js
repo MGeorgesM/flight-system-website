@@ -68,11 +68,16 @@ if (document.title === 'Journey - Search Results' || document.title === 'Jouney 
     document.getElementById('flight-search-form').addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const departureLocation = document.getElementById('departure-location').value.toLowerCase();
-        const destination = document.getElementById('destination').value.toLowerCase();
-        const departureDate = new Date(document.getElementById('departure-date').value);
-        const returnDate = document.getElementById('return-date').value
-            ? new Date(document.getElementById('return-date').value)
+        if(!currentUser) {
+            window.location.href = '/frontend/pages/signin.html'
+            return
+        }
+
+        const departureLocation = departureLocationInput.value.toLowerCase();
+        const destination = destinationInput.value.toLowerCase();
+        const departureDate = new Date(departureDateInput.value);
+        const returnDate = departureDateInput.value
+            ? new Date(departureDateInput.value)
             : null;
 
         const flights = JSON.parse(localStorage.getItem('flights'));
